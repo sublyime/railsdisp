@@ -445,17 +445,67 @@ class RealTimeDispersionManager {
 
 // Initialize real-time manager when map is ready
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('RealTimeDispersionManager: DOM loaded, waiting for map...');
+  
   // Wait for map to be initialized
   const checkMapAndStart = () => {
-    if (window.dispersionMap) {
-      window.realTimeManager = new RealTimeDispersionManager(window.dispersionMap);
-      console.log('Real-time dispersion manager initialized');
-    } else {
-      setTimeout(checkMapAndStart, 100);
+    console.log('RealTimeDispersionManager: Checking for map...', {
+      dispersionMapExists: !!window.dispersionMap,
+      mapExists: !!window.map,
+      dispersionMapHasAddLayer: !!(window.dispersionMap && typeof window.dispersionMap.addLayer === 'function'),
+      mapHasAddLayer: !!(window.map && typeof window.map.addLayer === 'function')
+    });
+    
+    if (window.dispersionMap && typeof window.dispersionMap.addLayer === 'function') {
+      if (!window.realTimeManager) {
+        window.realTimeManager = new RealTimeDispersionManager(window.dispersionMap);
+        console.log('Real-time dispersion manager initialized successfully');
+      }
+      return true;
     }
+    
+    // Try alternative map reference
+    if (window.map && typeof window.map.addLayer === 'function') {
+      if (!window.realTimeManager) {
+        window.realTimeManager = new RealTimeDispersionManager(window.map);
+        console.log('Real-time dispersion manager initialized with window.map');
+      }
+      return true;
+    }
+    
+    return false;
   };
   
-  setTimeout(checkMapAndStart, 1000); // Wait a bit for other scripts to load
+  // Listen for map ready event
+  document.addEventListener('mapReady', function(event) {
+    console.log('RealTimeDispersionManager: mapReady event received', event.detail);
+    if (event.detail && event.detail.map) {
+      if (!window.realTimeManager) {
+        window.realTimeManager = new RealTimeDispersionManager(event.detail.map);
+        console.log('Real-time dispersion manager initialized via mapReady event');
+      }
+    }
+  });
+  
+  // Fallback with polling
+  if (!checkMapAndStart()) {
+    console.log('RealTimeDispersionManager: Map not ready, starting polling...');
+    let attempts = 0;
+    const maxAttempts = 100; // 10 second timeout
+    const interval = setInterval(() => {
+      attempts++;
+      console.log(`RealTimeDispersionManager: Polling attempt ${attempts}/${maxAttempts}`);
+      
+      if (checkMapAndStart()) {
+        clearInterval(interval);
+        console.log('RealTimeDispersionManager: Successfully initialized via polling');
+      } else if (attempts >= maxAttempts) {
+        clearInterval(interval);
+        console.error('RealTimeDispersionManager: Map initialization timeout after 10 seconds');
+        console.error('Available window objects:', Object.keys(window).filter(key => key.includes('map') || key.includes('Map')));
+      }
+    }, 100);
+  }
 });
 
 // Make RealTimeDispersionManager globally available

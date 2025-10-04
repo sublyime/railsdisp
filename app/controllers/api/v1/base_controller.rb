@@ -12,10 +12,10 @@ class Api::V1::BaseController < ApplicationController
   end
   
   def render_error(message, status = :unprocessable_entity)
-    render json: { error: message }, status: status
+    render json: { status: 'error', message: message }, status: status
   end
   
   def render_success(data, message = 'Success')
-    render json: { message: message, data: data }, status: :ok
+    render json: { status: 'success', message: message, data: data }, status: :ok
   end
 end

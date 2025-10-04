@@ -278,22 +278,48 @@
 <script>
   // Initialize the dispersion map when page loads
   document.addEventListener('DOMContentLoaded', function() {
-    // Wait for modules to load via importmap
-    setTimeout(function() {
+    console.log('DOM loaded, checking for map container...');
+    
+    // Wait for importmap modules to load
+    let retryCount = 0;
+    const maxRetries = 10;
+    
+    function initializeWithRetry() {
+      const mapContainer = document.getElementById('dispersionMap');
+      
+      if (!mapContainer) {
+        console.error('Map container #dispersionMap not found in DOM');
+        return;
+      }
+      
       if (typeof initializeDispersionMap === 'function') {
-        initializeDispersionMap();
-        startRealTimeUpdates();
-      } else {
-        console.warn('initializeDispersionMap not available yet, retrying...');
-        // Retry after a short delay
-        setTimeout(function() {
-          if (typeof initializeDispersionMap === 'function') {
-            initializeDispersionMap();
+        console.log('Attempting to initialize dispersion map...');
+        const success = initializeDispersionMap();
+        
+        if (success) {
+          console.log('Dispersion map initialized successfully from dashboard');
+          
+          // Start real-time updates after map is ready
+          if (typeof startRealTimeUpdates === 'function') {
             startRealTimeUpdates();
           }
-        }, 1000);
+        } else {
+          console.error('Failed to initialize dispersion map');
+        }
+      } else {
+        console.warn(`initializeDispersionMap function not found (attempt ${retryCount + 1}/${maxRetries})`);
+        
+        if (retryCount < maxRetries) {
+          retryCount++;
+          setTimeout(initializeWithRetry, 500);
+        } else {
+          console.error('Failed to load initializeDispersionMap after maximum retries');
+        }
       }
-    }, 500);
+    }
+    
+    // Start initialization with a small delay to ensure DOM is fully ready
+    setTimeout(initializeWithRetry, 100);
   });
 
   // Pass server data to JavaScript

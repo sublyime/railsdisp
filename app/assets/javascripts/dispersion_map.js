@@ -28,6 +28,19 @@ const CONCENTRATION_COLORS = {
  * Initialize the main dispersion map
  */
 function initializeDispersionMap() {
+  // Check if map container exists
+  const mapContainer = document.getElementById('dispersionMap');
+  if (!mapContainer) {
+    console.error('Map container #dispersionMap not found');
+    return false;
+  }
+
+  // Check if map is already initialized
+  if (map && map._container) {
+    console.log('Map already initialized');
+    return true;
+  }
+
   // Create the map
   map = L.map('dispersionMap').setView(MAP_CONFIG.center, MAP_CONFIG.zoom);
 
@@ -90,6 +103,7 @@ function initializeDispersionMap() {
   }
 
   console.log('Dispersion map initialized successfully');
+  return true;
 }
 
 /**
@@ -555,4 +569,7 @@ if (typeof window !== 'undefined') {
   window.sourceMarkers = sourceMarkers;
   window.receptorMarkers = receptorMarkers;
   window.concentrationOverlays = concentrationOverlays;
+  window.centerMapOnActiveEvents = centerMapOnActiveEvents;
+  window.triggerEmergencyAlert = triggerEmergencyAlert;
+  window.createEventHere = createEventHere;
 }

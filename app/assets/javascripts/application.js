@@ -15,5 +15,6 @@ import "dispersion_map"
 import "weather_manager"
 import "realtime_dispersion"
 import "realtime_test"
+import "module_integration_test"
 
 export { application }
