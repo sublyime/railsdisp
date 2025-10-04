@@ -13,14 +13,14 @@ class Chemical < ApplicationRecord
   validates :hazard_class, presence: true
   
   # Serialize JSON fields
-  serialize :synonyms, Array
-  serialize :vapor_pressure_coeffs, Array
-  serialize :liquid_density_coeffs, Array
-  serialize :gas_density_coeffs, Array
-  serialize :heat_of_vaporization_coeffs, Array
-  serialize :liquid_heat_capacity_coeffs, Array
-  serialize :vapor_heat_capacity_coeffs, Array
-  serialize :safety_warnings, Array
+  serialize :synonyms, type: Array, coder: JSON
+  serialize :vapor_pressure_coeffs, type: Array, coder: JSON
+  serialize :liquid_density_coeffs, type: Array, coder: JSON
+  serialize :gas_density_coeffs, type: Array, coder: JSON
+  serialize :heat_of_vaporization_coeffs, type: Array, coder: JSON
+  serialize :liquid_heat_capacity_coeffs, type: Array, coder: JSON
+  serialize :vapor_heat_capacity_coeffs, type: Array, coder: JSON
+  serialize :safety_warnings, type: Array, coder: JSON
   
   scope :by_state, ->(state) { where(state: state) }
   scope :by_hazard_class, ->(hazard_class) { where(hazard_class: hazard_class) }

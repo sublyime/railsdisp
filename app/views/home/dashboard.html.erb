@@ -545,4 +545,59 @@
       }
     }, 2000);
   });
+
+  // Missing dashboard functions
+  function stopMonitoring(eventId) {
+    console.log('🛑 Stopping monitoring for event:', eventId);
+    if (confirm('Stop monitoring this dispersion event?')) {
+      // Here you could add AJAX call to stop monitoring
+      fetch(`/dispersion_events/${eventId}/stop_monitoring`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('✅ Monitoring stopped:', data);
+        location.reload(); // Refresh the dashboard
+      })
+      .catch(error => {
+        console.error('❌ Error stopping monitoring:', error);
+      });
+    }
+  }
+
+  function toggleFullscreen() {
+    console.log('🖥️ Toggling fullscreen mode');
+    const mapContainer = document.getElementById('dispersionMap');
+    
+    if (!document.fullscreenElement) {
+      // Enter fullscreen
+      if (mapContainer.requestFullscreen) {
+        mapContainer.requestFullscreen();
+      } else if (mapContainer.webkitRequestFullscreen) {
+        mapContainer.webkitRequestFullscreen();
+      } else if (mapContainer.msRequestFullscreen) {
+        mapContainer.msRequestFullscreen();
+      }
+    } else {
+      // Exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+    // Resize map after fullscreen change
+    setTimeout(() => {
+      if (window.dispersionMap && window.dispersionMap.invalidateSize) {
+        window.dispersionMap.invalidateSize();
+      }
+    }, 200);
+  }
 </script>

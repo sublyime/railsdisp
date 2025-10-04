@@ -79,16 +79,18 @@ class DispersionEventsController < ApplicationController
 
   private
 
+  private
+
   def set_dispersion_event
     @dispersion_event = DispersionEvent.find(params[:id])
   end
 
   def dispersion_event_params
-    params.require(:dispersion_event).permit(:chemical_id, :location_id, :release_rate, 
-                                           :release_duration, :release_height, 
-                                           :release_temperature, :wind_speed, 
-                                           :atmospheric_stability, :start_time, 
-                                           :end_time, :status, :description)
+    params.require(:dispersion_event).permit(
+      :chemical_id, :location_id, :release_rate, :release_volume, 
+      :release_mass, :release_duration, :release_type, :started_at, 
+      :ended_at, :status, :notes
+    )
   end
 
   def create_default_receptors
@@ -109,8 +111,7 @@ class DispersionEventsController < ApplicationController
         @dispersion_event.receptors.create!(
           name: "Receptor #{distance}m #{direction}°",
           latitude: source_lat + lat_offset,
-          longitude: source_lng + lng_offset,
-          height: 1.5 # Standard breathing height
+          longitude: source_lng + lng_offset
         )
       end
     end
