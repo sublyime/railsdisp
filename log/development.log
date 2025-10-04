@@ -5451,3 +5451,16 @@ Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-
   
 ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
   
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: daf1293c-b531-4b76-8221-54ce98259dd0) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:38:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Performing WeatherUpdateJob (Job ID: daf1293c-b531-4b76-8221-54ce98259dd0) from Async(weather_updates) enqueued at 2025-10-04T02:37:42.107334717Z
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0]   [1m[36mLocation Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0]   [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Failed to update weather for Industrial Complex A: OpenWeatherMap API key not configured
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Failed to update weather for Chemical Plant B: OpenWeatherMap API key not configured
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Failed to update weather for Research Facility E: OpenWeatherMap API key not configured
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [daf1293c-b531-4b76-8221-54ce98259dd0] Performed WeatherUpdateJob (Job ID: daf1293c-b531-4b76-8221-54ce98259dd0) from Async(weather_updates) in 12.82ms
