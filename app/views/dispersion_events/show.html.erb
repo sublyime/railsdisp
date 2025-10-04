@@ -1,2 +1,152 @@
-<h1>DispersionEvents#show</h1>
-<p>Find me in app/views/dispersion_events/show.html.erb</p>
+<% content_for :title, "Dispersion Event ##{@dispersion_event.id}" %>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Success message and map link -->
+      <div class="alert alert-success d-flex align-items-center" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        <div class="flex-grow-1">
+          <h4 class="alert-heading mb-1">Event Created Successfully!</h4>
+          <p class="mb-2">Your dispersion event has been created with 40 receptors for modeling.</p>
+        </div>
+        <div>
+          <%= link_to dashboard_path, class: "btn btn-success btn-lg" do %>
+            <i class="fas fa-map-marked-alt me-2"></i>View on Interactive Map
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Event Details -->
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-flask me-2"></i>Event Details</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Chemical Information</h5>
+              <p><strong>Chemical:</strong> <%= @dispersion_event.chemical.name %></p>
+              <p><strong>CAS Number:</strong> <%= @dispersion_event.chemical.cas_number %></p>
+              <p><strong>Molecular Weight:</strong> <%= @dispersion_event.chemical.molecular_weight %> g/mol</p>
+              <p><strong>Physical State:</strong> <%= @dispersion_event.chemical.state&.titleize %></p>
+            </div>
+            <div class="col-md-6">
+              <h5>Location Information</h5>
+              <p><strong>Location:</strong> <%= @dispersion_event.location.name %></p>
+              <p><strong>Coordinates:</strong> <%= @dispersion_event.location.latitude %>, <%= @dispersion_event.location.longitude %></p>
+              <p><strong>Elevation:</strong> <%= @dispersion_event.location.elevation %> m</p>
+              <p><strong>Terrain:</strong> <%= @dispersion_event.location.terrain_type&.titleize %></p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Release Parameters</h5>
+              <p><strong>Release Rate:</strong> <%= @dispersion_event.release_rate %> kg/s</p>
+              <p><strong>Release Volume:</strong> <%= @dispersion_event.release_volume %> m³</p>
+              <p><strong>Release Mass:</strong> <%= @dispersion_event.release_mass %> kg</p>
+              <p><strong>Duration:</strong> <%= @dispersion_event.release_duration %> minutes</p>
+              <p><strong>Type:</strong> <%= @dispersion_event.release_type&.titleize %></p>
+            </div>
+            <div class="col-md-6">
+              <h5>Event Status</h5>
+              <p><strong>Status:</strong> 
+                <span class="badge bg-<%= case @dispersion_event.status
+                  when 'active' then 'warning'
+                  when 'completed' then 'success'
+                  when 'planned' then 'info'
+                  else 'secondary'
+                end %>">
+                  <%= @dispersion_event.status&.titleize || 'Unknown' %>
+                </span>
+              </p>
+              <p><strong>Started:</strong> <%= @dispersion_event.started_at ? time_ago_in_words(@dispersion_event.started_at) + ' ago' : 'Not started' %></p>
+              <p><strong>Ended:</strong> <%= @dispersion_event.ended_at ? time_ago_in_words(@dispersion_event.ended_at) + ' ago' : 'Not ended' %></p>
+              <p><strong>Created:</strong> <%= time_ago_in_words(@dispersion_event.created_at) %> ago</p>
+            </div>
+          </div>
+
+          <% if @dispersion_event.notes.present? %>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <h5>Notes</h5>
+              <p><%= simple_format(@dispersion_event.notes) %></p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+        </div>
+        <div class="card-body d-grid gap-2">
+          <%= link_to dashboard_path, class: "btn btn-primary btn-lg" do %>
+            <i class="fas fa-map-marked-alt me-2"></i>View on Map
+          <% end %>
+          
+          <%= link_to edit_dispersion_event_path(@dispersion_event), class: "btn btn-outline-primary" do %>
+            <i class="fas fa-edit me-2"></i>Edit Event
+          <% end %>
+          
+          <%= link_to dispersion_events_path, class: "btn btn-outline-secondary" do %>
+            <i class="fas fa-list me-2"></i>All Events
+          <% end %>
+          
+          <%= link_to new_dispersion_event_path, class: "btn btn-outline-success" do %>
+            <i class="fas fa-plus me-2"></i>New Event
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Receptors Info -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h6><i class="fas fa-crosshairs me-2"></i>Receptors</h6>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <h3 class="text-primary"><%= @dispersion_event.receptors.count %></h3>
+            <p class="text-muted">Receptors automatically created</p>
+            <small class="text-muted">
+              Covering 5 distances (100m to 5km)<br>
+              and 8 directions around source
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Preview -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h6><i class="fas fa-map me-2"></i>Interactive Map</h6>
+        </div>
+        <div class="card-body text-center">
+          <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
+          <p class="text-muted">View this event on the interactive map to:</p>
+          <ul class="list-unstyled text-start">
+            <li><i class="fas fa-check text-success"></i> See dispersion plumes</li>
+            <li><i class="fas fa-check text-success"></i> Click for weather data</li>
+            <li><i class="fas fa-check text-success"></i> View all receptors</li>
+            <li><i class="fas fa-check text-success"></i> Real-time updates</li>
+          </ul>
+          <%= link_to dashboard_path, class: "btn btn-success w-100" do %>
+            <i class="fas fa-external-link-alt me-2"></i>Open Map Dashboard
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

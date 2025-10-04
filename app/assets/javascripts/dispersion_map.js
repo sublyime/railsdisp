@@ -28,22 +28,35 @@ const CONCENTRATION_COLORS = {
  * Initialize the main dispersion map
  */
 function initializeDispersionMap() {
-  console.log('🗺️ Initializing dispersion map...');
+  console.log('🗺️ Checking for dispersion map container...');
   
   // Check if map container exists
   const mapContainer = document.getElementById('dispersionMap');
   if (!mapContainer) {
-    console.error('❌ Map container #dispersionMap not found');
+    console.log('ℹ️ Map container #dispersionMap not found - not on dashboard page');
     return false;
   }
   
   console.log('✅ Map container found:', mapContainer);
 
-  // Check if map is already initialized
+  // Check if map is already initialized and clean up properly
   if (map && map._container) {
     console.log('⚠️ Map already initialized, removing existing instance');
-    map.remove();
+    try {
+      map.off(); // Remove all event listeners
+      map.remove(); // Remove the map
+    } catch (e) {
+      console.log('⚠️ Error removing map, forcing cleanup:', e.message);
+    }
     map = null;
+  }
+
+  // Also check if container has leftover Leaflet classes and clean them
+  if (mapContainer.classList.contains('leaflet-container')) {
+    console.log('🧹 Cleaning up leftover Leaflet container classes');
+    mapContainer.innerHTML = ''; // Clear container content
+    mapContainer.className = mapContainer.className.replace(/leaflet[^\s]*/g, '').trim();
+    mapContainer.style.cssText = 'height: 70vh; min-height: 500px;'; // Reset styles
   }
 
   try {
@@ -97,12 +110,15 @@ function initializeDispersionMap() {
   // Setup map event handlers for weather integration
   setupWeatherMapIntegration();
 
-  // Load initial data
-  loadActiveEvents();
-  loadLocations();
-
-  // Set up real-time updates
-  setupRealtimeUpdates();
+  // Load initial data after map is ready
+  map.whenReady(function() {
+    console.log('🗺️ Map is ready, loading data...');
+    loadActiveEvents();
+    loadLocations();
+    
+    // Set up real-time updates
+    setupRealtimeUpdates();
+  });
 
   // Notify other modules that map is ready
   document.dispatchEvent(new CustomEvent('mapReady', { detail: { map: map } }));
@@ -278,7 +294,7 @@ async function handleWeatherMapClick(e) {
  * Fetch weather data for specific coordinates
  */
 async function fetchWeatherForLocation(lat, lon) {
-  const response = await fetch(`/weather/current/${lat}/${lon}`, {
+  const response = await fetch(`/api/v1/weather/at_location?lat=${lat}&lng=${lon}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -290,7 +306,20 @@ async function fetchWeatherForLocation(lat, lon) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   
-  return await response.json();
+  const result = await response.json();
+  
+  // Transform the API response to expected format
+  if (result.status === 'success') {
+    return {
+      status: 'success',
+      weather_data: result.data
+    };
+  } else {
+    return {
+      status: 'error',
+      error: result.message || 'Failed to fetch weather data'
+    };
+  }
 }
 
 /**
@@ -888,6 +917,12 @@ function addReceptorToMap(receptor, event) {
  * Add a facility location to the map
  */
 function addLocationToMap(location) {
+  // Check if map is ready before adding markers
+  if (!map || !map._container) {
+    console.log('⚠️ Map not ready, skipping location:', location.name);
+    return;
+  }
+
   const { id, name, latitude, longitude, terrain_type, building_height } = location;
 
   const locationIcon = L.divIcon({
@@ -902,19 +937,23 @@ function addLocationToMap(location) {
     iconAnchor: [15, 15]
   });
 
-  const locationMarker = L.marker([latitude, longitude], { icon: locationIcon })
-    .bindPopup(`
-      <div class="popup-content">
-        <h6><strong>${name}</strong></h6>
-        <p class="mb-1"><strong>Terrain:</strong> ${terrain_type}</p>
-        <p class="mb-1"><strong>Building Height:</strong> ${building_height}m</p>
-        <div class="mt-2">
-          <a href="/locations/${id}" class="btn btn-sm btn-primary">View Details</a>
-          <button class="btn btn-sm btn-success" onclick="createEventHere(${id})">New Event</button>
+  try {
+    const locationMarker = L.marker([latitude, longitude], { icon: locationIcon })
+      .bindPopup(`
+        <div class="popup-content">
+          <h6><strong>${name}</strong></h6>
+          <p class="mb-1"><strong>Terrain:</strong> ${terrain_type}</p>
+          <p class="mb-1"><strong>Building Height:</strong> ${building_height}m</p>
+          <div class="mt-2">
+            <a href="/locations/${id}" class="btn btn-sm btn-primary">View Details</a>
+            <button class="btn btn-sm btn-success" onclick="createEventHere(${id})">New Event</button>
+          </div>
         </div>
-      </div>
-    `)
-    .addTo(map);
+      `)
+      .addTo(map);
+  } catch (error) {
+    console.error('Error adding location marker:', error);
+  }
 }
 
 /**

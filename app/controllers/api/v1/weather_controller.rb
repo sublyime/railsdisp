@@ -93,11 +93,87 @@ class Api::V1::WeatherController < Api::V1::BaseController
     end
   end
 
+  # GET /api/v1/weather/at_location?lat=xx&lng=xx
+  def at_location
+    begin
+      lat = params[:lat].to_f
+      lng = params[:lng].to_f
+      
+      if lat == 0.0 && lng == 0.0
+        return render_error("Invalid coordinates provided", 400)
+      end
+
+      # Find nearest weather data within reasonable distance (100km)
+      nearest_weather = WeatherDatum.select(
+        "*, (6371 * acos(cos(radians(#{lat})) * cos(radians(latitude)) * cos(radians(longitude) - radians(#{lng})) + sin(radians(#{lat})) * sin(radians(latitude)))) AS distance"
+      ).where(
+        "recorded_at > ?", 24.hours.ago
+      ).order(:distance).first
+
+      if nearest_weather && nearest_weather.distance < 100 # within 100km
+        formatted_data = {
+          id: nearest_weather.id,
+          latitude: nearest_weather.latitude,
+          longitude: nearest_weather.longitude,
+          temperature: nearest_weather.temperature,
+          wind_speed: nearest_weather.wind_speed,
+          wind_direction: nearest_weather.wind_direction,
+          humidity: nearest_weather.humidity,
+          pressure: nearest_weather.pressure,
+          visibility: nearest_weather.visibility,
+          source: nearest_weather.source,
+          recorded_at: nearest_weather.recorded_at,
+          stability_class: nearest_weather.stability_class,
+          wind_vector: nearest_weather.wind_vector,
+          distance_km: nearest_weather.distance.round(2),
+          age_hours: ((Time.current - nearest_weather.recorded_at) / 3600).round(1)
+        }
+
+        render_success(formatted_data, "Weather data found for location")
+      else
+        # Generate mock weather data for the location if no real data available
+        mock_weather = generate_mock_weather_data(lat, lng)
+        render_success(mock_weather, "Mock weather data generated for location")
+      end
+    rescue => e
+      render_error("Failed to retrieve weather for location: #{e.message}")
+    end
+  end
+
   private
 
   def weather_params
     params.require(:weather).permit(:temperature, :wind_speed, :wind_direction, 
                                     :humidity, :pressure, :visibility, :latitude, 
                                     :longitude, :source)
+  end
+
+  def generate_mock_weather_data(lat, lng)
+    # Generate realistic mock weather data based on location and time
+    current_time = Time.current
+    hour = current_time.hour
+    
+    # Base temperature varies by time of day and latitude
+    base_temp = 20 + (30 - lat.abs) * 0.5 # Warmer near equator
+    daily_temp_variation = 8 * Math.sin((hour - 6) * Math::PI / 12) # Peak at 2pm
+    temperature = (base_temp + daily_temp_variation + rand(-3..3)).round(1)
+    
+    {
+      latitude: lat,
+      longitude: lng,
+      temperature: temperature,
+      wind_speed: (2 + rand(0..10) + rand * 5).round(1),
+      wind_direction: rand(0..359),
+      humidity: rand(30..90),
+      pressure: (1013.25 + rand(-15..15)).round(1),
+      visibility: rand(5000..15000),
+      source: "Generated",
+      recorded_at: current_time,
+      stability_class: ['A', 'B', 'C', 'D', 'E', 'F'].sample,
+      wind_vector: nil,
+      distance_km: 0,
+      age_hours: 0,
+      note: "Mock data generated for coordinates #{lat.round(4)}, #{lng.round(4)}"
+    }
   end
 end

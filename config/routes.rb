@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root "home#index"
   get "dashboard", to: "home#dashboard"
   
+  # Favicon route
+  get '/favicon.ico', to: proc { [200, {}, ['']] }
+  
   # GIS and Mapping Resources
   resources :map_layers do
     collection do
@@ -132,6 +135,7 @@ Rails.application.routes.draw do
       resources :weather, only: [:index, :show] do
         collection do
           get :current
+          get :at_location
         end
       end
     end
