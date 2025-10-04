@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  elevation: 9.99
+  building_height: 9.99
+  building_type: MyString
+  terrain_type: MyString
+  description: MyText
+
+two:
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  elevation: 9.99
+  building_height: 9.99
+  building_type: MyString
+  terrain_type: MyString
+  description: MyText

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dispersion_event: one
+  weather_datum: one
+  plume_data: 
+  calculation_timestamp: 2025-10-03 19:10:23
+  model_used: MyString
+  stability_class: MyString
+  effective_height: 9.99
+  max_concentration: 9.99
+  max_distance: 9.99
+
+two:
+  dispersion_event: two
+  weather_datum: two
+  plume_data: 
+  calculation_timestamp: 2025-10-03 19:10:23
+  model_used: MyString
+  stability_class: MyString
+  effective_height: 9.99
+  max_concentration: 9.99
+  max_distance: 9.99

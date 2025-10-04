@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chemical: one
+  location: one
+  release_rate: 9.99
+  release_volume: 9.99
+  release_mass: 9.99
+  release_duration: 9.99
+  release_type: MyString
+  started_at: 2025-10-03 19:09:54
+  ended_at: 2025-10-03 19:09:54
+  status: MyString
+  notes: MyText
+
+two:
+  chemical: two
+  location: two
+  release_rate: 9.99
+  release_volume: 9.99
+  release_mass: 9.99
+  release_duration: 9.99
+  release_type: MyString
+  started_at: 2025-10-03 19:09:54
+  ended_at: 2025-10-03 19:09:54
+  status: MyString
+  notes: MyText

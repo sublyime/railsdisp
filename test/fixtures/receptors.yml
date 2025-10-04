@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dispersion_event: one
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  distance_from_source: 9.99
+  concentration: 9.99
+  exposure_time: 9.99
+  health_impact_level: MyString
+  notes: MyText
+
+two:
+  dispersion_event: two
+  name: MyString
+  latitude: 9.99
+  longitude: 9.99
+  distance_from_source: 9.99
+  concentration: 9.99
+  exposure_time: 9.99
+  health_impact_level: MyString
+  notes: MyText
