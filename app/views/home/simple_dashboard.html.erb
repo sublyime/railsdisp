@@ -1,0 +1,108 @@
+<% content_for :title, "Interactive Dispersion Map" %>
+
+<div class="container-fluid py-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2><i class="fas fa-map-marked-alt"></i> Interactive Dispersion Map</h2>
+      <p class="text-muted">Click anywhere on the map to get weather data. View active dispersion events and facility locations.</p>
+    </div>
+  </div>
+
+  <!-- Map Controls -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="map-controls">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <h5 class="mb-0"><i class="fas fa-layer-group"></i> Map Layers</h5>
+          </div>
+          <div class="col-md-8">
+            <div class="btn-group" role="group">
+              <%= link_to new_dispersion_event_path, class: "btn btn-danger btn-sm" do %>
+                <i class="fas fa-plus"></i> New Event
+              <% end %>
+              <%= link_to dispersion_events_path, class: "btn btn-info btn-sm" do %>
+                <i class="fas fa-list"></i> All Events
+              <% end %>
+              <%= link_to locations_path, class: "btn btn-success btn-sm" do %>
+                <i class="fas fa-building"></i> Locations
+              <% end %>
+              <%= link_to weather_data_path, class: "btn btn-secondary btn-sm" do %>
+                <i class="fas fa-cloud"></i> Weather
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Container -->
+  <div class="row">
+    <div class="col-12">
+      <div id="dispersionMap" class="map-container"></div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h6><i class="fas fa-info-circle"></i> Map Legend</h6>
+          <div class="row">
+            <div class="col-md-3">
+              <span class="badge bg-danger me-2">●</span> Active Dispersion Events
+            </div>
+            <div class="col-md-3">
+              <span class="badge bg-success me-2">■</span> Facility Locations
+            </div>
+            <div class="col-md-3">
+              <span class="badge bg-primary me-2">◆</span> Weather Data Points
+            </div>
+            <div class="col-md-3">
+              <small class="text-muted">Click map for weather data</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Summary -->
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="text-danger"><%= @active_events.count %></h3>
+          <small>Active Events</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="text-success"><%= Location.count %></h3>
+          <small>Monitored Locations</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="text-info"><%= Chemical.count %></h3>
+          <small>Tracked Chemicals</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="text-warning"><%= WeatherDatum.count %></h3>
+          <small>Weather Records</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

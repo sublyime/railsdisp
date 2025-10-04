@@ -12,6 +12,18 @@ class HomeController < ApplicationController
     @total_locations = Location.count
   end
 
+  def simple_dashboard
+    # Simple map dashboard without complex JavaScript
+    @active_events = DispersionEvent.where(status: 'active')
+                                   .includes(:chemical, :location)
+    
+    @locations = Location.all
+    @chemicals = Chemical.all
+    @weather_data = WeatherDatum.all
+    
+    render layout: 'simple_map'
+  end
+
   def dashboard
     # Main operational dashboard
     @active_events = DispersionEvent.where(status: 'active')
