@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  temperature: 9.99
+  humidity: 9.99
+  pressure: 9.99
+  wind_speed: 9.99
+  wind_direction: 9.99
+  precipitation: 9.99
+  cloud_cover: 9.99
+  visibility: 9.99
+  recorded_at: 2025-10-03 19:09:24
+  latitude: 9.99
+  longitude: 9.99
+  source: MyString
+
+two:
+  temperature: 9.99
+  humidity: 9.99
+  pressure: 9.99
+  wind_speed: 9.99
+  wind_direction: 9.99
+  precipitation: 9.99
+  cloud_cover: 9.99
+  visibility: 9.99
+  recorded_at: 2025-10-03 19:09:24
+  latitude: 9.99
+  longitude: 9.99
+  source: MyString

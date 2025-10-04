@@ -1,0 +1,3 @@
+  [1m[35m (103.6ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (103.9ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (78259.8ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m

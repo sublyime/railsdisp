@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cas_number: MyString
+  molecular_weight: 9.99
+  vapor_pressure: 9.99
+  boiling_point: 9.99
+  melting_point: 9.99
+  density: 9.99
+  state: MyString
+  hazard_class: MyString
+  description: MyText
+
+two:
+  name: MyString
+  cas_number: MyString
+  molecular_weight: 9.99
+  vapor_pressure: 9.99
+  boiling_point: 9.99
+  melting_point: 9.99
+  density: 9.99
+  state: MyString
+  hazard_class: MyString
+  description: MyText
