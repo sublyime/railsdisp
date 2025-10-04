@@ -350,16 +350,27 @@ class WeatherManager {
     }
   }
 
-  // Get current weather for specific coordinates
+  // Get current weather for specific coordinates using comprehensive WeatherService
   async getCurrentWeather(lat, lon) {
     try {
-      const response = await fetch(`/api/v1/weather_data/current/${lat}/${lon}`);
+      const response = await fetch(`/weather/current/${lat}/${lon}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
-      if (data.success) {
-        return data.data.weather_data;
+      if (data.status === 'success') {
+        return data.weather_data;
       } else {
-        throw new Error(data.message || 'Failed to fetch weather data');
+        throw new Error(data.error || 'Failed to fetch weather data');
       }
     } catch (error) {
       console.error('Error fetching current weather:', error);
@@ -367,21 +378,357 @@ class WeatherManager {
     }
   }
 
-  // Get weather forecast for specific coordinates
-  async getForecast(lat, lon, hours = 24) {
+  // Get atmospheric stability analysis for coordinates
+  async getAtmosphericStability(lat, lon) {
     try {
-      const response = await fetch(`/api/v1/weather_data/forecast/${lat}/${lon}?hours=${hours}`);
+      const response = await fetch(`/weather/atmospheric_stability/${lat}/${lon}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
-      if (data.success) {
-        return data.data.forecast_data;
+      if (data.status === 'success') {
+        return data;
       } else {
-        throw new Error(data.message || 'Failed to fetch forecast data');
+        throw new Error(data.error || 'Failed to fetch stability analysis');
       }
     } catch (error) {
-      console.error('Error fetching forecast:', error);
+      console.error('Error fetching atmospheric stability:', error);
       throw error;
     }
+  }
+
+  // Get weather data for dispersion modeling
+  async getWeatherForDispersion(lat, lon, scenarioId = null) {
+    try {
+      const response = await fetch('/weather/for_dispersion', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+        },
+        body: JSON.stringify({
+          latitude: lat,
+          longitude: lon,
+          scenario_id: scenarioId
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.status === 'success') {
+        return data.dispersion_weather;
+      } else {
+        throw new Error(data.error || 'Failed to fetch dispersion weather');
+      }
+    } catch (error) {
+      console.error('Error fetching dispersion weather:', error);
+      throw error;
+    }
+  }
+
+  // Find weather stations near coordinates
+  async getWeatherStationsNear(lat, lon, radiusKm = 50) {
+    try {
+      const response = await fetch(`/weather/stations_near/${lat}/${lon}?radius=${radiusKm}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.stations || [];
+    } catch (error) {
+      console.error('Error fetching weather stations:', error);
+      throw error;
+    }
+  }
+
+  // Integrate with dispersion map for comprehensive weather display
+  integrateWithDispersionMap() {
+    if (!this.map) {
+      console.warn('No map available for weather integration');
+      return;
+    }
+    
+    // Listen for dispersion scenario events
+    document.addEventListener('dispersionScenarioCreated', (event) => {
+      const scenario = event.detail;
+      this.handleDispersionScenarioWeather(scenario);
+    });
+    
+    // Listen for map clicks for weather data
+    this.map.on('contextmenu', async (e) => {
+      const lat = e.latlng.lat;
+      const lon = e.latlng.lng;
+      
+      try {
+        const weatherData = await this.getCurrentWeather(lat, lon);
+        this.showWeatherContextMenu(lat, lon, weatherData);
+      } catch (error) {
+        console.error('Failed to fetch weather for context menu:', error);
+      }
+    });
+    
+    console.log('Weather manager integrated with dispersion map');
+  }
+  
+  // Handle weather for new dispersion scenarios
+  async handleDispersionScenarioWeather(scenario) {
+    try {
+      const dispersionWeather = await this.getWeatherForDispersion(
+        scenario.latitude, 
+        scenario.longitude, 
+        scenario.id
+      );
+      
+      // Update dispersion calculations with weather data
+      if (window.dispersionManager) {
+        window.dispersionManager.updateWeatherData(dispersionWeather);
+      }
+      
+      // Display weather information for the scenario
+      this.displayScenarioWeather(scenario.latitude, scenario.longitude, dispersionWeather);
+      
+    } catch (error) {
+      console.error('Failed to handle scenario weather:', error);
+    }
+  }
+  
+  // Display weather information for dispersion scenario
+  displayScenarioWeather(lat, lon, dispersionWeather) {
+    const currentConditions = dispersionWeather.current_conditions;
+    const stabilityAnalysis = dispersionWeather.atmospheric_stability;
+    
+    // Create scenario weather marker
+    const weatherIcon = L.divIcon({
+      className: 'scenario-weather-marker',
+      html: `
+        <div class="weather-scenario-content" style="background-color: ${this.getStabilityColor(stabilityAnalysis.stability_class)}; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
+          <i class="fas fa-cloud-sun" style="color: white; font-size: 12px;"></i>
+        </div>
+        <div class="scenario-label" style="position: absolute; top: 32px; left: -15px; background: rgba(0,0,0,0.7); color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; white-space: nowrap;">
+          ${stabilityAnalysis.stability_class} - ${currentConditions.wind_speed?.toFixed(1)}m/s
+        </div>
+      `,
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    });
+    
+    const scenarioWeatherMarker = L.marker([lat, lon], { icon: weatherIcon });
+    
+    // Create comprehensive weather popup
+    const popupContent = `
+      <div class="scenario-weather-popup">
+        <h6><i class="fas fa-project-diagram"></i> Dispersion Weather Conditions</h6>
+        <div class="current-conditions mb-3">
+          <h6 class="small">Current Conditions</h6>
+          <div class="row">
+            <div class="col-6">
+              <strong>Temperature:</strong><br>
+              <span class="badge bg-info">${currentConditions.temperature?.toFixed(1)}°C</span>
+            </div>
+            <div class="col-6">
+              <strong>Wind:</strong><br>
+              <span class="badge bg-primary">${currentConditions.wind_speed?.toFixed(1)} m/s @ ${currentConditions.wind_direction}°</span>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-6">
+              <strong>Pressure:</strong><br>
+              <span class="badge bg-warning">${currentConditions.pressure_sea_level?.toFixed(0)} hPa</span>
+            </div>
+            <div class="col-6">
+              <strong>Humidity:</strong><br>
+              <span class="badge bg-secondary">${currentConditions.relative_humidity?.toFixed(0)}%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="stability-analysis mb-3">
+          <h6 class="small">Atmospheric Stability</h6>
+          <div class="row">
+            <div class="col-12 mb-1">
+              <strong>Class:</strong> 
+              <span class="badge" style="background-color: ${this.getStabilityColor(stabilityAnalysis.stability_class)}">${stabilityAnalysis.stability_class}</span>
+              <small class="text-muted d-block">${stabilityAnalysis.stability_description}</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <strong>Mixing Height:</strong><br>
+              <span class="badge bg-info">${stabilityAnalysis.mixing_height} m</span>
+            </div>
+            <div class="col-6">
+              <strong>Conditions:</strong><br>
+              <span class="badge bg-secondary small">${stabilityAnalysis.atmospheric_conditions?.slice(0,2).join(', ')}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dispersion-params">
+          <h6 class="small">Dispersion Parameters</h6>
+          <div class="small">
+            <strong>Data Quality:</strong> ${(dispersionWeather.dispersion_parameters.data_quality.confidence * 100).toFixed(0)}%<br>
+            <strong>Primary Source:</strong> ${dispersionWeather.dispersion_parameters.data_quality.primary_source}<br>
+            <strong>Observed:</strong> ${new Date(dispersionWeather.dispersion_parameters.data_quality.observed_at).toLocaleTimeString()}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    scenarioWeatherMarker.bindPopup(popupContent);
+    this.weatherLayer.addLayer(scenarioWeatherMarker);
+    
+    // Also add wind vector for the scenario
+    if (currentConditions.wind_speed && currentConditions.wind_speed > 0.5) {
+      this.addScenarioWindVector(lat, lon, currentConditions);
+    }
+  }
+  
+  // Add wind vector specifically for dispersion scenarios
+  addScenarioWindVector(lat, lon, weatherData) {
+    const windSpeed = weatherData.wind_speed;
+    const windDirection = weatherData.wind_direction;
+    
+    if (!windSpeed || !windDirection) return;
+    
+    // Larger arrow for scenario wind vectors
+    const arrowLength = Math.min(windSpeed * 0.005, 0.1);
+    const directionRad = (windDirection + 180) * Math.PI / 180;
+    
+    const endLat = lat + arrowLength * Math.cos(directionRad);
+    const endLon = lon + arrowLength * Math.sin(directionRad);
+    
+    const windColor = '#ff6b35'; // Distinctive color for scenario winds
+    
+    const windLine = L.polyline([[lat, lon], [endLat, endLon]], {
+      color: windColor,
+      weight: 4,
+      opacity: 0.9
+    });
+    
+    const arrowHead = L.polygon([
+      [endLat, endLon],
+      [endLat - arrowLength * 0.3 * Math.cos(directionRad - 0.5), 
+       endLon - arrowLength * 0.3 * Math.sin(directionRad - 0.5)],
+      [endLat - arrowLength * 0.3 * Math.cos(directionRad + 0.5), 
+       endLon - arrowLength * 0.3 * Math.sin(directionRad + 0.5)]
+    ], {
+      color: windColor,
+      fillColor: windColor,
+      fillOpacity: 0.9,
+      weight: 3
+    });
+    
+    const scenarioWindGroup = L.layerGroup([windLine, arrowHead]);
+    
+    scenarioWindGroup.bindPopup(`
+      <div class="scenario-wind-popup">
+        <h6><i class="fas fa-wind"></i> Scenario Wind Vector</h6>
+        <p><strong>Speed:</strong> ${windSpeed.toFixed(1)} m/s</p>
+        <p><strong>Direction:</strong> ${windDirection}° (${this.getWindDirectionText(windDirection)})</p>
+        <p><strong>For:</strong> Dispersion Modeling</p>
+      </div>
+    `);
+    
+    this.currentWindLayer.addLayer(scenarioWindGroup);
+  }
+  
+  // Show weather context menu on right-click
+  showWeatherContextMenu(lat, lon, weatherData) {
+    const contextMenu = L.popup({
+      className: 'weather-context-menu',
+      closeButton: false,
+      autoClose: false
+    })
+    .setLatLng([lat, lon])
+    .setContent(`
+      <div class="weather-context-menu">
+        <h6><i class="fas fa-map-marker-alt"></i> Weather Options</h6>
+        <div class="btn-group-vertical w-100">
+          <button class="btn btn-sm btn-primary" onclick="window.weatherManager.showDetailedWeather(${lat}, ${lon})">
+            <i class="fas fa-info-circle"></i> Show Details
+          </button>
+          <button class="btn btn-sm btn-success" onclick="window.weatherManager.startDispersionHere(${lat}, ${lon})">
+            <i class="fas fa-play"></i> Start Dispersion
+          </button>
+          <button class="btn btn-sm btn-info" onclick="window.weatherManager.addWeatherStation(${lat}, ${lon})">
+            <i class="fas fa-plus"></i> Add Station
+          </button>
+        </div>
+      </div>
+    `)
+    .openOn(this.map);
+    
+    // Auto-close after 5 seconds
+    setTimeout(() => {
+      this.map.closePopup(contextMenu);
+    }, 5000);
+  }
+  
+  // Show detailed weather information
+  async showDetailedWeather(lat, lon) {
+    try {
+      const stabilityData = await this.getAtmosphericStability(lat, lon);
+      
+      if (window.showAtmosphericStability) {
+        window.showAtmosphericStability(lat, lon);
+      }
+    } catch (error) {
+      console.error('Failed to show detailed weather:', error);
+    }
+  }
+  
+  // Start dispersion scenario at location
+  startDispersionHere(lat, lon) {
+    if (window.startDispersionHere) {
+      window.startDispersionHere(lat, lon);
+    }
+  }
+  
+  // Add weather station at location
+  addWeatherStation(lat, lon) {
+    if (window.addWeatherStationToMap) {
+      // Fetch current weather and add station
+      this.getCurrentWeather(lat, lon).then(weatherData => {
+        window.addWeatherStationToMap(lat, lon, weatherData);
+      }).catch(error => {
+        console.error('Failed to add weather station:', error);
+      });
+    }
+  }
+  
+  // Get stability color helper
+  getStabilityColor(stabilityClass) {
+    const colors = {
+      'A': '#ff4444', // Very Unstable - Red
+      'B': '#ff8800', // Moderately Unstable - Orange  
+      'C': '#ffcc00', // Slightly Unstable - Yellow
+      'D': '#66cc66', // Neutral - Green
+      'E': '#3399ff', // Slightly Stable - Blue
+      'F': '#0066cc'  // Moderately Stable - Dark Blue
+    };
+    return colors[stabilityClass] || '#666666';
   }
 
   // Clean up resources
@@ -410,7 +757,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('mapReady', function(event) {
     if (event.detail && event.detail.map) {
       window.weatherManager = new WeatherManager(event.detail.map);
-      console.log('WeatherManager initialized via mapReady event');
+      window.weatherManager.integrateWithDispersionMap();
+      console.log('WeatherManager initialized and integrated via mapReady event');
     }
   });
   
@@ -421,7 +769,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (map && typeof map.addLayer === 'function') {
       window.weatherManager = new WeatherManager(map);
-      console.log('WeatherManager initialized with map');
+      window.weatherManager.integrateWithDispersionMap();
+      console.log('WeatherManager initialized and integrated with map');
       return true;
     }
     return false;
@@ -444,10 +793,12 @@ document.addEventListener('DOMContentLoaded', function() {
           window.weatherManager = {
             map: null,
             initialized: false,
+            integrateWithDispersionMap: function() {},
             initializeWithMap: function(map) {
               if (map && typeof map.addLayer === 'function') {
                 window.weatherManager = new WeatherManager(map);
-                console.log('WeatherManager initialized with delayed map');
+                window.weatherManager.integrateWithDispersionMap();
+                console.log('WeatherManager initialized and integrated with delayed map');
               }
             }
           };

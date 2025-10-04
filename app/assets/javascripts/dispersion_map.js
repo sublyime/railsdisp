@@ -94,6 +94,9 @@ function initializeDispersionMap() {
   // Add custom controls
   addCustomControls();
 
+  // Setup map event handlers for weather integration
+  setupWeatherMapIntegration();
+
   // Load initial data
   loadActiveEvents();
   loadLocations();
@@ -117,6 +120,598 @@ function initializeDispersionMap() {
     return false;
   }
 }
+
+/**
+ * Setup weather integration with map interactions
+ */
+function setupWeatherMapIntegration() {
+  // Add weather layers
+  window.weatherStationLayer = L.layerGroup().addTo(map);
+  window.weatherWindLayer = L.layerGroup().addTo(map);
+  
+  // Create weather control panel
+  const weatherControl = L.control({position: 'topright'});
+  weatherControl.onAdd = function(map) {
+    const div = L.DomUtil.create('div', 'weather-control-panel bg-white p-3 rounded shadow');
+    div.style.maxWidth = '300px';
+    div.innerHTML = `
+      <div class="weather-panel">
+        <h6><i class="fas fa-cloud-sun"></i> Weather Integration</h6>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="enableWeatherClick" checked>
+          <label class="form-check-label" for="enableWeatherClick">
+            Click map for weather
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="showWeatherStations" checked>
+          <label class="form-check-label" for="showWeatherStations">
+            Show weather stations
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="showWindVectors" checked>
+          <label class="form-check-label" for="showWindVectors">
+            Show wind vectors
+          </label>
+        </div>
+        <div class="mb-2">
+          <button class="btn btn-primary btn-sm w-100" onclick="refreshAllWeatherData()">
+            <i class="fas fa-sync"></i> Refresh Weather
+          </button>
+        </div>
+        <div id="weather-status" class="alert alert-info p-2 small">
+          Click on map to get weather data
+        </div>
+      </div>
+    `;
+    
+    // Prevent map clicks when interacting with control
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+  };
+  weatherControl.addTo(map);
+  
+  // Setup weather map click handler
+  map.on('click', handleWeatherMapClick);
+  
+  // Setup control event handlers
+  setTimeout(() => {
+    document.getElementById('enableWeatherClick').addEventListener('change', function(e) {
+      if (e.target.checked) {
+        map.on('click', handleWeatherMapClick);
+        updateWeatherStatus('Weather click enabled');
+      } else {
+        map.off('click', handleWeatherMapClick);
+        updateWeatherStatus('Weather click disabled');
+      }
+    });
+    
+    document.getElementById('showWeatherStations').addEventListener('change', function(e) {
+      if (e.target.checked) {
+        map.addLayer(window.weatherStationLayer);
+      } else {
+        map.removeLayer(window.weatherStationLayer);
+      }
+    });
+    
+    document.getElementById('showWindVectors').addEventListener('change', function(e) {
+      if (e.target.checked) {
+        map.addLayer(window.weatherWindLayer);
+      } else {
+        map.removeLayer(window.weatherWindLayer);
+      }
+    });
+  }, 100);
+  
+  console.log('✅ Weather map integration setup complete');
+}
+
+/**
+ * Handle map click to fetch weather data for clicked location
+ */
+async function handleWeatherMapClick(e) {
+  const lat = e.latlng.lat;
+  const lon = e.latlng.lng;
+  
+  updateWeatherStatus('Fetching weather data...', 'info');
+  
+  try {
+    // Add temporary marker to show clicked location
+    const tempMarker = L.marker([lat, lon], {
+      icon: L.divIcon({
+        className: 'temp-weather-marker',
+        html: '<i class="fas fa-spinner fa-spin" style="color: #007bff; font-size: 16px;"></i>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map);
+    
+    // Fetch weather data for clicked location
+    const weatherData = await fetchWeatherForLocation(lat, lon);
+    
+    // Remove temporary marker
+    map.removeLayer(tempMarker);
+    
+    if (weatherData.status === 'success') {
+      // Add weather station marker
+      addWeatherStationToMap(lat, lon, weatherData.weather_data);
+      
+      // Show weather popup at clicked location
+      showWeatherPopup(lat, lon, weatherData.weather_data);
+      
+      // Update status
+      updateWeatherStatus(`Weather data loaded for ${lat.toFixed(4)}, ${lon.toFixed(4)}`, 'success');
+      
+      // If this is for a dispersion scenario, integrate with scenario workflow
+      if (window.currentDispersionScenario) {
+        await integrateWeatherWithDispersionScenario(lat, lon, weatherData);
+      }
+      
+    } else {
+      updateWeatherStatus(`Failed to fetch weather: ${weatherData.error || 'Unknown error'}`, 'danger');
+    }
+    
+  } catch (error) {
+    // Remove temporary marker if it exists
+    if (tempMarker) {
+      map.removeLayer(tempMarker);
+    }
+    
+    console.error('Weather fetch error:', error);
+    updateWeatherStatus(`Error: ${error.message}`, 'danger');
+    
+    // Show error popup
+    L.popup()
+      .setLatLng([lat, lon])
+      .setContent(`
+        <div class="alert alert-danger p-2 mb-0">
+          <h6><i class="fas fa-exclamation-triangle"></i> Weather Error</h6>
+          <p class="mb-0">Failed to fetch weather data: ${error.message}</p>
+        </div>
+      `)
+      .openOn(map);
+  }
+}
+
+/**
+ * Fetch weather data for specific coordinates
+ */
+async function fetchWeatherForLocation(lat, lon) {
+  const response = await fetch(`/weather/current/${lat}/${lon}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return await response.json();
+}
+
+/**
+ * Fetch atmospheric stability analysis for coordinates
+ */
+async function fetchAtmosphericStability(lat, lon) {
+  const response = await fetch(`/weather/atmospheric_stability/${lat}/${lon}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return await response.json();
+}
+
+/**
+ * Add weather station marker to map
+ */
+function addWeatherStationToMap(lat, lon, weatherData) {
+  const stationId = `weather_${lat.toFixed(4)}_${lon.toFixed(4)}`;
+  
+  // Remove existing station at this location
+  window.weatherStationLayer.eachLayer(layer => {
+    if (layer.options.stationId === stationId) {
+      window.weatherStationLayer.removeLayer(layer);
+    }
+  });
+  
+  // Create weather station icon based on conditions
+  const iconColor = getTemperatureColor(weatherData.temperature);
+  const stabilityClass = weatherData.pasquill_stability_class || 'D';
+  
+  const weatherIcon = L.divIcon({
+    className: 'weather-station-marker',
+    html: `
+      <div class="weather-marker-content" style="background-color: ${iconColor}; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+        <i class="fas fa-thermometer-half" style="color: white; font-size: 10px;"></i>
+      </div>
+      <div class="stability-indicator" style="position: absolute; top: -5px; right: -5px; background: ${getStabilityColor(stabilityClass)}; color: white; border-radius: 50%; width: 12px; height: 12px; font-size: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+        ${stabilityClass}
+      </div>
+    `,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12]
+  });
+  
+  const stationMarker = L.marker([lat, lon], { 
+    icon: weatherIcon,
+    stationId: stationId
+  });
+  
+  // Add weather station popup
+  const popupContent = createWeatherStationPopup(weatherData);
+  stationMarker.bindPopup(popupContent);
+  
+  window.weatherStationLayer.addLayer(stationMarker);
+  
+  // Add wind vector if wind data available
+  if (weatherData.wind_speed && weatherData.wind_speed > 0.5) {
+    addWindVectorToMap(lat, lon, weatherData);
+  }
+}
+
+/**
+ * Add wind vector visualization to map
+ */
+function addWindVectorToMap(lat, lon, weatherData) {
+  const windSpeed = weatherData.wind_speed;
+  const windDirection = weatherData.wind_direction;
+  
+  if (!windSpeed || !windDirection) return;
+  
+  // Calculate wind vector arrow
+  const arrowLength = Math.min(windSpeed * 0.003, 0.08); // Scale based on wind speed
+  const directionRad = (windDirection + 180) * Math.PI / 180; // Convert to coming-from direction
+  
+  const endLat = lat + arrowLength * Math.cos(directionRad);
+  const endLon = lon + arrowLength * Math.sin(directionRad);
+  
+  // Color based on wind speed
+  const windColor = getWindSpeedColor(windSpeed);
+  
+  // Create wind arrow
+  const windLine = L.polyline([[lat, lon], [endLat, endLon]], {
+    color: windColor,
+    weight: 3,
+    opacity: 0.8
+  });
+  
+  // Create arrowhead
+  const arrowHead = L.polygon([
+    [endLat, endLon],
+    [endLat - arrowLength * 0.3 * Math.cos(directionRad - 0.5), 
+     endLon - arrowLength * 0.3 * Math.sin(directionRad - 0.5)],
+    [endLat - arrowLength * 0.3 * Math.cos(directionRad + 0.5), 
+     endLon - arrowLength * 0.3 * Math.sin(directionRad + 0.5)]
+  ], {
+    color: windColor,
+    fillColor: windColor,
+    fillOpacity: 0.8,
+    weight: 2
+  });
+  
+  // Group wind elements
+  const windGroup = L.layerGroup([windLine, arrowHead]);
+  
+  // Add wind popup
+  windGroup.bindPopup(`
+    <div class="wind-popup">
+      <h6><i class="fas fa-wind"></i> Wind Vector</h6>
+      <p><strong>Speed:</strong> ${windSpeed.toFixed(1)} m/s</p>
+      <p><strong>Direction:</strong> ${windDirection}° (${getWindDirectionText(windDirection)})</p>
+      <p><strong>Stability:</strong> ${weatherData.pasquill_stability_class || 'D'}</p>
+    </div>
+  `);
+  
+  window.weatherWindLayer.addLayer(windGroup);
+}
+
+/**
+ * Show detailed weather popup at clicked location
+ */
+function showWeatherPopup(lat, lon, weatherData) {
+  const popupContent = createDetailedWeatherPopup(weatherData);
+  
+  L.popup({
+    maxWidth: 400,
+    className: 'weather-detail-popup'
+  })
+  .setLatLng([lat, lon])
+  .setContent(popupContent)
+  .openOn(map);
+}
+
+/**
+ * Create comprehensive weather station popup content
+ */
+function createWeatherStationPopup(weatherData) {
+  const observedAt = new Date(weatherData.observed_at || Date.now());
+  const stabilityClass = weatherData.pasquill_stability_class || 'D';
+  const stabilityDesc = getStabilityDescription(stabilityClass);
+  
+  return `
+    <div class="weather-station-popup">
+      <h6><i class="fas fa-cloud-sun"></i> Weather Station</h6>
+      <div class="weather-data-grid">
+        <div class="row">
+          <div class="col-6">
+            <strong>Temperature:</strong><br>
+            <span class="badge bg-info">${weatherData.temperature?.toFixed(1) || 'N/A'}°C</span>
+          </div>
+          <div class="col-6">
+            <strong>Humidity:</strong><br>
+            <span class="badge bg-secondary">${weatherData.relative_humidity?.toFixed(0) || 'N/A'}%</span>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <strong>Wind Speed:</strong><br>
+            <span class="badge bg-primary">${weatherData.wind_speed?.toFixed(1) || 'N/A'} m/s</span>
+          </div>
+          <div class="col-6">
+            <strong>Wind Dir:</strong><br>
+            <span class="badge bg-primary">${weatherData.wind_direction || 'N/A'}°</span>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <strong>Pressure:</strong><br>
+            <span class="badge bg-warning">${weatherData.pressure_sea_level?.toFixed(0) || 'N/A'} hPa</span>
+          </div>
+          <div class="col-6">
+            <strong>Visibility:</strong><br>
+            <span class="badge bg-success">${(weatherData.visibility/1000)?.toFixed(1) || 'N/A'} km</span>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <strong>Stability Class:</strong><br>
+            <span class="badge" style="background-color: ${getStabilityColor(stabilityClass)}">${stabilityClass} - ${stabilityDesc}</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2 text-muted">
+        <small>
+          <i class="fas fa-clock"></i> ${observedAt.toLocaleString()}<br>
+          <i class="fas fa-database"></i> ${weatherData.primary_source || weatherData.source || 'Unknown'}
+        </small>
+      </div>
+      <div class="mt-2">
+        <button class="btn btn-sm btn-primary" onclick="showAtmosphericStability(${weatherData.latitude || 'null'}, ${weatherData.longitude || 'null'})">
+          <i class="fas fa-chart-line"></i> Stability Analysis
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Create detailed weather popup for map clicks
+ */
+function createDetailedWeatherPopup(weatherData) {
+  return createWeatherStationPopup(weatherData) + `
+    <div class="mt-2 border-top pt-2">
+      <div class="d-grid gap-1">
+        <button class="btn btn-sm btn-success" onclick="startDispersionHere(${weatherData.latitude || 'null'}, ${weatherData.longitude || 'null'})">
+          <i class="fas fa-play"></i> Start Dispersion Here
+        </button>
+        <button class="btn btn-sm btn-info" onclick="addToFavoriteLocations(${weatherData.latitude || 'null'}, ${weatherData.longitude || 'null'})">
+          <i class="fas fa-star"></i> Add to Favorites
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Integrate weather data with dispersion scenario workflow
+ */
+async function integrateWeatherWithDispersionScenario(lat, lon, weatherData) {
+  try {
+    const response = await fetch('/weather/for_dispersion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+      },
+      body: JSON.stringify({
+        latitude: lat,
+        longitude: lon,
+        scenario_id: window.currentDispersionScenario?.id
+      })
+    });
+    
+    const result = await response.json();
+    
+    if (result.status === 'success') {
+      console.log('Weather integrated with dispersion scenario:', result.scenario_id);
+      
+      // Update dispersion calculations with new weather data
+      if (window.dispersionManager) {
+        window.dispersionManager.updateWeatherData(result.dispersion_weather);
+      }
+      
+      // Notify user
+      updateWeatherStatus('Weather integrated with dispersion scenario', 'success');
+    }
+  } catch (error) {
+    console.error('Error integrating weather with dispersion:', error);
+  }
+}
+
+/**
+ * Utility functions for weather visualization
+ */
+function getTemperatureColor(temperature) {
+  if (temperature < 0) return '#0066cc';
+  if (temperature < 10) return '#3399ff';
+  if (temperature < 25) return '#66cc66';
+  if (temperature < 35) return '#ffcc00';
+  return '#ff6600';
+}
+
+function getStabilityColor(stabilityClass) {
+  const colors = {
+    'A': '#ff4444', // Very Unstable - Red
+    'B': '#ff8800', // Moderately Unstable - Orange  
+    'C': '#ffcc00', // Slightly Unstable - Yellow
+    'D': '#66cc66', // Neutral - Green
+    'E': '#3399ff', // Slightly Stable - Blue
+    'F': '#0066cc'  // Moderately Stable - Dark Blue
+  };
+  return colors[stabilityClass] || '#666666';
+}
+
+function getStabilityDescription(stabilityClass) {
+  const descriptions = {
+    'A': 'Very Unstable',
+    'B': 'Moderately Unstable', 
+    'C': 'Slightly Unstable',
+    'D': 'Neutral',
+    'E': 'Slightly Stable',
+    'F': 'Moderately Stable'
+  };
+  return descriptions[stabilityClass] || 'Unknown';
+}
+
+function getWindSpeedColor(windSpeed) {
+  if (windSpeed < 2) return '#1f77b4';
+  if (windSpeed < 5) return '#2ca02c'; 
+  if (windSpeed < 10) return '#ff7f0e';
+  if (windSpeed < 15) return '#d62728';
+  return '#8c564b';
+}
+
+function getWindDirectionText(degrees) {
+  const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 
+                     'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+  const index = Math.round(degrees / 22.5) % 16;
+  return directions[index];
+}
+
+function updateWeatherStatus(message, type = 'info') {
+  const statusElement = document.getElementById('weather-status');
+  if (statusElement) {
+    statusElement.className = `alert alert-${type} p-2 small`;
+    statusElement.textContent = message;
+  }
+}
+
+/**
+ * Global weather management functions
+ */
+function refreshAllWeatherData() {
+  updateWeatherStatus('Refreshing all weather data...', 'info');
+  
+  // Clear existing weather layers
+  window.weatherStationLayer.clearLayers();
+  window.weatherWindLayer.clearLayers();
+  
+  // Refresh weather for all active events
+  Object.keys(sourceMarkers).forEach(async (eventId) => {
+    const marker = sourceMarkers[eventId];
+    const latlng = marker.getLatLng();
+    
+    try {
+      const weatherData = await fetchWeatherForLocation(latlng.lat, latlng.lng);
+      if (weatherData.status === 'success') {
+        addWeatherStationToMap(latlng.lat, latlng.lng, weatherData.weather_data);
+      }
+    } catch (error) {
+      console.error(`Failed to refresh weather for event ${eventId}:`, error);
+    }
+  });
+  
+  updateWeatherStatus('Weather data refreshed', 'success');
+}
+
+async function showAtmosphericStability(lat, lon) {
+  try {
+    updateWeatherStatus('Loading atmospheric stability analysis...', 'info');
+    
+    const stabilityData = await fetchAtmosphericStability(lat, lon);
+    
+    if (stabilityData.status === 'success') {
+      const analysis = stabilityData.stability_analysis;
+      const dispersionParams = stabilityData.dispersion_parameters;
+      
+      // Create detailed stability popup
+      const popupContent = `
+        <div class="atmospheric-stability-popup">
+          <h6><i class="fas fa-chart-line"></i> Atmospheric Stability Analysis</h6>
+          <div class="stability-analysis">
+            <div class="row">
+              <div class="col-12 mb-2">
+                <strong>Stability Class:</strong> 
+                <span class="badge" style="background-color: ${getStabilityColor(analysis.stability_class)}">${analysis.stability_class}</span>
+                <small class="text-muted d-block">${analysis.stability_description}</small>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <strong>Mixing Height:</strong><br>
+                <span class="badge bg-info">${analysis.mixing_height} m</span>
+              </div>
+              <div class="col-6">
+                <strong>Conditions:</strong><br>
+                <span class="badge bg-secondary">${analysis.atmospheric_conditions?.join(', ')}</span>
+              </div>
+            </div>
+            <div class="mt-2">
+              <strong>Dispersion Coefficients:</strong>
+              <div class="small">
+                σy: a=${analysis.dispersion_coefficients?.sigma_y?.a}, b=${analysis.dispersion_coefficients?.sigma_y?.b}<br>
+                σz: c=${analysis.dispersion_coefficients?.sigma_z?.c}, d=${analysis.dispersion_coefficients?.sigma_z?.d}
+              </div>
+            </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-primary" onclick="startDispersionHere(${lat}, ${lon})">
+              <i class="fas fa-play"></i> Start Dispersion Modeling
+            </button>
+          </div>
+        </div>
+      `;
+      
+      L.popup({
+        maxWidth: 500,
+        className: 'stability-analysis-popup'
+      })
+      .setLatLng([lat, lon])
+      .setContent(popupContent)
+      .openOn(map);
+      
+      updateWeatherStatus('Atmospheric stability analysis loaded', 'success');
+    } else {
+      updateWeatherStatus(`Stability analysis failed: ${stabilityData.error}`, 'danger');
+    }
+  } catch (error) {
+    console.error('Error fetching atmospheric stability:', error);
+    updateWeatherStatus(`Error: ${error.message}`, 'danger');
+  }
+}
+
+function startDispersionHere(lat, lon) {
+  // Navigate to dispersion scenario creation with pre-filled coordinates
+  window.location.href = `/dispersion_events/new?latitude=${lat}&longitude=${lon}&weather_integrated=true`;
+}
+
+function addToFavoriteLocations(lat, lon) {
+  // Add location to favorites (implement based on your favorites system)
+  updateWeatherStatus(`Location ${lat.toFixed(4)}, ${lon.toFixed(4)} added to favorites`, 'success');
+}
+
+console.log('Weather map integration functions loaded');
 
 /**
  * Add custom map controls

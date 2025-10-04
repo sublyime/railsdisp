@@ -69,8 +69,11 @@ Rails.application.routes.draw do
     collection do
       post :update_all
       post :update_location
+      post :for_dispersion
       get 'current/:latitude/:longitude', action: :current, as: :current
       get 'forecast/:latitude/:longitude', action: :forecast, as: :forecast
+      get 'stations_near/:latitude/:longitude', action: :stations_near, as: :stations_near
+      get 'atmospheric_stability/:latitude/:longitude', action: :atmospheric_stability, as: :atmospheric_stability
     end
   end
   resources :dispersion_events do

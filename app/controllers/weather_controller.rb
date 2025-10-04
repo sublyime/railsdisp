@@ -126,30 +126,42 @@ class WeatherController < ApplicationController
   end
 
   # GET /weather/current/:latitude/:longitude
-  # Get current weather conditions for specific coordinates
+  # Get current weather conditions for specific coordinates using comprehensive WeatherService
   def current
     latitude = params[:latitude].to_f
     longitude = params[:longitude].to_f
     
     begin
-      weather_data = WeatherService.fetch_weather_data(latitude, longitude)
-      stability_class = WeatherService.calculate_stability_class(weather_data)
+      weather_service = WeatherService.new(latitude: latitude, longitude: longitude)
+      weather_data = weather_service.get_weather_for_location(latitude, longitude)
       
-      response_data = weather_data.merge(
-        stability_class: stability_class,
-        coordinates: [latitude, longitude]
-      )
+      if weather_data
+        response_data = {
+          weather_data: weather_data,
+          coordinates: [latitude, longitude],
+          fetched_at: Time.current,
+          status: 'success'
+        }
+      else
+        response_data = {
+          error: 'No weather data available for this location',
+          coordinates: [latitude, longitude],
+          status: 'no_data'
+        }
+      end
       
       respond_to do |format|
         format.json { render json: response_data }
         format.html { 
-          @weather_data = response_data
+          @weather_data = response_data[:weather_data]
+          @coordinates = [latitude, longitude]
           render 'current'
         }
       end
     rescue => e
+      Rails.logger.error "Weather fetch error for #{latitude}, #{longitude}: #{e.message}"
       respond_to do |format|
-        format.json { render json: { error: e.message }, status: :service_unavailable }
+        format.json { render json: { error: e.message, coordinates: [latitude, longitude], status: 'error' }, status: :service_unavailable }
         format.html { 
           flash[:error] = "Unable to fetch weather data: #{e.message}"
           redirect_to weather_index_path
@@ -166,27 +178,174 @@ class WeatherController < ApplicationController
     hours = params[:hours]&.to_i || 24
     
     begin
-      forecast_data = WeatherService.fetch_forecast_data(latitude, longitude, hours)
+      weather_service = WeatherService.new(latitude: latitude, longitude: longitude)
+      forecast_data = weather_service.fetch_forecast_data(latitude, longitude)
       
-      # Add stability classes to each forecast period
-      forecast_with_stability = forecast_data.map do |forecast|
-        stability_class = WeatherService.calculate_stability_class(forecast)
-        forecast.merge(stability_class: stability_class)
-      end
+      response_data = {
+        forecast_data: forecast_data,
+        coordinates: [latitude, longitude],
+        hours_requested: hours,
+        fetched_at: Time.current,
+        status: 'success'
+      }
       
       respond_to do |format|
-        format.json { render json: forecast_with_stability }
+        format.json { render json: response_data }
         format.html { 
-          @forecast_data = forecast_with_stability
+          @forecast_data = forecast_data
           @coordinates = [latitude, longitude]
           render 'forecast'
         }
       end
     rescue => e
+      Rails.logger.error "Forecast fetch error for #{latitude}, #{longitude}: #{e.message}"
+      respond_to do |format|
+        format.json { render json: { error: e.message, coordinates: [latitude, longitude], status: 'error' }, status: :service_unavailable }
+        format.html { 
+          flash[:error] = "Unable to fetch forecast data: #{e.message}"
+          redirect_to weather_index_path
+        }
+      end
+    end
+  end
+
+  # POST /weather/for_dispersion
+  # Get weather data specifically for a dispersion scenario
+  def for_dispersion
+    scenario_id = params[:scenario_id]
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    
+    begin
+      # Find or create dispersion scenario
+      scenario = if scenario_id.present?
+                  DispersionScenario.find(scenario_id)
+                else
+                  DispersionScenario.new(latitude: latitude, longitude: longitude)
+                end
+      
+      weather_service = WeatherService.new(latitude: latitude, longitude: longitude)
+      dispersion_weather = weather_service.get_weather_for_dispersion(scenario)
+      
+      if dispersion_weather
+        response_data = {
+          dispersion_weather: dispersion_weather,
+          scenario_id: scenario.id,
+          status: 'success'
+        }
+      else
+        response_data = {
+          error: 'No weather data available for dispersion modeling',
+          scenario_id: scenario.id,
+          status: 'no_data'
+        }
+      end
+      
+      respond_to do |format|
+        format.json { render json: response_data }
+        format.html { redirect_to dispersion_scenario_path(scenario) }
+      end
+    rescue => e
+      Rails.logger.error "Dispersion weather fetch error: #{e.message}"
+      respond_to do |format|
+        format.json { render json: { error: e.message, status: 'error' }, status: :service_unavailable }
+        format.html { 
+          flash[:error] = "Unable to fetch weather data for dispersion: #{e.message}"
+          redirect_to weather_index_path
+        }
+      end
+    end
+  end
+
+  # GET /weather/stations_near/:latitude/:longitude
+  # Get weather stations near specified coordinates
+  def stations_near
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    radius_km = params[:radius]&.to_f || 50.0
+    
+    begin
+      weather_service = WeatherService.new(latitude: latitude, longitude: longitude)
+      stations = weather_service.find_or_create_weather_stations(latitude, longitude, radius_km)
+      
+      stations_data = stations.map do |station|
+        {
+          id: station.id,
+          station_id: station.station_id,
+          name: station.name,
+          station_type: station.station_type,
+          coordinates: [station.latitude, station.longitude],
+          distance_km: station.distance_to_point(latitude, longitude),
+          data_source: station.data_source,
+          active: station.active,
+          last_observation: station.last_observation_at,
+          has_recent_data: station.has_recent_data?
+        }
+      end
+      
+      respond_to do |format|
+        format.json { render json: { stations: stations_data, search_location: [latitude, longitude], radius_km: radius_km } }
+        format.html { 
+          @stations = stations_data
+          @search_location = [latitude, longitude]
+          render 'stations_near'
+        }
+      end
+    rescue => e
+      Rails.logger.error "Weather stations search error: #{e.message}"
       respond_to do |format|
         format.json { render json: { error: e.message }, status: :service_unavailable }
         format.html { 
-          flash[:error] = "Unable to fetch forecast data: #{e.message}"
+          flash[:error] = "Unable to search weather stations: #{e.message}"
+          redirect_to weather_index_path
+        }
+      end
+    end
+  end
+
+  # GET /weather/atmospheric_stability/:latitude/:longitude
+  # Get detailed atmospheric stability analysis for location
+  def atmospheric_stability
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    
+    begin
+      weather_service = WeatherService.new(latitude: latitude, longitude: longitude)
+      weather_data = weather_service.get_weather_for_location(latitude, longitude)
+      
+      if weather_data
+        stability_analysis = weather_service.calculate_stability_for_dispersion(weather_data)
+        dispersion_params = weather_service.generate_dispersion_parameters(weather_data)
+        
+        response_data = {
+          stability_analysis: stability_analysis,
+          dispersion_parameters: dispersion_params,
+          weather_conditions: weather_data,
+          coordinates: [latitude, longitude],
+          status: 'success'
+        }
+      else
+        response_data = {
+          error: 'No weather data available for stability analysis',
+          coordinates: [latitude, longitude],
+          status: 'no_data'
+        }
+      end
+      
+      respond_to do |format|
+        format.json { render json: response_data }
+        format.html { 
+          @stability_data = response_data
+          @coordinates = [latitude, longitude]
+          render 'atmospheric_stability'
+        }
+      end
+    rescue => e
+      Rails.logger.error "Atmospheric stability analysis error: #{e.message}"
+      respond_to do |format|
+        format.json { render json: { error: e.message, status: 'error' }, status: :service_unavailable }
+        format.html { 
+          flash[:error] = "Unable to analyze atmospheric stability: #{e.message}"
           redirect_to weather_index_path
         }
       end
