@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  building_type: MyString
+  height: 9.99
+  area: 9.99
+  latitude: 9.99
+  longitude: 9.99
+  geometry: MyText
+  map_layer: one
+
+two:
+  name: MyString
+  building_type: MyString
+  height: 9.99
+  area: 9.99
+  latitude: 9.99
+  longitude: 9.99
+  geometry: MyText
+  map_layer: two

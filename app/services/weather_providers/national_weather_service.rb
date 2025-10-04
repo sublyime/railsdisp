@@ -44,9 +44,17 @@ module WeatherProviders
         http.open_timeout = 10
 
         request = Net::HTTP::Get.new(uri)
-        request['User-Agent'] = 'ChemicalDispersionApp/1.0 (contact@example.com)'
+        request['User-Agent'] = 'ChemicalDispersionApp/1.0 (railsdisp@example.com)'
         
         response = http.request(request)
+
+        # Handle redirects (301, 302, etc.)
+        if response.code.to_i.between?(300, 399) && response['location']
+          redirect_url = response['location']
+          # Make sure it's an absolute URL
+          redirect_url = "#{BASE_URL}#{redirect_url}" unless redirect_url.start_with?('http')
+          return make_request(redirect_url)
+        end
 
         unless response.code.to_i == 200
           raise APIError, "NWS API error: #{response.code} - #{response.body}"
@@ -186,20 +194,30 @@ module WeatherProviders
         
         # Estimate total cloud cover from layers
         total_coverage = cloud_layers.sum do |layer|
-          amount = layer.dig('amount', 'value') || 0
-          case layer.dig('amount', 'unitCode')
-          when 'wmoUnit:percent'
-            amount
-          else
-            # Convert text descriptions to percentages
-            case amount.to_s.downcase
-            when 'clear', 'skc' then 0
-            when 'few' then 25
-            when 'scattered', 'sct' then 50
-            when 'broken', 'bkn' then 75
-            when 'overcast', 'ovc' then 100
+          amount = layer['amount']
+          
+          # Handle different amount formats
+          if amount.is_a?(Hash)
+            # Structured data with value and unitCode
+            amount_value = amount['value'] || 0
+            case amount['unitCode']
+            when 'wmoUnit:percent'
+              amount_value
+            else
+              amount_value
+            end
+          elsif amount.is_a?(String)
+            # Text descriptions - convert to percentages
+            case amount.upcase
+            when 'CLR', 'CLEAR', 'SKC' then 0
+            when 'FEW' then 25
+            when 'SCT', 'SCATTERED' then 50
+            when 'BKN', 'BROKEN' then 75
+            when 'OVC', 'OVERCAST' then 100
             else 50
             end
+          else
+            0
           end
         end
         

@@ -9,7 +9,7 @@ class WeatherUpdateJob < ApplicationJob
 
   # Retry with exponential backoff for transient failures
   retry_on Net::ReadTimeout, Net::OpenTimeout, wait: :exponentially_longer, attempts: 3
-  retry_on WeatherProviders::OpenWeatherMapService::APIError, wait: 5.minutes, attempts: 2
+  retry_on WeatherProviders::NationalWeatherService::APIError, wait: 5.minutes, attempts: 2
 
   def perform(location_id = nil)
     if location_id

@@ -276,59 +276,187 @@
 
 <!-- Initialize Map and Real-time Updates -->
 <script>
-  // Initialize the dispersion map when page loads
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, checking for map container...');
-    
-    // Wait for importmap modules to load
-    let retryCount = 0;
-    const maxRetries = 10;
-    
-    function initializeWithRetry() {
-      const mapContainer = document.getElementById('dispersionMap');
-      
-      if (!mapContainer) {
-        console.error('Map container #dispersionMap not found in DOM');
-        return;
-      }
-      
-      if (typeof initializeDispersionMap === 'function') {
-        console.log('Attempting to initialize dispersion map...');
-        const success = initializeDispersionMap();
-        
-        if (success) {
-          console.log('Dispersion map initialized successfully from dashboard');
-          
-          // Start real-time updates after map is ready
-          if (typeof startRealTimeUpdates === 'function') {
-            startRealTimeUpdates();
-          }
-        } else {
-          console.error('Failed to initialize dispersion map');
-        }
-      } else {
-        console.warn(`initializeDispersionMap function not found (attempt ${retryCount + 1}/${maxRetries})`);
-        
-        if (retryCount < maxRetries) {
-          retryCount++;
-          setTimeout(initializeWithRetry, 500);
-        } else {
-          console.error('Failed to load initializeDispersionMap after maximum retries');
-        }
-      }
-    }
-    
-    // Start initialization with a small delay to ensure DOM is fully ready
-    setTimeout(initializeWithRetry, 100);
-  });
-
-  // Pass server data to JavaScript
+  // Pass server data to JavaScript early
   window.dashboardData = {
     activeEvents: <%= raw @events_data.to_json %>,
     currentWeather: <%= raw @current_weather&.to_json || 'null' %>
   };
 
-  // Global helper functions
+  // Master initialization controller - prevents conflicts
+  window.MapInitializationController = {
+    isInitializing: false,
+    isInitialized: false,
+    pendingRetries: 0,
+    maxRetries: 15,
+    
+    init: function() {
+      if (this.isInitializing || this.isInitialized) {
+        console.log('🔄 Map initialization already in progress or completed');
+        return;
+      }
+      
+      this.isInitializing = true;
+      this.pendingRetries = 0;
+      console.log('🚀 Starting controlled map initialization...');
+      
+      this.attemptInitialization();
+    },
+    
+    attemptInitialization: function() {
+      const self = this;
+      
+      if (this.pendingRetries >= this.maxRetries) {
+        console.error('❌ Map initialization failed after maximum retries');
+        this.isInitializing = false;
+        return;
+      }
+      
+      this.pendingRetries++;
+      console.log(`🔄 Initialization attempt ${this.pendingRetries}/${this.maxRetries}`);
+      
+      // Step 1: Verify DOM container exists and is stable
+      const container = document.getElementById('dispersionMap');
+      if (!container) {
+        console.log('⏳ Map container not found, retrying...');
+        setTimeout(() => self.attemptInitialization(), 300);
+        return;
+      }
+      
+      // Step 2: Verify container is visible and attached
+      if (container.offsetParent === null || !container.isConnected) {
+        console.log('⏳ Map container not ready or attached, retrying...');
+        setTimeout(() => self.attemptInitialization(), 300);
+        return;
+      }
+      
+      // Step 3: Verify Leaflet is loaded
+      if (typeof L === 'undefined') {
+        console.log('⏳ Leaflet library not loaded, retrying...');
+        setTimeout(() => self.attemptInitialization(), 200);
+        return;
+      }
+      
+      // Step 4: Verify initialization function is available
+      if (typeof initializeDispersionMap !== 'function') {
+        console.log('⏳ Map initialization function not available, retrying...');
+        setTimeout(() => self.attemptInitialization(), 200);
+        return;
+      }
+      
+      // Step 5: Wait for DOM stability (double-check container persists)
+      setTimeout(() => {
+        const finalContainer = document.getElementById('dispersionMap');
+        if (!finalContainer || !finalContainer.isConnected) {
+          console.log('❌ Container disappeared during initialization, retrying...');
+          setTimeout(() => self.attemptInitialization(), 300);
+          return;
+        }
+        
+        // Step 6: Clean up any existing map
+        if (window.dispersionMap && window.dispersionMap.remove) {
+          console.log('🧹 Cleaning up existing map instance');
+          try {
+            window.dispersionMap.remove();
+          } catch(e) {
+            console.log('Note: Error removing existing map:', e.message);
+          }
+          window.dispersionMap = null;
+        }
+        
+        // Step 7: Initialize the map
+        try {
+          console.log('🗺️ Initializing dispersion map...');
+          const success = initializeDispersionMap();
+          
+          if (success) {
+            console.log('✅ Dispersion map initialized successfully!');
+            this.isInitialized = true;
+            this.isInitializing = false;
+            
+            // Emit mapReady event for other systems
+            const mapReadyEvent = new CustomEvent('mapReady', {
+              detail: { 
+                map: window.dispersionMap || window.map,
+                timestamp: new Date().toISOString() 
+              }
+            });
+            document.dispatchEvent(mapReadyEvent);
+            console.log('📡 MapReady event dispatched');
+            
+            // Initialize supporting systems
+            setTimeout(() => {
+              if (typeof startRealTimeUpdates === 'function') {
+                startRealTimeUpdates();
+                console.log('✅ Real-time updates started');
+              }
+              
+              if (typeof initializeWeatherUpdates === 'function') {
+                initializeWeatherUpdates();
+                console.log('✅ Weather updates initialized');
+              }
+            }, 500);
+            
+          } else {
+            console.log('❌ Map initialization returned false, retrying...');
+            setTimeout(() => self.attemptInitialization(), 500);
+          }
+        } catch (error) {
+          console.error('❌ Error during map initialization:', error);
+          setTimeout(() => self.attemptInitialization(), 500);
+        }
+      }, 150); // Brief stability wait
+    },
+    
+    reset: function() {
+      console.log('🔄 Resetting map initialization controller');
+      this.isInitializing = false;
+      this.isInitialized = false;
+      this.pendingRetries = 0;
+    }
+  };
+  
+  // Single event handler for all Turbo events
+  let initTimeout = null;
+  
+  function scheduleMapInitialization(delay = 400) {
+    if (initTimeout) {
+      clearTimeout(initTimeout);
+    }
+    
+    initTimeout = setTimeout(() => {
+      window.MapInitializationController.init();
+    }, delay);
+  }
+  
+  // Turbo events - consolidated handling
+  document.addEventListener('turbo:load', function() {
+    console.log('🎯 Turbo:load - scheduling map initialization');
+    window.MapInitializationController.reset();
+    scheduleMapInitialization(600);
+  });
+  
+  document.addEventListener('turbo:render', function() {
+    console.log('🎨 Turbo:render - DOM updated');
+    window.MapInitializationController.reset();
+    scheduleMapInitialization(400);
+  });
+  
+  // Fallback for initial page load
+  if (document.readyState === 'complete') {
+    console.log('📄 Document already ready, initializing immediately');
+    scheduleMapInitialization(200);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('📄 DOMContentLoaded event fired');
+      if (!document.documentElement.hasAttribute('data-turbo-preview')) {
+        scheduleMapInitialization(400);
+      }
+    });
+  }
+</script>
+
+<script>
+  // Global helper functions for dashboard
   window.requestWeatherUpdate = function() {
     if (window.weatherManager) {
       window.weatherManager.requestWeatherUpdate();

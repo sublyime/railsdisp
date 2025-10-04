@@ -9,7 +9,7 @@ class WeatherDatum < ApplicationRecord
   validates :recorded_at, presence: true
   validates :latitude, presence: true, numericality: { in: -90..90 }
   validates :longitude, presence: true, numericality: { in: -180..180 }
-  validates :source, presence: true, inclusion: { in: %w[weather.gov local_station manual api openweathermap nws openweathermap_forecast nws_forecast openweathermap_historical] }
+  validates :source, presence: true, inclusion: { in: %w[weather.gov local_station manual api nws nws_forecast] }
   
   scope :recent, -> { where('recorded_at >= ?', 24.hours.ago) }
   scope :by_location, ->(lat, lon, radius = 0.1) { 

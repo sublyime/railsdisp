@@ -1,0 +1,3702 @@
+NOAA Technical Memorandum NOS OR&R 43
+ALOHA ®
+(AREAL LOCATIONS OF HAZARDOUS
+ATMOSPHERES) 5.4.4
+TECHNICAL DOCUMENTATION
+Seattle, Washington
+November 2013
+DEPARTMENT OF COMMERCE • National Oceanic and Atmospheric Administration (NOAA)
+National Ocean Service • Office of Response and Restoration
+NOAA’s Office of Response and Restoration
+NOAA’s Office of Response and Restoration (OR&R) is a center of expertise in preparing for,
+evaluating, and responding to threats to coastal environments, including oil and chemical spills,
+releases from hazardous waste sites, and marine debris.
+To fulfill its mission of protecting and restoring NOAA trust resources, the Office of Response and
+Restoration:
+•
+•
+•
+•
+Provides scientific and technical support to prepare for and respond to oil and chemical
+releases.
+Determines damage to natural resources from these releases.
+Protects and restores marine and coastal ecosystems, including coral reefs.
+Works with communities to address critical local and regional coastal challenges.
+OR&R is comprised of three divisions: Emergency Response, Assessment and Restoration, and
+Marine Debris. Collectively, the Office of Response and Restoration provides comprehensive
+solutions to environmental hazards caused by oil, chemicals, and marine debris.
+For comments, questions, or copies of this document, please contact: ORR.CAMEO@NOAA.GOV
+Cite as:
+Jones, R., W. Lehr, D. Simecek-Beatty, R. Michael Reynolds. 2013. ALOHA® (Areal Locations of
+Hazardous Atmospheres) 5.4.4: Technical Documentation. U. S. Dept. of Commerce, NOAA
+Technical Memorandum NOS OR&R 43. Seattle, WA: Emergency Response Division, NOAA. 96
+pp.
+NOAA Technical Memorandum NOS OR&R 43
+ALOHA® (Areal Locations of Hazardous
+Atmospheres) 5.4.4
+Technical Documentation
+Robert Jones,1 William Lehr,1 Debra Simecek-Beatty,1 R. Michael Reynolds2
+1 National Oceanic and Atmospheric Administration
+Office of Response and Restoration
+Emergency Response Division
+7600 Sand Point Way
+Seattle, WA 98115
+2 National Oceanic and Atmospheric Administration (retired)
+November 2013
+Seattle, WA
+U.S. DEPARTMENT OF COMMERCE
+Penny Pritzker
+Secretary
+National Oceanic and
+Atmospheric Administration
+Kathryn D. Sullivan, Ph.D.
+Acting Under Secretary of Commerce for
+Oceans and Atmosphere, and Acting
+Administrator
+National Ocean Service
+Holly A. Bamford, Ph.D.
+Assistant Administrator for Ocean
+Services and Coastal Zone
+Management
+DEPARTMENT OF COMMERCE
+National Oceanic and Atmospheric Administration
+National Ocean Service
+Office of Response and Restoration
+Emergency Response Division
+Seattle, Washington, United States of America
+NOTICE
+This report has been reviewed by the Office of Response and Restoration and approved for
+publication. Such approval does not signify that the contents of this report necessarily represent the
+official position of NOAA of the government of the United States, nor does mention of trade names
+or commercial products constitute endorsement or recommendation for their use.
+TABLE OF CONTENTS
+Executive Summary .............................................................................................................................................. 1
+1 Introduction......................................................................................................................................................... 2
+1.1 About ALOHA................................................................................................................................................................ 2
+1.2 Design criteria and limitations .............................................................................................................................. 3
+1.3 About this document.................................................................................................................................................. 4
+2 The Integral Databases .................................................................................................................................... 6
+2.1 Toxicological Data....................................................................................................................................................... 6
+2.2 Flammability ................................................................................................................................................................. 7
+2.3 Physical Properties..................................................................................................................................................... 7
+2.4 Warnings.......................................................................................................................................................................10
+2.5 Geographical data......................................................................................................................................................10
+3 Source Strength Models ................................................................................................................................ 11
+3.1 Background..................................................................................................................................................................11
+3.2 Direct Source...............................................................................................................................................................12
+3.3 Puddle Source .............................................................................................................................................................12
+3.3.1 Evaporation from Non-boiling Puddles...................................................................................................12
+3.3.2 Evaporation from Boiling Puddles ............................................................................................................16
+3.3.3 Puddle Energy Balance...................................................................................................................................16
+3.4 Chemicals released from a tank...........................................................................................................................21
+3.4.1 Internal Temperature of the Tank.............................................................................................................22
+3.4.2 Internal Pressure of the Tank......................................................................................................................23
+3.4.3 Phase of the effluent from the Tank..........................................................................................................23
+3.4.4 Release of a liquid stored below its ambient boiling point.............................................................25
+3.4.5 Release of a 2-phase mixture or a liquid above its ambient boiling point................................27
+3.4.6 Gas release through a hole or short pipe................................................................................................28
+3.5 Gas pipeline..................................................................................................................................................................30
+3.5.1 General Comments...........................................................................................................................................30
+3.5.2 Theory ...................................................................................................................................................................31
+3.5.3 Computational Notes.......................................................................................................................................34
+4 Air Dispersion Models................................................................................................................................... 35
+4.1 Introduction................................................................................................................................................................. 35
+4.2 Methods for characterizing wind fields and turbulence...........................................................................36
+4.2.1 Manual data entry of atmospheric conditions......................................................................................36
+4.2.2 Automatic wind data entry using a SAM................................................................................................. 38
+4.2.3 Wind Profile........................................................................................................................................................39
+4.3 Gaussian model for neutrally buoyant gases .................................................................................................41
+4.3.1 Determination of Dispersion Parameters...............................................................................................43
+4.4 Heavy Gas Model for dense gases.......................................................................................................................45
+4.4.1 Criteria for use of the Heavy Gas model..................................................................................................46
+4.4.2 Conceptual Model.............................................................................................................................................48
+4.4.3 Secondary Source in ALOHA........................................................................................................................48
+4.4.4 Stably Stratified Shear Flow and Passive Diffusion Stages..............................................................51
+4.5 Threat zone..................................................................................................................................................................56
+4.5.1 Estimating maximum concentration........................................................................................................56
+4.5.2 Drawing the threat zone ................................................................................................................................56
+4.5.3 confidence contours ........................................................................................................................................57
+4.6 Indoor air concentration........................................................................................................................................57
+5 Models for Calculating Blast Effects from Vapor Cloud Explosions .............................................. 60
+5.1 Background..................................................................................................................................................................60
+5.2 Method...........................................................................................................................................................................61
+6 Thermal Radiation and Flammable Area Models................................................................................ 65
+6.1 Background..................................................................................................................................................................65
+6.2 Levels of Concern for thermal radiation..........................................................................................................66
+6.3 BLEVE-FIREBALL......................................................................................................................................................66
+6.3.1 Emissivity.............................................................................................................................................................67
+6.3.2 View Factor .........................................................................................................................................................68
+6.3.3 Transmissivity ...................................................................................................................................................69
+6.3.4 Duration................................................................................................................................................................69
+6.4 Jet Fires..........................................................................................................................................................................70
+6.4.1 Emissivity.............................................................................................................................................................72
+6.4.2 View Factor .........................................................................................................................................................73
+6.5 Pool Fires ......................................................................................................................................................................77
+6.5.1 Emissivity.............................................................................................................................................................77
+6.5.2 View Factor .........................................................................................................................................................78
+6.5.3 Pool Dynamics....................................................................................................................................................80
+6.6 Flash Fires and flammable area...........................................................................................................................81
+7 Bibliography ..................................................................................................................................................... 83
+Frequently-used Symbols
+g acceleration of gravity (9.8 m s-2)
+Pr Prandtl number
+R gas constant (8.314 J mol-1 K-1)
+Re Reynolds number
+Sc Schmidt number
+T Sc Turbulent Schmidt number
+T Temperature (K)
+t time (s)
+x position in downwind direction (m)
+y position in horizontal crosswind direction (m)
+z position in vertical direction (m)
+U wind speed (m s-1)
+EXECUTIVE SUMMARY
+A description of the conceptual and mathematical models that form the basis of the ALOHA
+computer application are described. ALOHA is designed for use during accidental chemical spills to
+help spill response professionals assess the risk to human populations associated with toxic air
+hazards, thermal radiation from fires, and blast effects.
+ALOHA is designed to provide a close upper bound to the threat distances associated with chemical
+spills of a scale typical of transportation accidents, with typical threat zones in the range of 100 to
+10,000 meters. ALOHA is limited to hazards associated with chemical vapors or chemicals that
+become airborne. ALOHA includes an extensive library of chemical property data, and models to
+assess the rate at which a chemical is released from containment and vaporizes. ALOHA links
+source strength models to air dispersion models to estimate the spatial extent of airborne hazards.
+ALOHA uses a graphical interface for data entry, and display of results. Exposures to toxic chemical
+vapors, overpressure, thermal radiation, or areas where flammable gases are present are
+represented graphically and with a text summary.
+Executive Summary 1
+1 INTRODUCTION
+1.1 ABOUT ALOHA
+ALOHA is a stand-alone software application developed for the Windows and Macintosh operating
+systems. It was developed and is supported by the Emergency Response Division1 (ERD), a division
+within the National Oceanic and Atmospheric Administration (NOAA) in collaboration with the
+Office of Emergency Management of the Environmental Protection Agency (EPA). Its primary
+purpose is to provide emergency response personnel estimates of the spatial extent of some
+common hazards associated with chemical spills. The ALOHA development team also recognizes
+that ALOHA can be an appropriate tool for training and contingency planning, but users should
+remain aware of its primary purpose in spill response. ALOHA provides estimates of the spatial
+extent of some of the hazards associated with the short-term accidental release of volatile and
+flammable chemicals. ALOHA deals specifically with human health hazards associated with inhalation of
+toxic chemical vapors, thermal radiation from chemical fires, and the effects of the pressure wave from
+vapor-cloud explosions.
+Since ALOHA is limited to chemicals that become airborne, it includes models to assess the rate at
+which a chemical is released from containment and vaporizes. These “source strength” models can
+be critical components in the process of assessing hazards. ALOHA links source strength models to
+a dispersion model to estimate the spatial extent of toxic clouds, flammable vapors, and explosive
+vapor clouds. However, ALOHA does not model all combinations of source strength, scenario, and
+hazard category for combustion scenarios. The user must choose a specific combination from a
+limited selection. Table 1 shows the combination of source strength models, scenarios, and hazard
+categories allowed in ALOHA.
+ALOHA uses a graphical interface for data entry and display of results. The area where there is a
+possibility of exposure to toxic vapors, a flammable atmosphere, overpressure from a vapor cloud
+explosion, or thermal radiation from a fire are represented graphically as threat zones. Threat
+zones represent the area within which the ground-level exposure exceeds the user-specified level of
+concern at some time after the beginning of a release. All points within the threat zone experience a
+transient exposure exceeding the level of concern at some time following the release; it is a record
+of the predicted peak exposure over time. In some scenarios, the user can also view the time
+dependence of the exposure at specified points.
+1 The Emergency Response Division (ERD), formerly Hazardous Materials Response Division (HAZMAT),
+supports emergency response and restoration activities for oil and hazardous chemical spills, provides
+preparedness aids for response communities, and offers training on the scientific aspects of oil and chemical
+spill response.
+2 Introduction
+
+Table 1. Hazard categories modeled in ALOHA.
+Scenario\Source Direct source Tank Puddle Gas Pipeline
+Vapor cloud Toxic vapors Toxic vapors Toxic vapors Toxic vapors
+Vapor cloud (flash
+fire) Flammable area Flammable area Flammable area Flammable area
+Vapor cloud
+(explosion) Overpressure Overpressure Overpressure Overpressure
+Pool fire NA Thermal radiation Thermal radiation NA
+BLEVE (fireball) NA Thermal radiation NA NA
+Jet fire NA Thermal radiation NA Thermal radiation
+1.2 DESIGN CRITERIA AND LIMITATIONS
+To achieve ALOHA’s function as a tool for emergency response, the following design criteria were
+given priority:
+ALOHA was designed to provide an assessment of threat zones using information that is commonly
+available to responders during an emergency. The user is required to provide data on local
+atmospheric conditions, the identity of the chemical, and details about the spill scenario. To
+minimize input data requirements, an extensive database of chemical properties and geographical
+data are included in ALOHA.
+ALOHA is designed to provide a close upper bound to the threat distances associated with chemical
+spills. Wherever uncertainty is unavoidable, ALOHA will err in favor of overestimating rather than
+underestimating threat distances. In some cases, ALOHA will significantly overestimate threat
+zones.
+ALOHA was designed to be easy to use so that responders can use it during a spill event. ALOHA’s
+user interface is designed to minimize operator error. Navigation through the model input screens
+is designed to be intuitive and quick. User input data is checked for consistency and
+reasonableness. Results are presented graphically.
+ALOHA provides methods for estimating the release and volatilization rate of chemicals for many
+common accident scenarios.
+ALOHA runs quickly on small computers (PC or Macintosh) that are easily transportable and
+affordable for most users.
+ALOHA is designed to predict hazards associated with spills of a scale that are typical of
+transportation accidents. Typical scales for threat zones are in the range of 102 to 105 meters, with
+durations of up to an hour.
+Introduction 3
+ALOHA is limited in its ability to account for the effects associated with terrain and buildings.
+ALOHA uses a wind field that does not vary with time or horizontal position, but does vary with
+elevation. As such, it cannot resolve the steering effects from features in the terrain or buildings.
+ALOHA is applicable to cases where the wind speed is greater than 1 meter per second (at 10
+meters); it should not be used for very low wind speeds or calm conditions.
+1.3 ABOUT THIS DOCUMENT
+ALOHA includes data compilations, source strength models, and models to estimate hazard
+associated with airborne chemicals. This document describes the theoretical basis for these models,
+but does not describe the computer algorithms used to solve the associated numerical problems. It
+is organized into 6 chapters, each corresponding to a set of related functions performed by ALOHA.
+Chapter 2 describes the databases contained within ALOHA. ALOHA includes physical, chemical,
+and toxicological properties for over 500 pure chemicals and some common chemical solutions.
+ALOHA also includes latitudes, longitudes, altitudes, and time zone data for many cities in the USA.
+Chapter 3 encompasses the source strength models used to estimate the amount of material
+becoming airborne, thereby contributing to an airborne toxic or flammable cloud. ALOHA includes
+models that estimate the rate at which a chemical is released from a tank or gas pipeline, or
+evaporates from a puddle. In addition, the user can directly specify the amount of chemical
+entering the atmosphere.
+Chapter 4 describes the air dispersion models that are at the core of ALOHA’s methodology for
+estimating the inhalation hazard associated with toxic airborne chemicals, and the extent of a
+flammable cloud. These air dispersion models are used to predict how the concentration of a
+pollutant, once released into the air, varies with time and position. ALOHA incorporates two semiempirical air dispersion models: the Gaussian model is used to predict the wind-dominated
+transport of pollutant clouds that are not significantly affected by gravity; the Heavy Gas model is
+used for pollutant clouds that are significantly affected by gravity due to their densities.
+Chapter 5 deals with the models employed to estimate the effects associated with a vapor cloud
+explosion. In rare events, volatile chemicals released into the air have formed clouds with proper
+ratios of fuel to air, ignited, and burned sufficiently quickly to produce damaging shockwaves. The
+speed at which the combustion progresses through the cloud determines whether the combustion
+of a vapor cloud produces a shock wave with damaging overpressures extending beyond the
+bounds of the fire. ALOHA integrates air dispersion models and vapor cloud explosion models to
+estimate the extent of an area affected by a damaging overpressure.
+Chapter 6 describes the models used to estimate the thermal radiation hazard associated with fires.
+Fires of sufficient size and duration can produce intense thermal radiation that poses a threat to
+human health and safety far beyond the bounds of the fire. Many chemicals found in the ALOHA
+database can be ignited and sustain a combustion when mixed with air. ALOHA can estimate the
+thermal radiation from pool fires, jet fires, and fireballs associated with BLEVEs. The user can view
+the peak thermal energy flux from a combustion process or thermal energy flux as a function of
+time. The threat zone associated with flash fires is also described in this chapter, but the thermal
+4 Introduction
+radiation associated with flash fires is not explicitly modeled. ALOHA computes the area within
+which the chemical vapors might exceed the lower flammability limits.
+Introduction 5
+2 THE INTEGRAL DATABASES
+ALOHA includes data files with physical, chemical, and toxicological properties for hundreds of pure
+chemicals and some common chemical solutions. The chemical data files include chemicals that
+have the potential to be involved in accidental releases and generate toxic air hazards or pose the
+threat of fire or explosion. The chemicals included in the ALOHA chemical library are a subset of
+those found in CAMEO CHEMICALS, a database of hazardous chemicals compiled and maintained by
+the Emergency Response Division of NOAA and the Office of Emergency Management in EPA (see
+http://cameochemicals.noaa.gov/).
+2.1 TOXICOLOGICAL DATA
+ALOHA employs Levels of Concern (LOC) to address the impact of toxic air plumes, fires, and
+explosions on human populations. For inhalation hazards, ALOHA’s LOCs are concentrations of
+airborne chemicals associated with adverse health effects. Since ALOHA is used primarily for
+situations where the goal is to assess the threat posed to the general public by a chemical release, it
+includes LOCs that are specifically designed to predict how the general public will respond to a
+short-term release. In limited cases, exposure guidelines developed for worker safety are also
+compiled and presented to users as an option.
+LOCs for toxic inhalation hazards are specific to the chemicals. Thresholds for inhalation toxicity
+are extracted from CAMEO Chemicals. AEGLs (Acute Exposure Guideline Levels), ERPGs
+(Emergency Response Planning Guidelines), PACs (Protective Action Criteria), and IDLH
+(Immediate Danger to Life and Health) limits are stored within data files integrated into ALOHA.
+AEGLs, ERPGs, and PACs, are tiered public exposure guidelines developed for accidental chemical
+release events. (See http://orise.orau.gov/emi/scapa/ for a more complete description.) Though
+developed by different organizations, all three exposure guidelines share a similar approach in
+appraising the effects of chemical exposure in their use of levels to describe the increasing severity
+associated with increasing concentration. In addition, these exposure levels are differentiated by
+exposure times. AEGLs have been developed for a range of exposure times; ALOHA only includes
+60-minute AEGLs. ERPGs are defined for 60-minute exposures.
+IDLH (Immediate Danger to Life and Health) limits (Barsan, United States. Dept. of Health and
+Human Services., and National Institute for Occupational Safety and Health. 2010) are included in
+the list of LOCs available to users. They were developed primarily for making decisions regarding
+respirator use. In the 1980s, before public exposure guidelines were available for most common
+chemicals, the IDLH limit was used in public exposure situations. Unlike the three-tiered public
+exposure guidelines, only a single IDLH value is defined for applicable chemicals.
+6 The Integral Databases
+2.2 FLAMMABILITY
+ALOHA includes data on chemical flammability. The lower flammability and upper flammability
+limits are included in the chemical library. These data were extracted from DIPPR (American
+Institute of Chemical Engineers).
+2.3 PHYSICAL PROPERTIES
+A chemical name, CAS registry number, molecular weight, and toxicological data are included for
+every chemical in the data file. These are the minimum data required for the Direct Source option
+and the Gaussian dispersion model in ALOHA.
+The other options in ALOHA, such as Source Strength modeling, Heavy Gas modeling, and modeling
+for fires and explosions require more extensive datasets. Full datasets are available for about half
+the chemicals in the data file; the additional physical property data required were extracted from
+the DIPPR data compilation, a proprietary database containing physical constants and formulas for
+temperature dependent properties (American Institute of Chemical Engineers). Data are available
+for the following properties: critical temperature, critical pressure, critical volume, freezing point,
+normal boiling point, vapor pressure, liquid density, gas density, heat of vaporization, heat of
+combustion, liquid heat capacity, and vapor heat capacity.
+Data required to model the evaporation of solutions is stored in a separate data file. ALOHA allows
+the user to model solutions within limited concentration ranges. In most cases, the upper limit is
+determined by the concentration range that is commonly available for shipment commercially. The
+lower limit was set such that the expected downwind air plume would be below toxic levels; the
+lower limit is often the concentration of the azeotropic mixture. Partial pressure, liquid density,
+liquid heat capacity, and heat of vaporization are functions of both temperature and concentration.
+Tabulated partial pressure data for a range of concentration and temperature are stored in a data
+file; ALOHA interpolates between data points using a linear interpolation in log(Pressure) and
+(1/Temperature). Formulas for liquid density (kg/m3), liquid heat capacity (J/kg K), and heat of
+vaporization (J/kg) were developed by fitting tabulated data to a polynomial equation of the form
+( )
+2
+Value C C Temperature C MassFraction C MassFrac 1 2 3 4 =+× +× +× tion .
+Hydrochloric acid solutions with concentrations between 20% by mass and 42% by mass can be
+modeled in ALOHA. Vapor pressure tables were extracted from Perry’s Chemical Engineer’s
+Handbook, 6th edition (Perry, Green, and Maloney 1984). The coefficients for the heat capacity and
+density formulas were based on a least squares polynomial fit to data found in Perry’s Chemical
+Engineer’s Handbook, 6th edition (Perry, Green, and Maloney 1984). The coefficients for the heat of
+vaporization were derived from heat of formation data found in the NBS Technical Note 270-1
+(Wagman and Rossini 1965).
+The Integral Databases 7
+Table 2. Coefficients for polynomials describing physical properties of hydrochloric acid.
+C1 C2 C3 C4
+Density (kg/m3) 1152.8 -0.5 502.0 0
+Heat capacity (J/kg K) 2470.8 4.0 -3390.8 0
+Heat of vaporization (J/kg) 2023600 0 -476800 -1776900
+Ammonia solutions with concentrations less or equal to 30% by mass can be modeled in ALOHA.
+Vapor pressure tables were extracted from Perry’s Chemical Engineer’s Handbook, 6th edition
+(Perry, Green, and Maloney 1984). The coefficients for the heat capacity and density formulae were
+based on a least squares polynomial fit to data found in Perry’s Chemical Engineer’s Handbook, 6th
+edition (Perry, Green, and Maloney 1984). The coefficients for the heat of vaporization were
+derived from heat of formation data found in the NBS Technical Note 270-1 (Wagman and Rossini
+1965).
+Table 3. Coefficients for polynomials describing physical properties of ammonia solutions.
+C1 C2 C3 C4
+Density (kg/m3) 1101.7 -0.4 -315.4 0
+Heat capacity (J/kg K) 2625.8 5.3 -26.9 0
+Heat of vaporization (J/kg) 2003900 0 -241700 -715500
+Nitric acid solutions with concentrations between 69% by mass and 100% by mass can be modeled
+in ALOHA. Vapor pressure tables were extracted from Perry’s Chemical Engineer’s Handbook, 6th
+edition (Perry, Green, and Maloney 1984). The coefficients for the heat capacity formulae were
+based on a polynomial fit to the data found in the Kirk-Othmer Encyclopedia of Chemical
+Technology, 4th edition (Kirk et al. 1991). The coefficients for the density formulae were based on a
+least squares polynomial fit to data found in Perry’s Chemical Engineer’s Handbook, 6th edition
+(Perry, Green, and Maloney 1984). The coefficients for the heat of vaporization were derived from
+heat of formation data found in the NBS Technical Note 270-1 (Wagman and Rossini 1965).
+Table 4. Coefficients for polynomials describing physical properties of nitric acid.
+C1 C2 C3 C4
+Density (kg/m3) 1672 -1.7 331.2 0
+Heat capacity (J/kg K) 4016 0 -2260 0
+Heat of vaporization (J/kg) 1181100 0 -41300 -520200
+8 The Integral Databases
+Hydrofluoric acid solutions with concentrations between 37% by mass and 70% by mass can be
+modeled in ALOHA. Though solutions with concentrations exceeding 70% are commercially
+available, ALOHA does not model these due to the complexity of the chemistry. Vapor pressure
+tables were extracted from Kirk-Othmer Encyclopedia of Chemical Technology, 3rd edition (Kirk et
+al. 1978). The coefficients for the heat capacity formulas were based on a linear fit to data in the
+Kirk-Othmer Encyclopedia of Chemical Technology, 4th edition (Kirk et al. 1991). The coefficients
+for the density formulas were based on a least squares polynomial fit to data found in Perry’s
+Chemical Engineer’s Handbook, 6th edition (Perry, Green, and Maloney 1984). The coefficients for
+the heat of vaporization were derived from heat of formation data found in the NBS Technical Note
+270-1 (Wagman and Rossini 1965).
+Table 5. Coefficients for polynomials describing physical properties of hydrofluoric acid.
+C1 C2 C3 C4
+Density (kg/m3) 477.5 1.67 609.3 -296.0
+Heat capacity (J/kg K) 4148 0 -1942.6 0
+Heat of vaporization (J/kg) 2424600 0 -324200 0
+Oleum is a mixture of sulfur trioxide and anhydrous sulfuric acid. Mixtures with concentrations of
+free sulfur trioxide between 4% by weight and 65% by weight can be modeled in ALOHA.
+Coefficients for the density formula were based on 3 values, 20%, 25%, and 30%, reported in the
+Enviro TIPS manual (Environmental Protection Service. 1984) and a graph in Ullmann’s
+Encyclopedia of Industrial Chemistry (Ullmann 2000) which showed the dependence on
+temperature. Coefficients for the heat capacity formula were based on a graph in the Kirk-Othmer
+Encyclopedia of Chemical Technology, 4th edition (Kirk et al. 1991). Heat of Vaporization is an
+average of the values presented by Brand and Rutherford (Brand and Rutherford 1952); there
+appears to be no discernible dependence on concentration. The Vapor pressures for up to 34% can
+be found in Brand and Rutherford, and are complemented by measurement by Schrage (Schrage
+1991).
+Table 6. Coefficients for polynomials describing physical properties of oleum.
+C1 C2 C3 C4
+Density (kg/m3) 2162 -1.1 360 0
+Heat capacity (J/kg K) 1333 0 485.7 0
+Heat of vaporization (J/kg) 712756 0 0 0
+The Integral Databases 9
+2.4 WARNINGS
+In addition to data required to model release and downwind dispersion, ALOHA also includes data
+used to trigger warning statements while running the model. One option in ALOHA allows the user
+to model releases on water. Since ALOHA does not have the methods for modeling soluble chemical
+spills on water, the user is given a warning that the chemical is soluble. Information about which
+chemicals in ALOHA have solubilities exceeding 50 kg/m3 was based on data extracted from the
+CHEMWATCH database (Chemwatch).
+Some chemicals are sufficiently reactive that they undergo chemical reactions when in contact with
+air or moisture. The ALOHA development team examined every chemical in ALOHA to determine
+which would likely react sufficiently to have significant impacts on the accuracy of the dispersion
+models. Information about these reactive chemicals is included in a data file.
+2.5 GEOGRAPHICAL DATA
+ALOHA includes latitudes, longitudes, altitudes, and time zone data for many cities in the USA.
+These data are used to compute solar radiation and local ambient pressure.
+10 The Integral Databases
+3 SOURCE STRENGTH MODELS
+3.1 BACKGROUND
+The rate at which a chemical becomes airborne is critical to the size and duration of a toxic or
+flammable cloud. ALOHA employs a variety of models to estimate the rate at which a chemical is
+released from confinement and enters the atmosphere; these are referred to as source strength
+models. ALOHA can predict source strength for four general classes of chemical releases, or
+sources:
+•
+•
+•
+•
+Direct. An instantaneous or continuous release of chemical vapors into the air from a single
+point. This is the only option that allows for an elevated release.
+Puddle. A puddle of constant area, containing either a non-boiling or boiling liquid.
+Tank. A cylindrical or a spherical tank at ground level with a single hole or leaking valve.
+The tank may contain a liquid, pressurized gas, or gas liquefied under pressure. Tank
+contents may escape directly into the atmosphere or first form a spreading evaporating
+pool.
+Gas pipeline. A pressurized pipe containing gas, either connected to a very large reservoir
+or unconnected to any storage vessel.
+ALOHA limits the duration of any source to one hour, and the shortest source duration allowed in
+ALOHA is one minute (this is termed an instantaneous release in ALOHA). In most cases, source
+strength changes continuously over the duration of the release. ALOHA approximates continuously
+variable releases with a series of very short steady-state releases. Up to 150 time-steps are used to
+model time-varying releases. These timesteps are reduced to five or fewer steady-state timesteps
+which are linked to the dispersion models.
+Figure 1. An example of ALOHA’s timestep averaging scheme. ALOHA originally estimated source
+strength for this release in a series of 100 timesteps; these were averaged to four timesteps for use
+in predicting dispersion.
+Source Strength Models 11
+3.2 DIRECT SOURCE
+A direct source option allows the user to directly specify the amount of chemical vapors introduced
+into the air from a point in space. The user can specify an instantaneous release, or a steady-state
+release of finite duration. This option can be used with gases that are denser than air and are
+affected by gravity, or gases that behave as neutrally buoyant. ALOHA allows for a release above
+ground level for gases that behave as neutrally buoyant.
+3.3 PUDDLE SOURCE
+Using the Puddle Option, users can model the evaporation of volatile chemicals from a puddle of
+fixed area. A limited number of mixtures containing a toxic chemical mixed with water or a nonvolatile solvent can be modeled. In these cases the evaporation and transport of only the toxic
+component is modeled. ALOHA uses one of two methods for finding the evaporation rate
+depending upon whether or not the puddle is sufficiently close to its boiling point. Brighton's
+formulation (Brighton 1985) is used when the average puddle temperature is sufficiently below its
+boiling point, and an energy balance method is used when the puddle approaches its boiling point.
+The volatilization rate of non-boiling puddles is governed primarily by the wind speed, area of the
+puddle, and vapor pressure of the chemical,2 or partial pressure in cases involving mixtures.
+ALOHA accounts for changes in temperature and composition, in cases involving mixtures.
+Temperature is held at the boiling point for boiling puddles, and the volatilization rate is defined by
+the energy balance. Turbulent diffusion is expected to be the primary mechanism transporting
+vaporized material away from the puddle. Temperature and composition are assumed to be
+spatially uniform throughout the puddle. As evaporation removes material, the puddle is assumed
+to grow thinner, but its radius is assumed to be constantALOHA accommodates spills of volatile
+chemicals on a variety of solid surfaces and on bodies of water. ALOHA assumes that the spilled
+liquid does not penetrate into the soil, sink, or dissolve in water.
+The methods used to compute evaporation rates from puddles of fixed area are also used with the
+Tank Option to estimate evaporation rates from expanding puddles from liquid leaking from a
+Tank. The modifications to accommodate spreading puddles are described in section 3.4.
+3.3.1 EVAPORATION FROM NON-BOILING PUDDLES
+When the average puddle temperature is below its ambient boiling point,3 ALOHA uses a model by
+Brighton (Brighton 1985) to predict the evaporation rate. The model assumes that the layer of air
+2 The vapor pressure is strongly dependent upon the puddle skin temperature, which can be significantly
+lower than the temperature of the underlying liquid. Kawamura and Mackay (Kawamura et al. 1985)
+measured skin temperatures that were 5 to 6°C lower than bulk temperatures in the same puddles. ALOHA
+approximates the temperature of the puddle as spatially uniform set to the spatially averaged puddle
+temperature; this can cause ALOHA to overestimate evaporation rates. 3 ALOHA defines the upper temperature limit for Brighton’s model when the correction factor for highly
+volatile liquids reaches 4.
+12 Source Strength Models
+
+in contact with the surface of the puddle holds vapors in equilibrium with the liquid in the puddle.
+As a turbulent airstream passes across the pool surface, vapor molecules diffuse passively from the
+top of this vapor layer and are advected downwind.
+Brighton formulated an expression for the evaporative mass flux, E xt ( ) , , in terms of the friction
+velocity of the air, U* , the chemical’s vapor-phase saturation concentration, Cs , and a
+dimensionless mass transfer coefficient, j x( ) :
+( ) * , () E x t CU j x = s .
+The mass transfer coefficient is spatially dependent on the position along the axis oriented parallel
+to the wind direction. By integrating the mass transfer coefficient over the puddle dimension,4 a
+spatially averaged mass transfer coefficient, j , is found using
+( ) 0
+1 DP
+P
+j j x dx D
+⌠
+⌡ = .
+As the vapor pressure of the puddle, Pv , approaches ambient air pressure, Pa , the evaporating
+vapors perturb the boundary layer and affect the turbulent diffusion above the puddle. A
+correction for highly volatile liquids is applied to the mass transfer coefficient to account for this
+behavior:
+ln 1 a v
+c
+v a
+P P
+j j P P
+  =− −    
+.
+The total evaporative flux is based on the corrected, spatially-averaged mass transfer coefficient,
+c j :
+( ) E t CU j = s c * .
+ALOHA estimates the friction velocity, U* , using a formulation from Deacon (Deacon 1973) for
+neutral conditions over the ocean described as
+*
+10 0.03
+n
+U U
+z
+  =     ,
+where U is the user-specified wind speed at height, z .
+4 The diameter of a uniform circular puddle, DP , is used as the puddle dimension along the along-wind axis.
+Source Strength Models 13
+
+ALOHA uses a power-law wind speed profile to approximate the wind speed profile above the pool
+surface. The values of the power-law exponent, n , are shown in Table 7, for the six Pasquill stability
+classes (Havens and Spicer 1985).
+Table 7. Values for the power-law exponent for six Pasquill stability classes.
+Stability
+Class
+n
+A 0.108
+B 0.112
+C 0.120
+D 0.142
+E 0.203
+F 0.253
+The average mass transfer coefficient is expressed in terms of dimensionless variables as
+( )
+( )
+( )
+( ) ( )
+( ( ) )
+2 2
+2 2
+2 2 2
+1 1 ln 1
+arctan
+2 ln
+1 1 1 1 ln
+6
+ln
+1 e
+1
+T e 1
+1
+e X
+e X
+k j n Sc e X
+e X
+γ
+π π π
+γ π
+π
+Λ
+Λ
+Λ
+Λ
+    −   − +     +  
+≈ +     +− +   +
++  
+.
+The dimensionless distance is evaluated at the downwind edge of the puddle as
+2
+1 1
+0
+P
+n T
+nk D X
+Sc z e
+= ,
+where
+k is the VonKarmon constant = 0.4 and
+0 z is the surface roughness length.
+Brutsaert (Brutsaert 1982) describes Λ as a measure of the ratio of the scalar roughness length of
+the puddle and the momentum roughness length of the terrain as
+14 Source Strength Models
+( ) ( ) 1 1 2ln 1 2 1 ( ), e
+T
+k
+n n f Sc
+n Sc
+Λ= + + + − + + γ
+where
+e γ is Euler’s constant (taken to be 0.577) and
+T Sc is the turbulent Schmidt number set equal to 0.85 in accordance with measurements by
+Fackrell and Robins (Fackrell and Robins 1982).
+The form of f Sc ( ) depends on the roughness Reynolds number and uses
+( )
+2 1
+3
+0
+1
+4
+0 0
+3.85 1.3 ln for 0.13: smooth, or 0.13
+7.3 5 for 2 : rough,
+Sc
+Sc T Sc Re
+k f Sc
+Re Sc Sc Re T
+         
+ 
+
+ − + <  = 
+ − >
+
+where the roughness Reynolds number, Re0 , is defined by the ratio of the wind friction velocity,
+U* , the surface roughness length, 0 z , and the kinematic viscosity of air, ν :
+* 0
+0
+U z Re
+v = .
+When 0 0.13 2 ≤ ≤ Re , ALOHA estimates f Sc ( ) by a straight-line interpolation between the
+maximum and minimum values of the roughness Reynolds number.
+The laminar Schmidt number, Sc , is the ratio of the molecular kinematic viscosity of air to the
+molecular diffusivity of the contaminant gas in air:
+c Sc κ
+ν = .
+Molecular diffusivities of only a few chemicals have been measured. Unless a value has been
+entered into the chemical library by the user, ALOHA uses Graham’s Law to estimate the molecular
+diffusivity (Thibodeaux 1979)as shown by
+w c w c
+M
+M κ κ = ,
+where
+Mw is the molecular weight of water,
+Mc is the molecular weight of the chemical, and
+w κ is the molecular diffusivity of water vapor in air set equal to 2.39 x 10-5 m2 s-1.
+Source Strength Models 15
+The treatment of evaporation from solutions follows this same method, but the solute and solvent
+are treated independently using the physical properties of each accordingly. One simplification is
+used in calculating the dimensionless mass transfer coefficient; the laminar Schmidt number is
+based on a weighted average molecular weight and a single mass transfer coefficient is used for
+both solute and solvent.
+3.3.2 EVAPORATION FROM BOILING PUDDLES
+ALOHA limits the upper bound of the puddle temperature to its ambient boiling point. Non-boiling
+puddles can absorb enough thermal energy from their surroundings to boil, but it would be
+extremely rare for a puddle to exceed its boiling point. Users may also set the initial puddle
+temperature at, but not above, its ambient boiling point. In cases where the calculated puddle
+temperature approaches boiling, or more precisely, exceeds the upper limit for Brighton’s nonboiling puddle model, ALOHA transitions to a boiling puddle model. The model is based on an
+assumption of a steady-state temperature fixed at the boiling point. The evaporation rate and
+associated evaporative cooling of the boiling puddle is set equal to a value which balances the
+thermal energy fluxes, thereby maintaining a constant puddle temperature at its boiling point.
+ALOHA allows puddles to transition from boiling to non-boiling, or the reverse. ALOHA constantly
+compares the evaporation rate calculated with the boiling puddle model with the evaporation rate
+calculated with Brighton’s model at its temperature limit. ALOHA chooses the method that yields
+the larger evaporation rate.
+3.3.3 PUDDLE ENERGY BALANCE
+The magnitude of the evaporative mass flux depends on the temperature of the puddle, which is
+assumed to be spatially uniform. Puddle temperature can increase or decrease with time
+depending on the magnitude and sign of the six energy sources considered in ALOHA:
+•
+•
+•
+•
+•
+•
+the net shortwave solar flux into the puddle, FS ;
+the longwave radiation flux down from the atmosphere, F↓ ;
+the longwave radiation flux upward into the atmosphere, F↑ ;
+the heat exchanged with the substrate by thermal conduction, FG ;
+the sensible heat flux from the atmosphere, FH ; and
+the heat lost from the puddle by evaporative cooling, FE .
+16 Source Strength Models
+Energy fluxes into and out of the puddle can either increase or decrease puddle temperature, Tp , as
+described by
+( ) ( ) ( ) ( ) d 1
+d
+p
+G H E
+pl l p
+T (t) F F Ft Ft F t Ft s t c d (t) ρ ↓ ↑ = ++ + + +    ,
+where
+ρl is the liquid density,
+p d is the depth of the puddle, and
+pl c is the heat capacity of the liquid (J kg-1 K-1).
+3.3.3.1 Solar Radiation, FS
+The solar irradiance, the flux of solar shortwave radiation at the top of the atmosphere, averages
+about 1,368 W m-2 (Lide 1993). The net transmissivity of the atmosphere is the fraction of solar
+irradiance that reaches the surface of the earth. Clouds and atmospheric particles both reflect and
+absorb part of the solar irradiance before it reaches the earth’s surface. Frouin et al. (Frouin et al.
+1989) reported that the maximum solar flux reaching the surface at continental and maritime
+locations varied from 1,090 to 1,130 W m-2, indicating that atmospheric transmissivity at these
+locations ranged from about 80 to 83 percent.
+ALOHA estimates the solar radiation flux that reaches the ground at a location, given degree of
+cloudiness, time, and date (Raphael 1962) as
+( ) [ ] ( ) 2 1111 1 0.0071 sin .1 0
+0 otherwise,
+: sin( ) > 0.1, I s s
+C s F  − ϕ − ϕ = 
+
+where
+CI is the cloudiness index (fraction of sky covered by clouds on a scale of 0 to 10) and
+ϕS is the solar altitude (the angle of the sun above the local horizon).
+This formula includes a correction for the fraction of solar radiation that is reflected back into the
+atmosphere based on an average value for the earth’s albedo. ALOHA computes solar altitude as a
+function of latitude, longitude, the time of day, and the Julian day of the year. ALOHA approximates
+the solar radiation as constant over the time of the release.
+Source Strength Models 17
+3.3.3.2 Longwave Radiation, F↑ and F↓
+Any temperature difference that exists between the puddle and the atmosphere can produce a net
+loss or gain of energy through radiative energy transfer. Radiative (long wavelength) loss is based
+on the Stefan-Boltzman radiation law,
+4 F TP ↑ = −εσ ,
+where
+ε is the puddle emissivity (set equal to that of water = 0.97) and
+σ is the Stefan-Boltzman constant (= 5.67 x 10-8 W m-2K-4).
+ALOHA uses the following equation developed by Thibodeaux (ref. 1979) to estimate longwave
+radiation downward from the atmosphere into the puddle:
+( ) 4 1 F rBT ↓ = − σ a ,
+where
+r is the surface reflectivity to longwave radiation (set to that of water = 0.03),
+Ta is the air temperature, and
+B is the atmospheric radiation factor, which is a function of partial pressure of water vapor, we
+(Pa), and cloud cover: B a be = + w .
+Table 8. Radiation factor coefficients as a function of the cloudiness index CI .
+CI a 6 b ×10
+0 0.740 44.3
+1 0.750 44.3
+2 0.760 44.3
+3 0.770 44.2
+4 0.783 40.7
+5 0.793 40.5
+6 0.800 39.9
+7 0.810 38.4
+8 0.820 35.4
+9 0.840 31.0
+10 0.870 26.6
+18 Source Strength Models
+The partial pressure of water in the atmosphere, we (Pa), can be derived from the relative humidity,
+RH , and air temperature, Ta , as
+5431.3 99.89 exp 21.66 100 w
+a
+RH
+e
+T
+  =   −
+ 
+.
+3.3.3.3 Heat Exchange with the Substrate, FG
+The substrate, whether ground or water, can be a large source of thermal energy for a puddle. To
+estimate FG , ALOHA requires an initial value for ground or water temperature, GT . This should be
+a value for the temperature far enough below the surface that temperature is relatively unaffected
+by daily changes in solar radiation, rather than the surface temperature. When a general range for
+substrate temperature is known or suspected, choosing a relatively high value from within this
+range represents a conservative choice because it can result in a higher evaporative flux estimate.
+In most cases, inaccuracies of a few degrees in either direction in an estimate of GT are expected to
+have little effect on predicted evaporation rates.
+3.3.3.3.1 SPILLS ON WATER
+ALOHA can model insoluble floating liquids spilled on water that is warmer than 5°C. In cases
+where the puddle temperature is greater than the underlying water, heat flow to the water is
+neglected. This simplification acts to produce larger evaporation rates, but the effect tends to be
+short-lived because evaporative cooling often quickly lowers the temperature of the puddle to that
+of the water.
+In cases where the puddle temperature is less than the underlying water, thermal energy flows
+from the water to the puddle. Convective heat exchange can generate a large sustained heat flux.
+Modeling the convective process in the water column is beyond the scope of ALOHA, so a simple
+empirical model is used to estimate the heat transfer based on the temperature difference between
+the water and the puddle, ∆T . The model was proposed by Webber (Webber 1991), and matches
+measured results for butane on water:
+2 G( ) 500 W F t T
+m K
+= ∆ .
+3.3.3.3.2 SPILLS ON LAND
+The heat exchange between a puddle and a solid substrate is limited by the conductive heat flow
+within the substrate and is described by Fourier’s Law,
+0
+( ) G G
+z
+T F t
+z
+∂
+α
+∂ =
+= − ,
+where α G is the thermal conductivity of the ground.
+Source Strength Models 19
+The temperature gradient is a function of time and is found by solving time dependent heat
+equation for the ground temperature,
+2
+2
+1
+G
+T T
+t z
+∂ ∂
+κ∂ ∂ = ,
+where κ G is the thermal diffusivity of the ground. The ground is represented by a slab of finite
+thickness, infinite in the horizontal directions. The thickness of the slab is based on an estimate of
+the depth over which the temperature is affected by the puddle. We assume that the ground is
+initially at a uniform temperature, the interface with the puddle is at the temperature of the puddle,
+and the other interface is at the initial ground temperature. The heat equation has a simple
+analytical error-function solution when the puddle temperature is constant; however, when the
+puddle temperature varies with time, the solution becomes more complicated, so the heat equation
+and heat flux expressions are solved numerically using a forward-stepping finite difference method.
+The distance between nodes is adjusted to assure numerical stability, minimize numerical error,
+and manage the computational time. To insure numerical stability the following condition should
+be met:
+dz dt ≥ 3κ G .
+The depth over which the ground temperature is affected by the puddle is approximated by finding
+the depth at which the ground temperature changes by one degree after one hour, assuming a
+constant puddle temperature. If the initial temperature differential between the puddle and ground
+is small, a minimum of 20°C is used to estimate the affected depth.
+Comparison between this heat transfer model and experimental data suggests that a correction
+factor is needed for the effective thermal conductivity of soils (Briscoe and Shaw 1980). The
+effective thermal conductivity appears to be about 9 times that of the measured values for soils.
+Table 9. Thermal properties of solid substrates with correction factor applied (Briscoe and Shaw
+1980).
+
+Thermal
+Conductivity
+(Wm-1 K-1)
+Thermal
+Diffusivity
+(m2 s-1)
+Dry Sandy Soil 2.34 1.74 x 10-6
+Concrete 8.28 3.74 x 10-6
+Default Soil 8.64 4.13 x 10-6
+Moist Sandy Soil 5.31 3.02 x 10-6
+20 Source Strength Models
+3.3.3.4 Evaporative Heat Flux
+The evaporative heat flux, FE (J m-2), represents the effect of evaporative puddle cooling. Once the
+average evaporative flux, E has been estimated, ALOHA estimates FE as F LE E C = , where C L (J
+kg-1) is the specific latent heat of vaporization for the chemical at the puddle temperature.
+3.3.3.5 Sensible Heat Flux
+The sensible heat flux, FH , is the thermal conduction to or from the air as a result of temperature
+differences between the puddle and the air above it (Brighton 1985, 1990), and is shown as
+( ) F c CU T T H a H ap = ρ p a, * − ,
+where
+a ρ is the density of air (kg m-3),
+p a, c is the heat capacity of air (J kg-1 K-1), approximated as a constant 1,004 J kg-1 K-1, and
+CH is the sensible heat transfer coefficient = ( )
+2
+3
+c
+thermal diffusivity j molecular diffusivity .
+3.4 CHEMICALS RELEASED FROM A TANK
+ALOHA can estimate the amount of substance released into the air as a result of a rupture of a tank.
+ALOHA treats tanks containing pressurized gases, liquids at ambient pressure, gases liquefied by
+refrigeration, and gases liquefied under pressure. ALOHA deals only with tanks containing a single
+chemical. It does not deal with tanks that are pressurized with a second substance such as air or an
+inert gas. As material is released from the tank, ALOHA reevaluates the conditions within the tanks
+and can change the release rate calculation as needed.
+The rate at which a chemical enters the atmosphere is limited, but not entirely determined, by the
+rate at which the chemical is released from the tank. The release rate from the tank depends upon
+the phase released (liquid, gas, or mixed phase), the driving pressure, and the nature of the rupture.
+Two types of ruptures can be modeled: a hole in the tank wall, or a release through a short pipe or
+valve. Models for a release through a hole are used for both types of ruptures when a gas or nonboiling liquid are involved; they provide reasonable overestimates for short pipes. However, for
+superheated liquids and 2-phase fluids, the release rate through a hole and short pipe can differ
+significantly, so the release rate model differentiates these two rupture types.
+In tanks containing liquids, the release point can occur above the level of the liquid, below the level
+of the liquid, or at the level of the liquid. The location of the rupture largely determines the
+pressure driving the release and the phase of the effluent. Top vents are assumed to be absent.
+Source Strength Models 21
+Material released from a hole or short pipe can be a gas, a non-boiling liquid, a superheated liquid,
+or a mixture of liquid and gas. ALOHA predicts that a released gas enters the atmosphere
+immediately and disperses downwind, or ignites to form a jet fire. ALOHA predicts that a liquid
+released at a temperature below its boiling point forms a puddle which then evaporates to generate
+an airborne cloud. So, for non-boiling liquids, the tank release rate is linked to a puddle
+evaporation model. ALOHA does not allow the user to model a pool fire that starts with a tank
+release. ALOHA assumes that a superheated liquid (liquids released at a temperature above their
+ambient boiling point) enters the atmosphere immediately and disperses downwind, or ignites to
+form a jet fire. We expect that in many cases a superheated liquid would partially rain out to form a
+puddle; however, ALOHA employs this assumption to ensure that it can provide a reasonable
+overestimate of the actual source strength.
+3.4.1 INTERNAL TEMPERATURE OF THE TANK
+The temperature at the onset of the release is defined by the user.
+To account for temperature changes during the release, ALOHA considers thermal conduction
+through the tank walls that are in contact with liquid contents, and evaporative cooling due to
+liquid vaporizing within that tank to fill the void created by the escaping fluid. (Cooling due to
+adiabatic expansion of a gas within a tank is neglected.) This is shown as
+d
+d
+T e c Hw tw
+l pl l
+T QL F A
+t cV ρ
++ = ,
+where
+FHw is the thermal energy flux across the walls,
+Atw is the area of the tank walls in contact with liquid, and
+, , l pl l ρ c V are the density, heat capacity, and volume of the liquid within the tank.
+The mass evaporation rate into the head space of the tank, Qe , is simply related to the total mass
+loss from the tank, QT , and the density of the effluent fluid, ρ X , and is determined using
+( ) T l g
+e
+Xl g
+Q Q t ρ ρ
+ρ ρρ
+  =   −  
+,
+where ρ g is the density of the gas.
+The thermal energy flux across the walls of the tank that are in contact with the liquid contents
+assumes that the tank walls are constructed of 2 cm of steel and 10 cm of insulating foam.
+22 Source Strength Models
+3.4.2 INTERNAL PRESSURE OF THE TANK
+Tanks are assumed to be unvented and initially contain a single component that is in
+thermodynamic equilibrium with its own vapors in the headspace (ALOHA does not allow for tanks
+containing other gases in the head space). For tanks containing liquid, the internal pressure is
+defined by the tank temperature and set equal to the vapor pressure of the liquid. Tanks containing
+only gas have an additional degree of freedom, so the user must define the initial temperature and
+pressure of the tank.
+3.4.3 PHASE OF THE EFFLUENT FROM THE TANK
+For tanks containing pressurized gases, or liquids stored below their boiling points, the phase of the
+effluent is easily determined from the location of the rupture. However, for tanks containing
+superheated liquids, the determination of the phase of the effluent can be complicated when the
+rupture occurs in the head space. When a rupture is in or intersects the headspace of a tank
+containing a liquid stored above its normal boiling point, pressure is quickly released causing the
+liquid to vaporize quickly. This process can result in the formation of bubbles throughout the liquid
+(homogeneous nucleation). If gas bubbles are generated faster than they can rise and pass out of
+the liquid, the volume of the fluid can swell and fill the tank. The rupture in the head space can then
+release a 2-phase mixture of gas and liquid resulting in a large release. In most cases, ALOHA
+assumes that any rupture in the head space of a tank containing a liquid stored above its boiling
+point will swell to fill the tank with a uniform bubbly 2-phase mixture. However, there are two
+chemicals in ALOHA for which a more refined model is used to predict swelling: ammonia and
+chlorine.
+Ammonia and chlorine are treated differently than other gases liquefied under pressure. Instead of
+assuming that a rupture in the head space always results the vessel filling with a uniform 2-phase
+mixture, ALOHA uses a vapor disengagement calculation. The DIERS method (Fisher et al. 1992)
+compares the superficial vapor velocity to the drift flux to determine whether the fluid swells to fill
+the vessel. The superficial vapor velocity is defined as the volume release rate divided by the cross
+sectional area of the vessel and can be interpreted as the speed at which a slug of vapor must travel
+upward through the cylinder to match the release rate of the exit port. The drift flux of the boiling
+2-phase fluid can be interpreted as the volume flux of gas bubbles in the boiling fluid relative to the
+average flow velocity of the fluid (in ALOHA the fluid is approximated as stationary). At the surface
+of the 2-phase fluid, the drift flux can be viewed as the gas flux through the surface.
+Source Strength Models 23
+The drift flux is the product of two terms, the bubble rise velocity, Urise , and the reference
+dimensionless superficial vapor velocity, Ψ . These two terms are found from empirical studies
+and take different forms depending on the flow regime. According to Leung (Leung 1994) most
+single component liquids exhibit churn-turbulent (CT) flow. The measurements of the flow
+behavior of ammonia made by Fauske and Associates and transmitted to us by Karlins (Karlins
+1994) suggests that ammonia behaves as a CT fluid. Our assumption that chlorine behaves as a CT
+fluid is based solely on Leung's expectation and is not based on empirical data. For CT flow, the
+bubble rise velocity is defined as
+( ) 1
+4
+1
+2
+1.53 l g
+rise
+l
+g
+U
+σρρ
+ρ
+  −   = ,
+where
+σ is the surface tension,
+ρl is the density of the liquid phase,
+ρ g is the density of the gas phase, and
+g is the acceleration of gravity.
+The reference dimensionless superficial vapor velocity depends on the average void fraction of the
+2-phase fluid and is defined as
+0
+2
+1 C
+α
+α
+Ψ = − ,
+where
+α is the average void fraction and
+C0 is the correlating parameter (= 1.0 for conservative estimate).
+If the superficial vapor velocity is greater than the drift flux (UΨ), then the 2-phase fluid is
+predicted to swell. Since the drift flux depends on the average void fraction, it varies as the fluid
+swells and changes volume. If, at the point where the fluid fills the vessel, the drift flux is still less
+than the superficial vapor velocity, then 2-phase venting is predicted. As material is lost, the
+average void fraction of the fluid changes, and when the superficial vapor velocity becomes less
+than the drift flux, 2-phase venting is predicted to cease. Generally, small leaks lead to gas release
+and larger leaks lead to 2-phase venting.
+The DIERS approach described above was developed for vertically oriented cylinders of constant
+cross section with a release point at the top of the cylinder. Grolmes and Fisher (Grolmes and
+Fisher 1994) recommend, as an acceptable approximation, modeling spherical and horizontalcylindrical vessels as vertical cylinders of equivalent volume and height. ALOHA accommodates
+vessels with ruptures below the top of the vessel by modeling these systems as vertical cylinders
+with heights equal to the height of the actual exit port and a volume equal to the volume of the
+actual vessel below the level of the exit port.
+24 Source Strength Models
+3.4.4 RELEASE OF A LIQUID STORED BELOW ITS AMBIENT BOILING POINT
+The following method is applied to holes and short pipes below or intersecting the level of the
+liquid in a tank containing a liquid stored below its ambient boiling point. ALOHA calculates the
+release of the liquid from the tank, the puddle formation, and the evaporation rate from the puddle.
+When the liquid level drops below the bottom of the hole or pipe, ALOHA neglects any further
+release of gas from head space above the liquid. The same calculation methods are used for a hole
+in the tank wall and a short pipe.
+3.4.4.1 Mass flow rate
+ALOHA uses Bernoulli’s equation to compute the mass flow of liquid from the hole,
+( ) ( ) ( )
+1
+2 2 , Qt CA P P T = dis f h a l − ρ
+where Cdis is the discharge coefficient (0.61),
+Af is the area of the hole times the fraction of the hole lying below the level of the liquid,
+Pa is the ambient atmospheric pressure, and
+Ph is the internal pressure in the tank at the height of the hole.
+ALOHA assumes that the tank is not vented. When the liquid level is above the top of the hole, the
+internal pressure driving the flow, Ph , is the combination of the vapor pressure of the liquid and the
+hydrostatic pressure of the liquid above the hole. However, as the liquid level drops, the internal
+pressure calculated in this manner can approach the ambient air pressure causing the flow to stop.
+Commonly, air can be ingested back into the tank allowing flow to continue as a series of gushes. To
+approximate this in ALOHA, when the computed value for Ph reaches 1.01 Pa , it is held constant at
+that value (Belore and Buist 1986, Dodge, Bowels, and White 1980).
+When the liquid level intersects the hole, the internal pressure at the hole is the ambient air
+pressure plus the hydrostatic pressure of the liquid above the bottom of the hole.
+Source Strength Models 25
+3.4.4.2 Puddle Growth
+The liquid release creates a spreading puddle that evaporates or burns. Evaporation or burning
+acts to reduce the mass of a puddle that has been formed. The mass loss is approximately
+proportional to the area of the puddle. When the tank release rate is greater than the computed
+evaporation rate, ALOHA predicts that the puddle will spread. As the puddle evaporates, ALOHA
+does not permit the puddle’s area to shrink; it allows the puddle depth to decrease. For spreading
+puddles, ALOHA uses the method proposed by Briscoe and Shaw (Briscoe and Shaw 1980) to
+compute the radius of the puddle, pr , which is described as
+2 , p
+p
+dr
+gd dt =
+where p d is the depth of the puddle.
+ALOHA approximates the puddle depth as uniform and terminates the spreading when the depth
+drops to 5 mm, an arbitrarily chosen value.
+3.4.4.3 Puddle Temperature
+The temperature of the puddle has a large impact on the evaporation rate. In addition to the
+sources and sinks of thermal energy described in the section on the Puddle Option, liquid added to
+the puddle from the tank can either raise or lower the average temperature of the puddle. The
+change in the puddle temperature is defined by the sum of the thermal flux terms:
+( ) ( ) ( ) ( ) ( ) ( ) d 1
+d
+p
+G H E dM
+pl l p
+T (t) F Ft Ft Ft F t Ft F t s t c d (t) ρ ↓ ↑ = ++++ ++    .
+The thermal energy flux from the addition of liquid from the tank, FdM , is proportional to the
+temperature difference between the liquid in the tank and that in the puddle, and is described as
+( ) ( )
+2
+T pl T P
+dM
+p
+Qc T T F t
+π r
+− = ,
+where QT is mass flow rate into the puddle.
+The thermal energy flux from the ground for a growing puddle is modeled in a way that is
+conceptually consistent with the stand-alone puddle. The puddle is modeled as discrete concentric
+rings of liquid in contact with the ground; as the puddle expands rings are added. The entire puddle
+is assumed to be a uniform temperature, but the underlying ground temperature varies depending
+upon its duration of contact with the puddle. Conduction through the ground is treated separately
+for each ring; the thermal energy flux is the sum of the individual heat flux terms from each ring.
+As with the puddle scenario described above, ALOHA uses one of two methods for finding the
+evaporation rate depending upon whether the puddle is sufficiently close to its boiling point.
+26 Source Strength Models
+Brighton's formulation is used when the average puddle temperature is below its boiling point, and
+an energy balance method is used when the puddle approaches its boiling point.
+3.4.5 RELEASE OF A 2-PHASE MIXTURE OR A LIQUID ABOVE ITS AMBIENT
+BOILING POINT
+ALOHA uses the Homogeneous Nonequilibrium Model for release scenarios involving an effluent
+that is a superheated liquid, or a 2-phase mixture resulting from the flash boiling of a superheated
+liquid (Fauske 1985, Fauske and Epstein 1987, Henry and Fauske 1971). The mass flux, G ,
+through a short pipe or hole is described by
+( ) ( ) 1 c 2
+P
+g l
+L G Nc T
+v v
+−
+= − ,
+where,
+c L is the specific latent heat of vaporization (J/kg),
+g ν is the specific volume of the vapor (m3/kg),
+ν l is the specific volume of the liquid (m3/kg),
+P c is the heat capacity of the fluid (J/kgK),
+T is the temperature (K),
+( )
+2
+2 2 2
+c l
+e dis g l P
+L v l N
+PC v v Tc l = +
+∆ −
+,
+∆P is the difference between inside and outside pressure (Pa),
+l is the length of the pipe (m), and
+el = 0.1 m.
+The Homogeneous Nonequilibrium Model is limited to a 2-phase flow that is predominately liquid.
+The maximum value of Quality, X , for which the Homogeneous Nonequilibrium Model is valid
+(Quality is defined as the mass of the vapor divided by the mass of the mixture.) is
+( ) (max) P gl
+c
+Pc T v v
+X
+L
+− = ,
+where P is the pressure of the fluid within the tank.
+When the Quality of the effluent exceeds this limit, ALOHA computes the release rate based on a
+fixed quality set to X ( ) max . This provides a reasonable overestimate of the actual release.
+The Homogeneous Nonequilibrium Model was developed to treat release scenarios involving pipes
+that are shorter than 10 cm, including a pipe length set to zero and a hole in the tank wall. ALOHA
+allows the user to specify whether the release is through a hole or short pipe, the latter corresponds
+Source Strength Models 27
+to a pipe length of 10 cm, the upper limit of the model. At the lower limit of pipe length, the
+Homogeneous Nonequilibrium Model reduces to the Bernoulli equation. At the upper limit of pipe
+length, 10cm, the Homogeneous Nonequilibrium Model approximately reduces to the homogeneous
+equilibrium model, which has been shown to be applicable to typical valve geometries (Huff 1985).
+For holes in a tank wall, the Homogeneous Nonequilibrium Model predicts that the release rate is
+proportional to the density and pressure difference at the exit port. In contrast for 10 cm pipes, the
+Homogeneous Nonequilibrium Model is insensitive to both density and pressure differential.
+Flashing is assumed to occur in the pipe resulting in choked flow. As a result, release rates of
+superheated liquids through short pipes are generally much smaller than through holes.
+Upon release from the tank, ALOHA assumes that the liquid undergoes an adiabatic vaporization.
+Evaporation cools the liquid as it vaporizes. If the liquid has not vaporized completely before its
+temperature drops to its ambient boiling point, ALOHA assumes that the cold 2-phase mixture is in
+the form of a fine aerosol and treats it as a dense gas. ALOHA does not allow the liquid to rain out
+and form a puddle.
+The Homogeneous Nonequilibrium Model is limited by the diameter of the pipe. For large diameter
+pipes, ALOHA uses an approximation to insure that the predicted release rate does not
+underestimate the actual rate. For pipes greater than one meter in diameter, ALOHA reverts to the
+Bernoulli equation. For pipe diameters between 0.1 and 1 meter, ALOHA interpolates between the
+Homogeneous Nonequilibrium Model and the Bernoulli equation.
+3.4.6 GAS RELEASE THROUGH A HOLE OR SHORT PIPE
+ALOHA predicts a gas release under two conditions: the tank contains a pressurized gas, or there is
+a small leak in the head space containing chlorine or ammonia liquefied under pressure. ALOHA
+uses a single model which produces identical source strength estimates for holes and pipes
+regardless of which rupture type its user chooses. ALOHA considers the release rate from ruptures
+in the head space of tanks containing liquids stored below their boiling points as insignificant.
+ALOHA uses algorithms incorporated in LEAKR, a computer model developed for Environment
+Canada (Belore and Buist 1986), to predict the release rate of gases from holes and short pipes.
+From the ratio of tank to atmospheric pressure, the ratio of hole width to tank length, and the
+critical pressure ratio for sonic flow (a threshold pressure ratio value), ALOHA first determines
+whether gas flow will be supersonic (choked) or subsonic (unchoked). If the pressure difference is
+great enough, ALOHA models flow as supersonic until the pressure drops to the point at which flow
+is subsonic. From then on, ALOHA computes a subsonic release rate until it predicts that tank
+pressure has dropped to atmospheric pressure. The estimated rate of gas release drops over time
+because the tank pressure is expected to drop as gas exits the tank, and because adiabatic
+expansion is expected to cool the tank contents, further reducing pressure. In gas release cases,
+ALOHA does not account for the effect of heat flux across the tank wall or for frictional differences
+between tank holes and short pipes/valves.
+28 Source Strength Models
+ALOHA predicts whether gas outflow will be either subsonic or supersonic by computing three
+ratios. The first is the ratio of atmospheric pressure to tank pressure:
+/ R PP P aT = .
+The second important ratio is the ratio of hole diameter to tank diameter,
+/ c hT β = l l ,
+where
+T
+l is the diameter of a spherical or cylindrical tank, and
+hl is the either the diameter of a round hole or the square root of the area of a rectangular hole.
+The third important ratio is the critical pressure ratio,
+2 1
+0.2 (big hole) 1
+Rc c
+γ
+γ
+β
+γ
+−   =   >
+  + , and
+1 2
+1 1 4 0.2 (small hole) 2 2
+R R c c c c
+γ
+γ γ γ γ β β
+−
+− +
++= ≤ ,
+where γ is the ratio of gas heat capacity at constant pressure and gas heat capacity at constant
+volume.
+3.4.6.1 Choked Flow
+When RP is less than or equal to Rc , mass flows from the tank at the speed of sound and is usually
+choked, so that reducing downstream pressure further does not appreciably change the flow rate.
+The mass flow rate is given by
+( )
+1
+2 1
+() () 1 Qt C A tP t dis h g T
+γ
+γ
+ρ γ
+γ
++
+−   =     + .
+Source Strength Models 29
+3.4.6.2 Unchoked Flow
+When RP is greater than Rc , the flow is subsonic and the mass flow is given by
+( ) 2 1/ )
+() 2 1
+a a
+dis h g T
+T T
+P P Qt C A P P P
+γ γ γ
+γ ρ
+γ
++
+    =     − −    
+.
+Outside the tank, the gas expands until its pressure equilibrates with the atmosphere. This process
+is modeled as an adiabatic expansion with an associated reduction in temperature. The
+temperature of the gas after the gas has fully expanded is given by
+1
+T
+g T
+a
+P T T
+P
+γ
+γ
+−
+  =    
+.
+Detailed discussions on the relationship between choked and unchoked flow is given by Shapiro
+(Shapiro 1953) and Blevins (Blevins 1984). How this relationship can be applied to hazard analysis
+is discussed by Hanna and Strimaitis (American Institute of Chemical Engineers. Center for
+Chemical Process Safety. 1989).
+3.5 GAS PIPELINE
+3.5.1 GENERAL COMMENTS
+Only pure gas releases from pipe ruptures are considered by ALOHA. ALOHA’s gas pipeline
+algorithm is based on modifications made by Wilson (Wilson, Alberta. Pollution Control Division.,
+and University of Alberta. Dept. of Mechanical Engineering. 1981, Wilson et al. 1979) to a model
+developed by Bell (Bell 1978). Measurements show that heat transfer to the moving gas through
+the pipe walls maintains an almost isothermal condition throughout the length of the pipe except
+for the last 200 hole diameters. Within 200 diameters of the hole, the flow is assumed to be
+adiabatic because of the large acceleration near the end of the pipe.
+30 Source Strength Models
+3.5.2 THEORY
+Wilson showed that an exponential is a solution for isothermal quasi-steady state pipe flow, and
+that the release of gases from a finite length of pipe can be approximated by a double exponential of
+the form
+( ) ( ) 2 0 ( ) 1
+Q t t Qt e e αβ β α
+α
+− − = +
++ ,
+where
+Q is the rate of mass discharge per unit time (kg s-1),
+Q0 is the initial mass flow at the time of the rupture (kg s-1),
+α is a non-dimensional mass conservation factor, and
+β is the release rate time constant (s).
+The pressure in most pipelines is much greater than ambient pressure. Therefore, Q0 is calculated
+assuming a choked flow condition, where, for a pipe, the discharge coefficient is one and the
+internal pressure and temperature at the time of rupture are known, using
+1
+0 0 h
+g
+MW Q PA RT
+γ − = Γ ,
+where
+P0 is the initial pipe pressure (Pa),
+Ah is the area of the hole (m2),
+MW is the molecular weight of the gas (kg/mole),
+γ is the ratio of the heat capacity at constant pressure to heat capacity at constant volume,
+and
+1
+1 1
+2
+γ
+γ γ +
+−   + Γ =     .
+Source Strength Models 31
+The time constant, β , is computed by the equation (Wilson 1989),
+3 2 2 2 32 3 1 1
+3
+H
+pF H
+F
+K K K
+K β τ
+       
+   
+− =Γ + −
+Γ ,
+( )
+,
+,
+,
+p
+p
+Fp p
+H hp
+L
+c
+K d L and
+K AA
+τ
+γµ
+=
+=
+=
+where
+Lp is the length of the pipe,
+c is the speed of sound in the pipe,
+p d is the pipe diameter,
+µ is the Darcy-Weisbach friction factor, and
+Ap is the cross-section area of the pipe.
+The speed of sound for an isothermal pipe is
+1
+RT 2
+c
+MW
+  γ =     .
+The friction factor is computed according to Blevins (Blevins 1984) as
+( ( ))
+2
+0.25
+0.57 log p d
+µ
+ε
+=
+−
+,
+where the roughness coefficient, ε , is set to 0.0001 m for normal conditions and is increased to
+0.002 m for rough pipe conditions. For typical pipe conditions, 0.01 0.02 < < µ .
+The time constant can be simplified for small- and large-hole conditions. When ( ) 2 K K H F Γ is
+small, the pipe can be treated like a long isothermal storage tank:
+1 β τ p H K− ≈ Γ (small hole).
+A hole is considered to be large if ( ) 2 30 K K H F Γ > and
+2
+3 β τ ≈ p F K (large hole).
+32 Source Strength Models
+The total mass in the pipeline is based on the ideal gas law,
+0 p p
+T
+P A L MW
+M
+RT = ,
+and the mass conservation factor is
+0
+MT
+Q
+α
+β = .
+For each time step, the exit temperature must be re-evaluated by the methods described below.
+Adiabatic decompression of the gas within 200 diameters of the hole is assumed. Beyond 200
+diameters of the hole, the flow is approximately isothermal with frictional heating and adiabatic
+cooling in near balance. The exit temperature of the current time step is given by
+( ) 1 /
+a
+f g
+ia
+P T T
+P
+γ γ −
+  =    
+,
+where
+Tg is the exit temperature at the previous step,
+Pa is the ambient air pressure, and
+Pia is the pressure at the isothermal-adiabatic interface, ia
+p
+Qc P A = .
+At the isothermal-adiabatic interface, for steady-state conditions, the model assumes an infinite
+reservoir attached to a finite length of pipe with the hole the same size as the pipe. For this case,
+the flow rate is calculated as
+QA v = p ia ia ρ ,
+where ia v is the velocity of the gas at the isothermal-adiabatic interface, and ρia is the density at
+the interface. Choked flow is assumed and leads to the relationships
+ia v c = γ and
+ρ ρ ia r ia r = P P ,
+Source Strength Models 33
+where the subscript r refers to the reservoir. A non-linear equation for the velocity of the gas out of
+the reservoir must be solved to find a value for Pia to be used in the above equation. If Ma is the
+Mach number (ratio of discharge speed to the speed of sound), the equation for isothermal pipe
+flow is (Blevins 1984)
+2
+2
+2 0 4
+1 1 d d p L
+p
+Ma L Ma
+d Ma Ma
+µ γ γ
+γ
+  − =     ∫ ∫ ,
+where the approximation has been made that the length of the pipe where isothermal flow
+predominates is much larger than the part where adiabatic flow occurs, so that the upper limit of
+the left-hand integral is set to be the whole length of the pipe. Integration of this expression leads
+to an expression for the pipe friction parameter,
+1 2 22 2
+2 2
+v 21n ir ia ir
+F
+ir ia ia
+c vc v K
+vv v
+γ γ
+γ γ
+−
+  − −  
+= −+        
+,
+where ir v is the gas velocity at the reservoir-pipe interface.
+The pipe pressure at the adiabatic-isothermal interface, Pia , is estimated from the relationship
+1 2
+2
+ir
+ia r r ir
+ia
+v P Pv
+v
+ρ
+   = −       .
+3.5.3 COMPUTATIONAL NOTES
+The gas pipeline release algorithm computes an array of gas release rates at different times. As in
+other source routines, the length of the time interval varies such that equal amounts of mass are
+released in each time step. If n is the total number of time steps, then each new time step is found
+from the previous one by using a Newton-Raphson iteration scheme to find the roots of the
+equation,
+( ) 1
+1 ( )d T i i
+i
+M t F t Q t t
+n t
++ + = − ∫ ,
+where i t is the previous time and i 1 t + is the new time. Minimum time interval is 60 seconds and the
+release is terminated if it extends beyond one hour.
+34 Source Strength Models
+4 AIR DISPERSION MODELS
+4.1 INTRODUCTION
+The accidental release of a volatile chemical can present a threat to life and health far from the
+point of release. Some chemicals are toxic by inhalation, others can pose a fire hazard. Air
+dispersion models are central to predicting hazard zones associated with toxic or flammable gas
+clouds. These models are used to predict how the concentration of a pollutant, once released into
+the air, varies with time and position. ALOHA provides information about the concentration and
+duration of exposure, but does not resolve the probability that an exposed individual will be
+injured.
+Vapor clouds containing a flammable chemical mixed with air can burn when an ignition source is
+present. When a large quantity of a flammable chemical is released into the air and disperses to the
+point where a flammable fuel/air mixture forms before ignition, the fire can travel from the ignition
+source to the edges of the flammable cloud. The rate at which the combustion propagates through
+the cloud determines whether a damaging shock wave is generated (a vapor cloud explosion). The
+hazards associated vapor cloud explosions are described in Chapter 5. Hazards associated with
+flash fires, which do not generate damaging shock waves, are described in Chapter 6. The
+dispersion models described in this chapter are used to estimate the flammable area of the cloud.
+The movement of the ambient air is responsible for the advection and diffusion of a neutrallybuoyant pollutant in all but the very near field. The movement of pollutants with densities
+significantly different than the ambient air is also affected by gravity and can loft or hug the ground.
+But even for dense gases and dense aerosols, the movement of the ambient air usually dominates
+their dispersion.
+A chemical vapor cloud is composed of a pollutant chemical and air in a ratio that changes with time
+and location. Clouds containing chemicals with high molecular weight, or aerosols, can be
+sufficiently dense that gravity has a significant effect on their movements. These dense gas clouds
+are modeled differently in ALOHA than clouds that are not directly affected by gravity. ALOHA
+incorporates two semi-empirical air dispersion models: the Gaussian model is appropriate for
+pollutants clouds that are not directly affected by gravity; the Heavy Gas model is appropriate for
+pollutant clouds with densities greater than the ambient air and affected in a significant way by
+gravity. These air dispersion models used for neutral and dense pollutant plumes in ALOHA can
+account for vertical gradients in wind speed and atmospheric turbulence, but do not account for
+topographic steering or winds that vary with time.
+The ambient wind usually dominates the advection and diffusion processes for both dense and
+neutrally buoyant gas clouds. The movement of air is characterized by its velocity field and
+turbulence. The roughness elements of the ground provide a drag on the moving air, producing a
+velocity gradient where the speed at the surface itself is zero and increases logarithmically with
+height. The surface roughness elements not only affect the vertical wind profile, but also generate
+turbulence within the wind field. Topography and large structures also affect the velocity field and
+turbulence as the wind moves around and over these features. Turbulence is also generated by
+thermal effects; the sun warms the ground which, in turn, warms surface air causing it to rise.
+Air Dispersion Models 35
+4.2 METHODS FOR CHARACTERIZING WIND FIELDS AND TURBULENCE
+Atmospheric turbulence has a major impact on the rate of dispersion of a pollutant cloud. Stability
+is a concept used to characterize the property of the low-lying atmosphere that governs the vertical
+movement of air. Specifically, stability refers to the tendency of the atmosphere to resist or
+enhance vertical motion and thus turbulence. A stable atmosphere inhibits the vertical mixing; a
+neutral atmosphere neither enhances nor inhibits vertical mixing; and an unstable atmosphere
+enhances vertical mixing and turbulence. Solar radiation plays a large role in atmospheric stability.
+With strong solar radiation, the ground warms and warms the low-lying air; the warm air rises
+generating eddies and a high level of turbulence. In contrast, when the air temperature increases
+with height, buoyancy forces act to inhibit vertical mixing creating a highly stable atmosphere.
+Stability classification is a central factor in ALOHA’s air dispersion models.
+Pasquill (Pasquill 1961) defined six atmospheric stability classes (now usually called the
+Pasquill-Gifford-Turner stability classes). Classes A to F each represent a different degree of
+atmospheric turbulence. Stability class D represents a neutral stability condition. Unstable
+conditions are associated with atmospheric stability classes A, B, and C, where A is extremely
+unstable, B is moderately unstable, and C is slightly unstable. Stability classes E and F represent
+increasingly stable atmospheric conditions.
+ALOHA can use either of two estimation methods to determine atmospheric stability class,
+depending on whether the user enters weather information manually or a portable weather station
+transmits readings to it. In addition, ALOHA allows the user to override these methods and directly
+specify the stability class.
+4.2.1 MANUAL DATA ENTRY OF ATMOSPHERIC CONDITIONS
+When the user manually enters atmospheric data, ALOHA uses a stability class method that
+incorporates the Pasquill-Gifford-Turner stability typing scheme. The method was developed using
+air dispersion measurements collected during experimental releases conducted during the 1950s
+and 1960s. During these experiments, most concentration measurements were made at distances
+within 1 kilometer from the release point. Because only in a few instances were concentrations
+measured at distances as far as 10 kilometers from the release location, it is not certain whether the
+method is reliable at greater distances.
+Solar insolation (the solar energy flux) and wind speed are the two factors affecting the choice of
+stability class in ALOHA. Table 10 forms the basis for the determination of stability class for plumes
+over land in ALOHA. This table is identical to one presented by Turner (Turner 1994) with the
+exception that Turner did not assign stability classes for nighttime cases when wind speed is less
+than 2 m s-1. According to Turner, strong insolation corresponds to a solar altitude greater than 60°
+on a clear day, moderate insolation corresponds to a solar altitude between 60° and 35° on a clear
+day, and slight insolation corresponds to a solar altitude between 15° and 35° on a clear day.
+Nighttime is considered the time between one hour before sunset to one hour after sunrise.
+ALOHA includes solar altitude and cloud cover in its determination of stability class. User-entered
+information on date, time, location, and cloud cover are used to determine the solar insolation. If
+36 Air Dispersion Models
+more than one stability class fits the indicated conditions, ALOHA selects the most stable of these
+classes. ALOHA provides the user the option to directly select the stability class.
+Table 10. Solar Insolation and stability class table.
+Wind Speed Day Night
+at 10 meters Solar Insolation Cloud Cover
+(m s-1) Strong Moderate Slight >50% <50%
+<2 A A – B B E F
+2 – 3 A – B B C E F
+3 – 5 B B – C C D E
+5 – 6 C C – D D D D
+>6 C D D D D
+Stability is D for completely overcast conditions during day or night.
+For plumes over water, ALOHA assumes stable conditions regardless of solar insolation or wind
+speed.
+ALOHA classifies the solar insolation based on the net energy flux to the ground. Solar insolation
+greater than 851 W/m2 is considered strong insolation; computed insolation between 851 and 526
+W/m2 is considered moderate insolation; and computed insolation between 526 and 176 W/m2 is
+considered slight insolation. ALOHA estimates solar insolation absorbed by the ground from the
+location, time, and degree of cloudiness (Raphael 1962):
+( ) 2 1111 1 0.0071 sin 0.1
+0 otherwise
+sin( ) > 0.1 s s
+C s I F
+φ φ      
+ − −  = 
+
+.
+CI is the cloudiness index (on a scale of 0 to 10) and
+S φ is the solar altitude (the angle of the sun above the local horizon) in degrees.
+ALOHA computes solar altitude, S φ , as a function of
+the latitude in radians, θ ,
+the longitude in radians, λ ,
+the hour of the day in Greenwich Mean Time (GMT) , Z (as 1 to 24 hours),
+the Julian day (the day number in the year) in days , J (as 1 to 365 days),
+sin( ) = sin sin cos cos cos φ θδ θ δ S ( ) ( ) ( ) ( ) ( ) s s + hs ,
+( ) 2 2 23.45 sin 0.986 80 radians
+360 360 S J π π δ     =   −       , and
+Air Dispersion Models 37
+2 15 12- radians
+360 15 s h Z    π λ     =      −         
+.
+4.2.2 AUTOMATIC WIND DATA ENTRY USING A SAM
+ALOHA can be connected to a Station for Atmospheric Measurements (SAM) for direct wind
+measurements. Stability class can be derived from the wind speed and measured standard
+deviation in the wind direction, σθ ,m , in combination with user-entered surface roughness and
+solar radiation. The method used to estimate stability class was described by the U.S.
+Environmental Protection Agency (United States. Environmental Protection Agency 1987).
+The method is based on the wind speed at 10m, and a Surface Roughness Length, 0 z , equal to 15
+cm. If the roughness length is different than 15 cm, the standard deviation in wind angle is adjusted
+to
+0.2
+0
+, 0.15 m
+z
+σ σ θ θ
+  =     .
+An initial estimate of stability class is based on the standard deviation in wind direction measured
+at 10 meters.
+Table 11. Initial estimate of stability class and standard deviation in wind direction.
+Initial estimate of
+stability class
+Corrected σθ
+in degrees
+A 22.5 ≤ 𝜎𝜃
+B 17.5 ≤ 𝜎𝜃< 22.5
+C 12.5 ≤ 𝜎𝜃< 17.5
+D 7.5 ≤ 𝜎𝜃< 12.5
+E 3.8 ≤ 𝜎𝜃< 7.5
+F 𝜎𝜃 < 3.8
+If the measurement height is other than 10 meters, the table is adjusted. The lower bound to σθ on
+the table is multiplied by ( ) 10 P
+Z m −
+. The exponent is P = (0.06, 0.15, 0.17, 0.23, 0.38) for stability
+classes A through E, respectively.
+38 Air Dispersion Models
+The stability class is finally derived from the initial estimate and the wind speed measured at 10m.
+Nighttime is the period from 1 hour before sunset to 1 hour after sunrise.:
+Table 12. Stability class for daytime and nighttime.
+Daytime
+Initial Class U10 (m s-1) Final Class
+A U10 < 3 A
+A 3 < U10 < 4 B
+A 4 ≤ U10 < 6 C
+A 6 ≤ U10 D
+B U10 < 4 B
+B 4 ≤ U10 < 6 C
+B 6 ≤ U10 D
+C U10 < 6 C
+C 6 ≤ U10 D
+D, E, F any speed D
+Nighttime
+Initial Class U10 (m s-1) Final Class
+A U10 < 2.9 F
+A 2.9 ≤ U10 < 3.6 E
+A 3.6 ≤ U10 D
+B U10 < 2.4 F
+B 2.4 ≤ U10 < 3.0 E
+B 3.0 ≤ U10 D
+C U10 < 2.4 E
+C 2.4 ≤ U10 D
+D any speed D
+E U10 < 5.0 E
+E 5.0 ≤ U10 D
+F U10 < 3.0 F
+F 3.0 ≤ U10 < 5.0 E
+F 5.0 ≤ U10 D
+4.2.3 WIND PROFILE
+The air dispersion models used in ALOHA require the vertical wind-speed profile. A steady-state
+wind varies significantly with height near the surface. Dispersion in the alongwind direction is
+generated mostly by this vertical wind shear. ALOHA uses the entered wind speed and reference
+height along with atmospheric stability and ground roughness data to compute a wind profile.
+Wind profile formulations are based on the assumption that wind speed and direction, as well as all
+other atmospheric conditions, remain horizontally homogeneous and do not change during the
+duration of a release.
+The wind profile is affected by the irregularities of the solid surface over which the air moves.
+Obstacles such as trees, bushes, even blades of grass have an impact on the vertical profile of the
+wind. The ALOHA user chooses ground roughness conditions by entering a numerical value for
+Air Dispersion Models 39
+ground roughness length, 0 z (m), or selecting one of three terrain conditions: Choosing Open
+Country sets the surface roughness to 0.03 m, Urban or Forest sets the surface roughness to 1 m,
+Open Water sets the surface roughness to a value based on the wind speed at 10 meters, U10 (m s1):
+2.5
+0 10 z U = 0.0000026 ( )
+The dispersions models in ALOHA use surface roughness lengths in a limited fashion. The Gaussian
+Model only distinguishes between large and small ground roughness, and the Heavy Gas model uses
+a roughness length of 0.10 m for all user-specified roughness lengths greater than 0.10 m.
+In parts of the model, ALOHA approximates the wind profile within the surface sublayer using
+( ) ( ) * 0
+0
+ln U z z U z
+k z ψ ζ   + =   +
+ 
+,
+where
+U* is the friction wind velocity,
+U z( ) is the mean wind at reference height z,
+k is the von Kármán constant, taken to be 0.4,
+0 z is the ground roughness length, and
+z
+L ζ = is the non-dimensional height.
+ALOHA uses the following empirical equations to relate the Obukhov length, L, to the surface
+roughness length under each Pasquill stability class:
+0.10
+0
+0.17
+0
+0.30
+0
+0.30
+0
+0.17
+0
+11.4 Class A,
+-26.0 Class B,
+123 Class C,
+Class D,
+123 Class E,
+26.0 Class F.
+z
+z
+z
+L
+z
+z
+−
+
+
+ − = 
+ ∞
+
+
+
+40 Air Dispersion Models
+The function ψ ζ( ) depends on the sign of the dimensionless height. For unstable, neutral, and
+stable surface sublayers (Businger 1973), ALOHA uses empirical equations,
+2 2ln (1+ ) ln (1+ ) + 2arctan 0, 2 2
+0 0,
+4.7 0,
+a a
+a
+a
+π ζ
+ψ ζ ζ
+ζ ζ
+
+ − +<
+ ( )=  =
+− > 
+
+where
+( ) 1
+4 a = −1 15ζ .
+In most cases, ALOHA uses a power function (Brutsaert 1982), rather than a logarithmic function,
+to describe the wind profile within the surface sublayer:
+2
+1
+2 1
+n
+z U U
+z
+  =     .
+The exponent n greatly affects heavy gas dispersion computations. DEGADIS matches the
+logarithmic profile for the given ambient conditions to estimate the exponent, n . For 0 z cm =15
+and Pasquill stability classes A to F, typical values of n are 0.109, 0.112, 0.120, 0.142, 0.203, 0.253.
+4.3 GAUSSIAN MODEL FOR NEUTRALLY BUOYANT GASES
+ALOHA’s Gaussian dispersion model is intended to be used with vapor clouds that do not
+significantly affect the ambient air flow, and are not affected by gravity; they are considered passive
+pollutants.
+The Gaussian model predicts that the concentration distribution of a steady-state release of
+neutrally buoyant gas will approach a Gaussian distribution with increasing down-wind distance.
+The parameters characterizing the distribution are based on empirical measurements. Increasing
+averaging times of the measurements also tend to drive the distribution to a Gaussian shape, as well
+as widen the spatial distribution. The actual concentration distribution from a release can vary
+significantly from Gaussian at any single instant in time.
+The method used in ALOHA accommodates instantaneous, continuous, and time-dependent
+releases of finite duration up to one hour. An instantaneous release is modeled as a single oneminute steady-state release which gives rise to a single cloud. A continuous release is modeled as a
+single one-hour steady-state release which gives rise to a single cloud.
+Air Dispersion Models 41
+A time-dependent release is modeled as series of five finite-duration steady-state releases; each
+giving rise to a cloud that does not interact with the other clouds. The concentration at a point in
+space and time is found by summing the contributions from each cloud.
+The model used to describe the dispersion of each cloud is based on a Gaussian dispersion model
+developed by Palazzi (Palazzi et al. 1982) that describes the behavior of steady state releases of
+short duration. This model is described as
+( )
+( ) ( )
+( )
+erf erf
+2 2 2 ,
+,,, , -
+ erf erf
+2 2 2
+x x Ut
+t t
+r
+x x C xyzt
+t t xU t t x Ut r r
+x x
+χ
+σ σ
+χ
+σ σ
+         
+    
+                                 
+
+ −  − ≤  = 
+ − < <∞ −  − 
+
+where
+σ x , σ y , and σ z are the dispersion parameters,
+rt is the duration of the release.
+The term χ represents a well-known Gaussian distribution from a continuous steady-state point
+source (Hanna et al. 1982),
+( ) ( ) ,,, ( ) ( ) , , y z
+Q t xyzt g xy g xz U χ
+  =    
+,
+where
+( ) ( ) ( )
+2
+1 1 , exp 2 2 y
+y y
+y g xy
+πσ x σ x
+    =   −          
+,
+and, when no inversion is present,
+( ) ( ) ( ) ( )
+2 2
+11 1 , exp + exp , 2 2 2
+s s
+z
+z z z
+z h z h
+g xz
+πσ x σ σ x x
+         − + =− −                
+Where s h is the height of the release.
+The presence of an inversion can have a significant effect on the vertical diffusion of the cloud.
+When a layer of unstable air at the ground lies beneath a layer of stable air, the interface acts to
+contain the pollutant cloud. The effect of an inversion can be quite complex and simplifications
+42 Air Dispersion Models
+were required in ALOHA. As a conservative approximation, ALOHA models the interface between
+the stable and unstable air as impervious to the transport of the pollutant. The ground and the
+inversion act as a pair of reflecting surfaces for the pollutant cloud. Note that ALOHA only
+accommodates situations where the inversion height, i h , is above the height of the release, s h . The
+form of z ( ) ,zxg represents the repeated reflection, up to J=5, of the pollutant cloud, and is
+described as
+( ) ( ) ( )
+( )
+( )
+( )
+( )
+( )
+( )
+( )
+( )
+( )
+2 2
+1
+2
+2 2
+2 2
+2 2
+2
+1
+2
+1 1 1 , 2 exp exp 2 2
+1 1 2 2
+exp - exp - 2 2
+2 1
+ exp - 2
+s s
+z
+z z z
+i s i s
+z z J
+n
+z
+z h z h
+g zx
+x x
+z nh h z nh h
+x x
+z nh h i s
+x
+π
+σσ σ
+σ σ
+σ
+−
+=
+           − + =      − +− +                  
+    − −   + −        +            
+ − +
++
+∑ ( )
+( )
+2
+2
+2 1
+exp - 2 z
+z nh h i s
+σ x
+ 
+ 
+          + +                +              
+,
+where i h is the height of the inversion.
+Far downwind, the repeated reflections of the cloud tend to produce a uniform concentration
+beneath the inversion. ALOHA approximates the vertical distribution as homogenous at distances
+downwind such that ( ) z i σ ≥ 2hx .
+4.3.1 DETERMINATION OF DISPERSION PARAMETERS
+The concentration distribution described above is a Gaussian distribution parameterized by three
+empirical dispersion parameters. These are the standard deviations of the Gaussian distribution:
+.,, yx z and σσσ The dispersion parameters depend upon the stability class, and in some cases the
+surface roughness. They also depend upon the averaging times associated with their measurement.
+Briggs developed formulas for estimating σ y and σ z for each of the Pasquill-Gifford-Turner
+stability classes, and for Urban (large surface roughness) and Rural (small surface roughness)
+conditions (Briggs 1973, Hanna et al. 1982):
+( ) ( ) ( ) 1 3
+1 2
+2
+and 1 .
+1
+y z y z z z
+y
+s x s
+x x s x s x
+s x
+σ σ = = +
++
+The values of the parameters are presented as a function of atmospheric stability and roughness in
+Table 13.
+Air Dispersion Models 43
+Briggs analysis employed only two surface roughness classifications: Urban corresponds to large
+ground roughness, or Rural which corresponds to small surface roughness. If the user-specified
+ground roughness is less than 20 cm, Rural is selected, otherwise Urban is selected.
+Averaging times varied for the experiments used to determine dispersion parameters; however,
+Briggs did not adjust the coefficients used to estimate σ y to account for the different averaging
+times associated with the data sets from which they were derived (Blewitt 1990). The rural
+coefficients were derived from data averaged over 3 minutes, and the urban coefficients were
+derived from data averaged over 1 hour. When the coefficients are corrected for this difference, the
+formulas produce similar curves (Blewitt 1990). For this reason, ALOHA uses only the rural
+coefficients based on 3-minute averaging times to estimate σ y under all surface roughness
+conditions.
+To estimate σ z , Briggs derived a set of analytical solutions from two different experiments. Data
+used for values of σ z greater than 100 m relfect a 1-hour averaging time, while data used for
+smaller values of the σ z reflect averaging times of 10 to 15 minutes (Briggs 1991). There is no
+definitive averaging time associated with this parameter, and we do not expect σ z to be strongly
+dependence on averaging time.
+To estimate σ x , the standard deviation function in the alongwind direction, ALOHA uses the
+following formula, which is based on Beals (Beals 1971) and is also used in the heavy gas model
+DEGADIS (Havens and Spicer 1985). Beals made no reference to the associated averaging times for
+σ x , and we do not expect σ x to be strongly dependent on averaging time. The formula is shown as
+( ) 2
+0 10 . x s
+x x σ x sx =
+44 Air Dispersion Models
+Table 13. Values for the coefficients used to estimate the dispersion parameters.
+Stability Class
+Roughness Coefficient A B C D E F
+Both
+sx1 0.02 0.02 0.02 0.04 0.17 0.17
+sx2 1.22 1.22 1.22 1.14 0.97 0.97
+sy1 0.22 0.16 0.11 0.08 0.06 0.04
+sy2 0.0001 0.0001 0.0001 0.0001 0.0001 0.0001
+Small
+Surface
+Roughness
+(Rural)
+sz1 0.2 0.12 0.08 0.06 0.03 0.016
+sz2 0 0 0.0002 0.0015 0.0003 0.0003
+sz3 0 0 -0.5 -0.5 -1 -1
+Large
+Surface
+Roughness
+(Urban)
+sz1 0.24 0.24 0.2 0.14 0.08 0.08
+sz2 0.001 0.001 0 0.0003 0.0015 0.0015
+sz3 0.5 0.5 0 -0.5 -0.5 -0.5
+Note: An incorrect value of 0.00015 for sz2 was presented in Briggs (1973) and many later
+references. ALOHA uses the correct value, 0.0015.
+4.4 HEAVY GAS MODEL FOR DENSE GASES
+The Heavy Gas dispersion calculations used in ALOHA are based on the DEGADIS model (Havens
+and Spicer 1985, Spicer and Havens 1989). DEGADIS, in turn, is an adaptation of the Shell HEGADIS
+model described by Colenbrander (Colenbrander 1980, Colenbrander and Puttock 1983); DEGADIS
+also incorporates some techniques used by van Ulden (van Ulden 1974, 1983). DEGADIS was
+selected as the basis for ALOHA’s dense gas computations because of its general acceptance and the
+extensive testing that was carried out by its authors.
+Some simplifications were introduced into ALOHA-DEGADIS, making it different from the DEGADIS
+model. ALOHA-DEGADIS is limited to releases at ground level, and does not account for the initial
+momentum from a jet release. Some of the numerical methods used in ALOHA-DEGADIS have been
+simplified compared to those used in DEGADIS. The ambient air pressure used in ALOHA is
+independent of position and time. The pollutant and air are assumed to behave as non-interacting
+ideal gases.
+The method for handling releases that vary with time is unique to ALOHA. DEGADIS is designed to
+model steady-state releases, while ALOHA is designed to model time-dependent releases. The
+ALOHA-DEGADIS model is essentially the DEGADIS steady-state plume model that has been
+adapted to handle time-varying sources. For any non-instantaneous sources in ALOHA, the model
+generates a five-step release; each step is a finite-duration steady-state release. The Heavy Gas
+model generates infinite-duration steady-state plumes for each of these sources. A composite timevarying cloud is created by adding together pieces of the five steady-state plumes. The pieces start
+Air Dispersion Models 45
+as steady-state plumes ten meters in length. Each piece is converted into a Gaussian in the
+downwind direction, conserving mass, but maintaining its vertical and horizontal dimensions. The
+pieces are summed to create the time-varying cloud. The Guassian dispersion parameter used, σ x ,
+is the same as that used in the Gaussian dispersion model (Beals 1971).
+ALOHA-DEGADIS has beenverified by comparisons to field experiments, the original DEGADIS
+model, and other reference models. As part of the verification process, the authors of both models
+reviewed each model's code and computations line by line (Havens 1990).
+Estimates made by ALOHA-DEGADIS and DEGADIS for a series of release scenarios were also
+compared. Using a fractional factorial experimental design (Cochran and Cox 1957), a set of 24 test
+scenarios was prepared. Eight DEGADIS input variables—stability class, wind speed, spill size,
+release duration, gas density, ground roughness, chemical-ground temperature difference, the
+coefficients of the equation of state, and level of concern—were varied in the 24 scenarios in order
+to span the expected variability within model parameters. We believe that these factors are the
+most important influences on concentration estimates made by DEGADIS.
+For the 24 cases, the correlation between the estimates of concentration and downwind distance
+made by the two models was 0.997. For steady-state, continuous release cases, ALOHA-DEGADIS
+tended to predict a longer distance than was predicted by the full DEGADIS model. ALOHADEGADIS threat zones averaged 10% longer than those predicted by DEGADIS. For short-term
+releases, the arrival time of the peak concentration at a given location downwind and the maximum
+value of the peak were also examined. Arrival times predicted by ALOHA-DEGADIS were slightly
+later than those predicted by DEGADIS, although the correlation between estimates made by each
+model was 1.0. ALOHA-DEGADIS predicted downwind movement of gas clouds to average about
+9% slower than the travel rate predicted by DEGADIS. ALOHA-DEGADIS predicted maximum
+concentrations that exceeded DEGADIS estimates by an average of 8%. The correlation between
+maximum concentration estimates made by the two models was 0.994%.
+These results demonstrate that the ALOHA-DEGADIS model is consistently slightly more
+conservative than DEGADIS. It can be expected to produce peak concentration estimates for a given
+point that are, on average, about 10% greater than estimates made by the full DEGADIS model.
+4.4.1 CRITERIA FOR USE OF THE HEAVY GAS MODEL
+The ALOHA Heavy Gas model is designed to account for the gravitational effects on pollutant clouds
+with densities significantly different than air. Gravitational effects can be insignificant for dense
+pollutants if the dispersion is dominated by the wind or thermal convection in the atmosphere, or
+the evaporative flux from a pool is small. The Heavy Gas model can still be used with these clouds,
+but the Gaussian Model is preferred. The Gaussian model is also recommended when the pollutant
+cloud is less dense than air.
+In its default mode, ALOHA incorporates a decision algorithm to choose between the Heavy Gas and
+Gaussian models. ALOHA uses the critical Richardson's Number (also called the friction
+Richardson’s Number), Ric, as the criterion for distinguishing between passive or non-passive
+dispersion. When Ric is less than 1, ALOHA considers the gas to be passive and, unless the user
+46 Air Dispersion Models
+overrides this decision, ALOHA computes dispersion using the Gaussian dispersion model (Spicer
+and Havens 1989).
+The critical Richardson number depends upon the density of the pollutant, the wind speed, and the
+release rate,
+2
+*
+ˆ c
+H g Ri
+U
+∗ = ,
+where the reduced gravity is
+( ) ˆ a
+a
+g g ρ ρ
+ρ
+− = ,
+ρ is the density of the chemical,
+ρa is the density of the ambient air,
+g is the acceleration of gravity,
+U* is the friction velocity of the wind, and
+H is the characteristic dimension of the source.
+For instantaneous releases, H is the characteristic height of the source,
+0
+0
+V H A = ,
+where V0 is the volume of the release and A0 is the area of the source.
+For puddle sources, the characteristic height of the source is related to the release rate and
+diameter of the puddle and is found using
+10
+E H
+ρU D = ,
+where
+E is the mass evaporation rate (kg s-1),
+D is the diameter of the puddle, and
+U10 is the wind speed at 10 meters.
+For continuous or semi-continuous sources other than the puddle source, the characteristic
+dimension is
+10 4
+E H
+U
+π
+ρ = .
+Air Dispersion Models 47
+4.4.2 CONCEPTUAL MODEL
+Havens and Spicer (Havens and Spicer 1985) described three stages in a heavy gas release. This is
+the conceptual model used in DEGADIS and ALOHA-DEGADIS.
+1. Buoyancy-Dominated Dispersion. Near the point of a release, buoyancy forces, inertial
+forces, and ambient air motions all affect cloud development. Immediately after it is released, a
+heavy cloud “slumps” over the ground. The rapidly spreading cloud forces itself under the ambient
+atmospheric boundary layer. As it does so, shear at the ground and at the top of the cloud creates a
+vortex ring at the forward edge of the cloud (Britter 1989). During this initial spreading, the cloud
+entrains approximately 10 times its original mass of ambient air. That is, the density ratio is
+reduced by a factor of 10. By the end of this stage, a thin blanket of gas has formed. The blanket
+constitutes the secondary source.
+The buoyancy-dominated stage evolves through three overlapping sub-stages:
+(i) During the slumping phase, which lasts only a few seconds, strong, buoyancy-dependent
+spreading forces are balanced by counterflow of the ambient fluid.
+(ii) During the buoyancy-inertial phase, buoyancy spreading forces are balanced by inertial
+forces. Concentrations within the cloud are greatly diluted as the spreading “head” of the
+cloud entrains ambient fluid.
+(iii) During the viscous phase, buoyancy forces are balanced by viscous forces. Turbulent
+mixing is suppressed, and the dilution rate slows.
+2. Stably Stratified Shear Flow. In this region, buoyancy forces and ambient air flow determine
+the cloud development, acting to produce a stably stratified cloud embedded in the mean wind flow.
+The cloud remains thin and spreads laterally as it is advected downwind. The stable density profile
+in the cloud suppresses turbulence, and turbulent fluctuations in the cloud are characteristically
+below-ambient levels. Air is entrained into the spreading cloud primarily through its top as well as
+along its edges.
+3. Passive Turbulent Dispersion. The cloud continues to be diluted until its density only
+slightly exceeds the density of the air. The small remaining density difference only negligibly
+affects cloud dispersion, and natural levels of turbulence return. The gas becomes a passive
+contaminant.
+4.4.3 SECONDARY SOURCE IN ALOHA
+ALOHA does not explicitly model the buoyancy-dominated dispersion that leads to the formation of
+a heavy gas blanket, also called the Secondary Source. Instead, it uses a simplified method to
+estimate the blanket dimensions.
+Four source types are described in Chapter 2: direct release, tank release, pipeline release, and
+evaporating puddle. For heavy gas modeling, these are referred to as the Primary Sources. The
+Primary Source is generally time dependent and approximated as a series of five finite-duration
+steady-state sources.
+48 Air Dispersion Models
+The heavy gas model is fundamentally a steady-state plume model, while the Primary Sources are
+generally time-dependent. To approximate the time-dependence of the plume, ALOHA generates
+steady-state plumes based on the five time steps of the Primary Source, treating each as a timeindependent steady-state source. Time dependence is later introduced by combining the timeindependent plumes.
+The buoyancy-dominated stage of a heavy gas release generates a “blanket” of dense gas which is
+centered on the location of the Primary Source and does not move with the ambient air flow. The
+Primary Source feeds this blanket at a constant rate, while the uptake and transport of gas from the
+top of the blanket removes gas from the blanket. The atmospheric uptake rate is proportional to
+the area of the blanket, so the blanket reaches its steady-state size when the atmospheric uptake
+rate equals the Primary Source. The blanket is assumed to be circular.
+Most of the Primary Sources in ALOHA are point sources; however, the evaporating puddle has a
+defined area. If the area of the evaporating puddle is greater than the steady-state area of the heavy
+gas blanket, the area of the blanket is set equal to the puddle area.
+The total mass of the developing blanket is
+() () () () M t At H t t b b = ρ ,
+where
+A t( ) is the area of the blanket,
+( ) H t b is the blanket height, and
+ρ ( )t is the overall mean density of the blanket.
+( ), ( ), ( ), ( ) M t At H t t b b ρ are unknowns.
+The rate of change in the blanket mass depends on the entrainment of air and contaminant into the
+cloud,
+*max
+,
+( ) ( ) () () d () ( ) a b
+c p c
+dM E t Q t Q t At
+t w t w t
+ 
+= +−    
+,
+where
+E t( ) is the contaminant evolution rate from the Primary Source (kg s-1),
+( ) w t c p, is the contaminant mass fraction in the primary source,
+( ) Q t a is the entrainment rate into the air above the blanket (kg s-1),
+Q*max is the maximum mass flux into the air from the blanket (kg s-1m-2), and
+( ) w t c is the mass fraction of contaminant in the developing cloud.
+( ) Q t a , ( ) Q t *max , and ( ) w t c are unknowns.
+Air Dispersion Models 49
+The terms E t( ) and ( ) w t c p. depend on the primary source and are provided as external
+parameters.
+In the final phases of the developing cloud, (humid) air entrainment is primarily through the top,
+and its rate is given by
+( )
+( ) 2
+2 ( ) ( ) ( )( ( ) ( ) ˆ( ) ( )/ ( )
+b ba f
+a
+b f
+R tH t t u t
+Q t gtH t u t
+π ρε = ,
+where
+gˆ is the reduced gravity defined in a previous section,
+( ) R t b is the radius of the blanket,
+ε is the entrainment rate coefficient at the front of the cloud, and
+uf is the rate of advance of the cloud front, ( ) ( )/ f b u t dR t dt = .
+The total mass of contaminant in the source blanket is
+2 ( ) ( )2 ( ) ( ) ( ) ( ) ( ) M t w t R t H t t w tM t c c b b cb = π ρ = ,
+and its rate of change is
+max *
+d () () () () d
+M t c Et AtQ t
+t = − .
+The amount of air in the source blanket is
+( ) (1 ( ))2 ( ) ( ) ( ) (1 ( )) ( ) M t w t At H t t w t M t a c b = − = ρ − c b ,
+and its rate of change is
+( )
+, *max
+,
+1 d () ( ) ( ) ( ) ( ) () () d t 1 1 ( )
+c p a a
+a
+aa c c p
+w M t E t t Q t Q t w t At
+t w q q w t
+  −
+=   + −   + +  
+,
+where qa is the absolute humidity.
+The total energy in the cloud is
+2 () () () () () U t h tR t H t t b bb b = π ρ ,
+where
+Ub is the total energy in the cloud and
+b h is the mean enthalpy (J kg-1) for the blanket.
+50 Air Dispersion Models
+The rate of change is
+2 2 max *
+,
+d () () () ( ) () () () ( ) ( ) d ( ) ( )
+b s
+a a b b b HS
+c p c
+U t h tEt Q t hQ t h t R t R t F t
+t w t w t
+π π
+ 
+= +−   +
+ 
+,
+where
+s h is the enthalpy of the primary source,
+a h is the enthalpy of air, and
+( ) F t HS is the surface heat flux.
+These relationships are solved simultaneously to obtain the steady state limit of the blanket
+variables.
+4.4.4 STABLY STRATIFIED SHEAR FLOW AND PASSIVE DIFFUSION STAGES
+The heavy gas dispersion model in DEGADIS is almost identical to the similarity model proposed by
+Colenbrander (Colenbrander 1980).
+Air flow over the blanket creates a plume of heavy gas. To simplify computation, the cylindrical
+blanket is treated as a square prism of equal volume and height. The plume is assumed to be
+composed of (i) a horizontally homogeneous core of width 2b that has vertical dispersion, and (ii)
+Gaussian-shaped edges. As the plume transitions from stably stratified shear flow to passive
+turbulent diffusion, the width of the homogeneous core goes to zero. The following equation for the
+concentration of the pollutant is applicable to both regions:
+2 1
+1
+( ) exp ( ) (, ,)
+( ) exp
+n
+c y
+n
+c z
+y bx z c x y b x
+S x Sz
+cxyz
+z
+c x y b x
+S
++
++
+    − ( )    − −  > ( ),          = 
+       −  ≤ ( ).        
+
+
+Four variables are functions of x and must be computed for each downwind step:
+( ) c c x is the centerline ground-level concentration (ppm),
+( ) y S x is the lateral dispersion parameter (m),
+( ) z S x is the vertical dispersion parameter (m), and
+b is the half-width of the homogeneous core section (m).
+The dispersion parameters are based on measurements. We do not expect the vertical dispersion
+parameter to be strongly dependent on the averaging times used in its measurement. However, the
+horizontal dispersion does have a dependence on averaging time; it is thought to scale with the
+averaging time raised to the 0.2 power. ALOHA-DEGADIS adjusts the horizontal dispersion
+parameter to correspond to an averaging time of 5 minutes for toxic clouds, and 10 seconds for
+flammable clouds.
+Air Dispersion Models 51
+In the discussion to follow, a coupled set of empirical parametric equations will be presented. This
+set of equations must be solved simultaneously at each step in the x direction.
+Figure 2. The plume model proposed by (Colenbrander 1980).
+4.4.4.1 The Effective Cloud Width, Height, and Velocity
+Empirical formulations for the plume/cloud dispersal require a cloud height parameter. The
+effective cloud height, Heff , is based on the centerline concentration of contaminant in the form
+0
+1 ( ) ( ,0, ) ( ) eff
+c
+H x c x z dz
+c x
+∞
+= ∫ .
+The effective cloud height is
+( ) 1 ( ) 1 1
+z
+eff
+S x H x
+n n
+  = Γ   + +  ,
+where Γ (1/(1 + n)) is the gamma function. This term will appear several times in the development
+below and will be written simply as Γ.
+52 Air Dispersion Models
+We define an effective cloud width by the sum of the constant concentration central core, b(x)
+and the tail-off region on each side as
+() () () 2
+B x bx S x eff y
+π
+= + .
+The lateral spread of the cloud is modeled by a Froude number representation as
+1/2
+2
+d ˆ ( )
+d ()
+n
+eff R eff
+E
+z R
+B Z gH x C
+x Sx U
+   = Γ      
+,
+where CE is a constant.
+At some x downwind, b x() 0 → and the cloud width is defined by ( ) y S x . The cloud initially
+spreads under the influence of the reduced gravity, g ˆ , then as the cloud is diluted and ( ) z S x grows,
+the core area diminishes to zero, at which point the heavy gas effects cease.
+The effective cloud velocity in the plume is the concentration-weighted mean of the wind speed,
+0 ( ,0, ) d ( ) ( ) ( ,0, )d
+n
+z R
+eff
+R
+cx zU z Sx U U x
+cx z z Z
+∞
+  = =     Γ
+∫
+∫ ,
+where UR is the wind speed at reference height ZR .
+4.4.4.2 Bulk Richardson Number
+The Bulk Richardson Number is
+* 2
+*
+ˆ() () Ri ( ) eff gxH x
+x
+U = .
+Experiments show that in continuous releases the plume has well-defined sharp edges when Ri*
+>1
+and lateral concentration profile approaches a Gaussian shape when Ri*
+<1.
+Air Dispersion Models 53
+4.4.4.3 Corrections to Ri* for Heat Flux
+When the surface temperature under the plume, TS , is greater than the mean temperature of the
+cloud, ( ) T x c , a positive heat flux reduces the cloud stability. In this case, Ri* is corrected in the
+form
+( )2
+Ri ( ) Ri ( ) * * * w x xU σ ′ = ,
+where σ w is the root-mean-square (rms) vertical velocity at the top of the gas cloud. The ratio
+( ) σ w U* to the top of the cloud is estimated by
+( )1 2 2 3
+T
+*
+1 Ri w
+U
+σ
+= + ,
+where the bulk temperature Richardson Number, RiT ,is given by
+*
+Ri
+n
+eff s c R
+T
+c R eff
+T T H Z
+g T UU H
+  −   =          
+.
+This equation introduces a new unknown, the cloud temperature, ( ) T x c . A cloud energy balance
+must be added to the equation set in order to estimate this term.
+4.4.4.4 Heavy Gas Dispersion Coefficients
+Two-dimensional diffusion equations represent a balance between the downwind gradient in
+concentration and either the vertical or the lateral turbulent diffusion. By separation of variables
+(, ,) z
+cxyz c U K
+x zz
+∂ ∂∂
+∂ ∂∂
+  =     and
+(, ,)
+y
+cxyz c U K
+x yy
+∂ ∂∂
+∂ ∂∂
+  =    .
+The equations are solved using the power-law approximation for the wind profile described earlier
+in this chapter, and the empirical approximations of
+( ) *
+*
+(,) Ri ( ) z
+kU z K xz
+φ x = ′ and
+1
+0 () () K x K UB x y eff
+γ = ,
+54 Air Dispersion Models
+where γ1 is a constant, K0 , is a dimensionless constant ( ) ( ) 1 1
+n −γ = and φ ( ) Ri*
+′ is a stability factor
+given by
+( )* ** ( ) ( ) 1.04 25 5.7 φ Ri 0.88 0.099 Ri 1.4 10 Ri Ri 0 − ′ ′ ′′ = + +∗ ≥ .
+The previous equations are solved to yield the similarity form of the dispersion equation in the x-z
+plane:
+( )
+( )
+*
+*
+1
+d ( ) 1
+d 1 Ri
+n
+RR z
+R
+UZ S x kU n
+x nZ φ
++       +     =     + ′      
+.
+4.4.4.5 Mass and Energy Balance
+The mean density of the cloud gas mixture depends on the ( ) c c x and temperature, Tc . These are
+approximated from a combined mass and energy balance for a differential slice with thickness dx ,
+width of Beff , and height Heff .
+The mass balance at x is given by (ρUHB eff eff eff ) and
+( )
+( ) ( ) ( ) '
+*
+d 1
+d Ri
+a w
+eff eff eff eff
+k n
+UHB B x
+x x
+ρ σ
+ρ φ
++   =   .
+When the surface temperature is greater than the cloud temperature, then Ri* is corrected and the
+cloud temperature is a new dependent variable, Tc(x). The temperature of the cloud will change as
+heat is added to the cloud by flux of sensible heat from the ground, FH . The added energy density
+of the cloud, Dh , in (J kg-1) is computed from
+( ) ( ) ( ) (0) ( ) Dx c x Tx T h pg c c = − .
+The energy budget for a transverse slice of the cloud is
+d
+d
+D U H B FB h eff eff eff H eff L x
+  ρ δ =   ,
+where FH is the surface heat flux under the cloud, and δ L is an empirical constant.
+When the core width b = 0, the energy balance becomes
+d /
+d
+DUH F h eff eff H L x
+  ρ δ =   .
+Air Dispersion Models 55
+The steady-plumes generated by the Heavy Gas model are combined to create a time-dependent
+cloud, as described in the General Comments section above.
+4.5 THREAT ZONE
+ALOHA’s threat zone represents the area within which the ground-level gas concentration exceeds
+the level of concern at any time.
+4.5.1 ESTIMATING MAXIMUM CONCENTRATION
+The concentration of the pollutant is a function of both location and time. In order to generate a
+threat zone, ALOHA calculates the peak concentration as a function of time for all points in space. It
+is important to note that this is not a true peak in the concentration since the concentrations
+predicted by ALOHA are time-averaged over different time intervals, depending upon the
+dispersion model employed. Implicit averaging times within the dispersion models vary.
+The maximum concentration function M(x,y) for any point (x,y) is defined to be the maximum over
+all time of concentration at that point, and is given by
+( ) ( ) , max , , t
+M xy C xyt −∞≤ ≤∞
+=    .
+ALOHA implements this function as follows. First, it identifies the source step associated with the
+highest release rate, and finds tm (s), the time corresponding to the midpoint of that source step. It
+then finds t0 (s), the time at which the cloud associated with that source step is centered at the point
+(x,0) as
+0 m
+x
+t t
+u
+= + .
+ALOHA initially guesses the maximum concentration at (x,y) to be C(x,y,t0). To test this, it compares
+the value of C(x,y,t0) to C(x,y,t0±30). If one of these values is larger, it compares concentrations in
+that direction using 30-second intervals for as long as concentration continues to increase.
+4.5.2 DRAWING THE THREAT ZONE
+The threat zone contour runs through points where the maximum concentration equals the LOC. At
+points within the threat zone, the maximum concentration function exceeds the LOC.
+56 Air Dispersion Models
+ALOHA constructs the threat zone contour in two steps. First, it performs a binary search of the
+maximum concentration function to find xl, the downwind distance to the LOC (m). For a puddle
+source, ALOHA performs a second binary search to find the off-axis distances to the LOC from nine
+points equally spaced along the x-axis at distances 0, xl/8, 2xl/8, 3xl/8...xl. In the cases of point
+sources, ALOHA finds these off-axis distances using
+( )
+1
+2 ,0 2log , y
+M x
+y LOC
+σ
+    =        
+where x is the distance of each of the nine points along the x-axis. The threat zone contour runs
+through each of the (x,y) points found by this method. ALOHA uses a Bezier fit to connect these
+points by smooth curves.
+4.5.3 CONFIDENCE CONTOURS
+Uncertainties in the average wind direction are represented on the threat zone graph as confidence
+lines. The axis of the threat zone is rotated through an angle on either side of the nominal wind
+direction and the contour of the rotated threat zone is drawn. The angle, α , is based on the width
+of the Guassian plume at a distance 5 minutes downwind of the source,
+3
+2
+arctan
+300
+y
+U
+σ
+α
+  =    
+,
+where U3 is the wind speed at 3 meters (m s-1).
+4.6 INDOOR AIR CONCENTRATION
+It is generally recognized that a well-insulated house or building provides excellent protection
+against a toxic cloud of finite time duration (Wilson 1987). Assuming the infiltration rate is small
+and that the air inside is always well-mixed, the building acts like a low-pass filter and an electrical
+R-C filtering circuit offers an excellent analog.
+The infiltration time constant is the time required after a step-increase in the outside concentration
+of a gas for the concentration inside to reach 63% of the step difference. This number can vary
+from 1 to 0.1 hours depending on the building tightness, the wind, and the inside-outside
+temperature difference. The wind blowing against a building creates pressure differences and
+these drive infiltration and exfiltration depending on the direction of the pressure gradient.
+Temperature differences create a pressure gradient and thus enhance the infiltration process.
+Because of the extreme variability in weather and building types, ALOHA must make some broad
+generalizations. Sherman (Sherman 1980, Sherman, Wilson, and Keil 1984) studied 196 houses and
+found that an effective leakage area is 0.00059 times the area of the house. ALOHA uses this figure
+and assigns an average house floor area of 160 m2 (1722 ft2). An average building ceiling height of
+Air Dispersion Models 57
+2.5 m is taken for a single-story house and 5m is used for a two-story building. A reasonable
+approximation of inside temperature is 20°C. It is assumed that all leakage occurs evenly over the
+structure and that there is no difference between floor and ceiling leakage.
+We assume that the outside and inside concentrations are uniform and that environmental
+conditions are stationary in time. The balance of inflow and outflow of the chemical is
+( ) ( ) () () / i
+oi E
+dc t
+c t ct
+dt = − τ ,
+where
+( ) C t i is the inside concentration,
+( ) C t o is the outside concentration, and
+E τ is the infiltration time constant.
+The infiltration time constant can be specified by the user during setup. If not specified, it is
+approximated using a method based on the work of Sherman (Sherman 1980). The infiltration time
+constant is assumed to be proportional to the square root of the pressure differential between
+inside and outside, which in turn are dependent upon wind loading and temperature differences
+(stack effect). The infiltration time constant is
+1
+2 2
+2 2
+S
+E
+S W
+V
+Q Q
+τ
+  =     + ,
+where Vs is the total volume of the building.
+The temperature-induced volume inflow rate depends on the absolute value of the temperature
+difference, ∆T (Grimsrud, Sherman, and Sonderegger 1983), and is described as
+Q Af T s es = ∆ ,
+where
+AE is the effective leakage area = 0.00059x (floor area of the building).
+The simplified stack parameter is
+1 /2
+3
+S
+s
+i
+R gH f T
++ = ,
+where
+R is the ratio of vertical to total leakage set equal to 0.5,
+HS is the structure height, and
+Ti is the uniform internal temperature.
+58 Air Dispersion Models
+The infiltration from wind loading is dependent upon the wind speed at the building height, UH ,
+and the sheltering of the building, and is given by
+1
+3 (1 ) Q AC R U w e sh = − H ,
+where
+{ 0.24 sheltered
+0.32 unsheltered Csh = .
+Air Dispersion Models 59
+5 MODELS FOR CALCULATING BLAST EFFECTS FROM VAPOR CLOUD
+EXPLOSIONS
+5.1 BACKGROUND
+As an airborne chemical travels downwind, it mixes with air. A cloud containing a flammable
+chemical within its flammability limits can ignite if it encounters a spark, flame, or other ignition
+source. The combustion reaction can propagate away from the source by one of two mechanisms:
+Deflagration reactions propagate by means of diffusion of reactive species through the cloud.
+Detonation reactions propagate through a reactive fuel-air mixture by means of a pressure wave
+that travels at the local speed of sound. Deflagrations propagate more slowly than detonations;
+however, in either case, the reaction can cause temperatures and pressures within the cloud to
+increase dramatically. Both detonations and deflagrations can generate pressure waves with sharp
+onsets and significant overpressures; a pressure wave capable of causing damage to individuals or
+structures is called a blast wave in ALOHA.
+Most vapor cloud combustions are deflagrations that propagate slowly and do not produce blast
+waves; these are usually referred to as flash fires. For some highly reactive chemicals, the flame
+speed (the propagation speed) within part of the cloud is accelerated by turbulence caused by
+obstacles or confinement resulting in a fast deflagration or transition to detonation; either is
+referred to as an explosion. These events can generate blast waves; usually only a small part of the
+flammable cloud is involved, so the blast effects are limited. In rare events, a high-power triggering
+event such as condensed-phase explosive or confined vapor cloud explosion can set off the
+detonation of the entire flammable cloud. The American Institute for Chemical Engineers
+(American Institute of Chemical Engineers 1994) estimates that direct initiation of detonation
+requires approximately one million Joules. The blast wave from the detonation of a large
+flammable cloud can have far-reaching effects; they can extend well beyond the area affected by the
+thermal radiation.
+Damage is associated with both the shape and magnitude of the blast wave; both change as the
+wave travels outward from the reacting cloud. Peak overpressure and impulse are commonly used
+to characterize the blast wave. Wiekema reports a correlation between lung damage and the
+combination of overpressure and impulse (Wiekema 1984). Most studies of condensed phase
+explosions correlate injury with overpressure only. Clancey explained that the relationship
+between overpressure and impulse for condensed phase explosions is unique, so a single parameter
+is sufficient to describe the blast wave (Institution of Chemical Engineers (Great Britain). North
+Western Branch. 1982). Injuries and damage to structures from vapor cloud explosions depend on
+both overpressure and impulse; however, as with condensed phase explosions, most correlations
+use overpressure only. This simplification seems to be driven by the lack of data rather than any
+unique relationship between overpressure and impulse for vapor cloud explosions.
+ALOHA uses only peak pressure to characterize the damaging effects associated with a blast wave.
+Harm can be due to direct effects or indirect effects of the pressure wave. Direct effects include
+damage to pressure-sensitive organs like ear and lung. Indirect effects can result from glass
+fragments from broken windows, collapse of buildings, or debris that is accelerated by the blast
+60 Models for Calculating Blast Effects from Vapor Cloud Explosions
+wave. ALOHA includes three LOCs that quantify indirect and direct effects. Glass windows can
+shatter at 1 psi over ambient; at 3.5 psi there is a significant risk of eardrum rupture and injuries of
+serious nature from flying debris; at 8 psi there is significant risk of ear and lung damage and
+indirect effects from the collapse of unreinforced buildings (Baker 1983).
+5.2 METHOD
+ALOHA only models combustion reactions. ALOHA estimates the blast wave from unconfined vapor
+cloud explosions (fast deflagrations and detonations). Unconfined means that the cloud is not
+entirely or partially bounded by solid walls or ceilings. Confined vapor cloud explosions generally
+produce more damaging blast waves than unconfined or partially confined explosions.
+The Baker-Strehlow-Tang (BST) model is the basis for the ALOHA overpressure calculation
+(Pierorazio et al. 2005); it uses non-dimensional, empirically derived blast curves to predict
+overpressure. The overpressure is based on the propagation speed of the flame front and the mass
+of fuel involved in the reaction. The basic principle of this method is that within the vapor cloud
+there are regions where physical structures can cause an acceleration of the flame front. These
+areas are characterized by the structure density using a parameter termed congestion. Flame
+speed is related to the chemical properties of the fuel, the level of congestion, and the nature of the
+ignition source.
+Table 14. Baker-Strehlow-Tang flame speeds (Mach number). Mach 5.2 is used for deflagration to
+detonation transition (DDT).
+ Low
+congestion
+medium
+congestion
+High
+congestion
+High Reactivity 0.36 DDT DDT
+Medium Reactivity 0.11 0.44 0.5
+low Reactivity 0.026 0.23 0.34
+A reactivity term is used to characterize the chemical properties of the fuel. Reactivity ratings used
+by Zeeuwen and Wiekema (Zeeuwen and Wiekema 1978) classify reactivity based upon chemical
+laminar burning velocity in the BST model (Woodward 1998). Low-reactivity chemicals have
+velocities less than 45 cm/sec. High reactivity applies to those chemicals with burn velocities
+greater than 75 cm/sec and anything in between is labeled medium reactivity. Some chemicals in
+the ALOHA database were classified using this criteria; however, most of the flammable chemicals
+in ALOHA have not been classified. In these cases, ALOHA uses medium reactivity, since few
+chemicals have a laminar burning speeds exceeding 75 cm/sec.
+A congestion parameter is used to quantify the way small structures within the vapor cloud affect
+the flame speed. Congestion refers to the density of obstacles that generate turbulence. Obstacles
+of this nature are generally small, like a shrub, and do not impede the flame front. Larger objects,
+like a building, can impede the flame front, so they should not be considered obstacles for the
+Models for Calculating Blast Effects from Vapor Cloud Explosions 61
+purposes of congestion. Greater turbulence allows the flame front to accelerate, thereby generating
+a more powerful blast wave. The experiments that form the basis for the BST model found the
+flame speed could be related to area blockage ratio (cross sectional area of the structures divided
+by area of the cloud) and pitch (distance between rows of structures). The experiments used small
+structures arranged in regular patterns. Three levels of congestion could be distinguished: low
+congestion with an area blockage ratios less than 10%; medium congestion with area blockage ratio
+between 10% and 40%; and high congestion with higher blockage ratios. Extrapolating the
+laboratory parameters to what is found in an accidental explosion is highly imprecise so ALOHA
+greatly simplifies the use of congestion. Guidance in ALOHA requires the user to determine
+whether significant congestion is present. A congested zone is defined as one with so many closely
+spaced obstacles that it is difficult or impossible to walk through it; for example, pipe racks in
+industrial facilities and some forested areas where the trees and branches are closely spaced may
+be characterized as congested zones. To err on the side of caution, congestion defined this way is
+correlated with the high-congestion flame speed in the BST model.
+The source of ignition also affects the flame speed. In ALOHA, the user inputs the ignition source. If
+the source is designated as a detonation, the model assumes that the triggering event is of sufficient
+power to cause the entire reactive cloud to detonate.
+ALOHA’s method for finding the normalized overpressure as a function of distance from the center
+of the explosive cloud is based on a set of empirically determined graphs (Pierorazio et al. 2005).
+BST reported normalized overpressure versus normalized distance from the center of the
+congested region with a different graph for different flame speeds. To implement these in ALOHA,
+the graphical data reported by BST were fit to functions of the form
+0
+1/
+ ,
+ ,
+atm
+x C
+atm
+P D if x x P
+P else A B x
+P
+∆
+= <
+∆ = ⋅
+where ∆P is the maximum overpressure and A, B, C, D, and x0 are constants. Table 15 gives values
+of these constants for various flame Mach numbers.
+Table 15. Curve fit constants for various Mach numbers for use in the BST method.
+ Mach
+0.2
+Mach
+0.35
+Mach
+0.7
+Mach
+5.2
+A 0.0335 0.1041 0.3764 0.2932
+B 0.8359 0.8642 0.7439 1.399
+C -1.1192 -1.0568 -1.2728 -1.1591
+D 0.065 0.22 0.65 20
+x0 0.35 0.32 0.3 0.16
+62 Models for Calculating Blast Effects from Vapor Cloud Explosions
+The normalized distance, x is defined as
+1/3 Patm x r
+E
+  =     ,
+where
+Patm is the atmospheric pressure and
+r is the distance from the center of the exploding cloud.
+The energy contributing to the blast wave is
+E ref H Mass = ⋅⋅ c ,
+where
+ref is a ground reflection factor,
+Hc is the heat of combustion of the fuel, and
+Mass is the mass of fuel involved in the explosion.
+The ground reflection factor is set to 2 in ALOHA, consistent with the treatment by BST. It accounts
+for the reflection of the blast wave off the ground. ALOHA’s treatment is based on a simplified
+conceptual model of the explosive cloud. The cloud is treated as a hemisphere at ground level with
+a uniform concentration. Elevated clouds would have a smaller reflection factor.
+The most significant difference between the method in ALOHA and the Baker-Strehlow-Tang model
+is the method for determining the mass of fuel in the explosion. In the BST method, areas of
+congestion within a flammable cloud define the mass of fuel contributing to an explosion. The
+flame front propagates from the point of ignition, accelerates within regions of congestion, and
+decelerates outside the region of congestion. Only the mass of the fuel within a congested area
+contributes to the explosion. A flammable cloud emanating from a single release may give rise to as
+many explosions as there are distinct congested areas. The flame speeds are defined by the levels
+of congestion within those regions. Outside the congested areas the flame speed is assumed to be
+so slow that no significant overpressure is generated.
+ALOHA uses a different approach for determining the mass of fuel involved in the explosion based
+on the recommendations of the American Institute for Chemical Engineers (American Institute of
+Chemical Engineers 1994). AIChE suggests that the BST blast curves can be coupled with an air
+dispersion model for determining the mass of the explosive cloud, using all the fuel within
+flammable limits times an efficiency factor. An efficiency factor of 5% to 20% is recommended;
+ALOHA uses 20%. ALOHA deviates slightly from the AIChE recommendation by using the fuel
+within a concentration range between the upper explosive limit and 90% of the lower explosive
+limit. This minor variation was introduced in ALOHA to create another conservative bias in the
+hazard zone calculation; it was not based on standard practices, theory, or measurement. Gas
+concentrations above the upper limit are presumed to be too rich, and those below the lower limit
+too lean, to participate in the explosion. The explosion of the flammable cloud is approximated as a
+single uniform event; the flame speed is based on the average level of congestion within the cloud.
+If the explosion is triggered by a high-power source, termed a hard ignition in ALOHA, or the
+Models for Calculating Blast Effects from Vapor Cloud Explosions 63
+average level of congestion indicates a transition to detonation, 100% of the mass of the flammable
+cloud is used and Mach 5.2 is used for the flame speed.
+The center of the explosive cloud is equated with the center of mass of flammable cloud in ALOHA.
+For non-steady-state releases the location of the center and mass of the flammable cloud changes
+with time. Users may choose the time of ignition; ALOHA then finds the flammable mass and center
+of the cloud, and generates overpressures as a function of distance. ALOHA can also compute all
+possible explosions from a single release and show the composite overpressure threat zone if the
+ignition time is not specified.
+64 Models for Calculating Blast Effects from Vapor Cloud Explosions
+6 THERMAL RADIATION AND FLAMMABLE AREA MODELS
+6.1 BACKGROUND
+ALOHA models flame hazards associated with some common scenarios involving the combustion of
+liquids and gases. Fire scenarios involving chemicals with flashpoints exceeding 300°F cannot be
+modeled using ALOHA. Combustion scenarios are divided into two types in ALOHA: those that
+involve a fuel mixed with air to form a cloud with concentrations within the flammability range, and
+those involving an overly-rich core of fuel that burns at its outer edges (this includes pool fires
+where the rich core is the pool itself). ALOHA uses different methods for estimating the threat
+zones for these two types of scenarios.
+Fires that burn on the surface of a rich core can burn for a long time. The hazard from thermal
+(infrared) radiation can extend well beyond the boundaries of the fire itself. Three models in
+ALOHA deal with these types of fires: Fireballs occur when a tank containing a flammable liquid
+explodes due to overpressurization and immediately ignites, commonly referred to as a BLEVE (the
+fire occurs at the surface of the fireball); Jet Fires occur when a flammable gas escapes from a pipe
+or tank (the fire occurs at the exit and burns at the edges of the rich core); and Pool Fires occur
+when a flammable liquid in a pool ignites and burns directly over the pool. There are two common
+empirical modeling approaches for these types of fires: point source models in which some fraction
+of the combustion energy is converted to thermal radiation and radiates from the center of the fire,
+and solid flame models in which the size and shape of the flame surface is found and radiation
+emitted from its surface are computed.
+ALOHA employs solid flame models to compute thermal radiation hazards from fireballs, jet fires,
+and pool fires. In these three scenarios, the flux of thermal radiation emitted from the surface of the
+flame is computed, and the radiation impinging upon a distant target is found using
+q EF =⋅⋅τ ,
+where
+q is the thermal radiation flux incident on a vertical surface (W m-2),
+E is the thermal radiation energy flux at the surface of the fireball (W m-2),
+F is the geometric view factor, and
+τ is the transmissivity of the atmosphere to thermal radiation.
+Fuels that have been mixed with air before ignition burn quickly; the duration of the fire and the
+duration of the generated thermal radiation is generally quite short. Since the effects of thermal
+radiation scale with duration, the damaging effects usually do not extend very far beyond the
+boundaries of the flame itself. ALOHA address the hazard associated with fires that occur when a
+vapor cloud disperses downwind and forms a flammable mixture with air, ignites, and burns
+through the cloud by modeling the flammable area. ALOHA does not explicitly model the thermal
+radiation associated with flash fires.
+Thermal Radiation and Flammable Area Models 65
+6.2 LEVELS OF CONCERN FOR THERMAL RADIATION
+The effects of thermal radiation are a function of the energy flux and the duration of exposure. For
+fires with expected durations exceeding about 30 seconds, the LOC is based upon the thermal
+radiation generated by the flame. Eisenberg analyzed data from nuclear weapons tests to
+determine the relationship between the intensity of thermal radiation and the probability that an
+exposed individual would be injured or killed (Eisenberg, Lynch, and Breeding 1975). He reported
+that the probability of a fatality is generally proportional to the duration of exposure (td) times the
+incident radiation flux (I) raised to the 4/3 power. For non-lethal effects, a power law of 1.15 fits
+the data better. The threshold for first degree burns was found when the exposure (in the form I1.15
+td) is 550,000 (W/m2)1.15 sec. Mudan reviewed Eisenberg's work as well as other studies that dealt
+with radiation sources that are less intense, but have longer duration (National Fire Protection
+Association 1995). The exposure laws described by Eisenberg obviously fail for very low, longlived radiation sources; Mudan reports that an incident flux of 1.7 kW/m2 will not even cause pain,
+regardless of exposure time. The apparent breakdown of the exposure law reported by Eisenberg
+is also reflected in the Safety Standards for Liquid Natural Gas Facilities in Title 49 of the Code of
+Federal Regulations. In calculating the radiation effects of pool fires, long-lived events, the Title 49
+states that the radiation flux in an area of public assembly should be less than 5kW/m2, regardless
+of exposure time (United States Office of the Federal Register).
+Burning pools, jets, and fireballs associated with a BLEVE can burn with sufficient longevity to
+create a persistent thermal radiation source that can cause harm far from the flame front itself. The
+impact on people depends on the both the duration of exposure and the intensity of the radiation.
+ALOHA computes the energy flux associated with the radiation as a function of distance and the
+duration of the fire and reports them separately. Even though dose values are associated with
+damage, energy flux values are used as LOCs in ALOHA since exposure time is a function of both the
+duration of the fire and the movement of individuals seeking some protection. ALOHA’s LOCs are
+consistent with the recommendations of Mudan and Croce (National Fire Protection Association
+1995): 10kW/m2 is a fatality threshold; 5kW/m2 can cause second degree burns on unprotected
+skin; and 2kW/m2 can cause pain. ALOHA refers to exposure durations of 60 seconds or less for
+these effects. The duration of the fire is included in the text summary screen of the ALOHA output
+allowing the user to adjust the flux levels to conform to the fire duration time.
+6.3 BLEVE-FIREBALL
+The BLEVE-Fireball model in ALOHA is a solid flame model based on studies of fireballs resulting
+from BLEVEs (boiling liquid expanding vapor explosions) involving flammable gases liquefied
+under pressure and stored at ambient temperatures, such as LPG (American Institute of Chemical
+Engineers 1994). In a common course of events, a fire impinges upon the tank, thermally stressing
+the tank and causing the internal pressure to rise. Pressure relief valves fail to adequately relieve
+the pressure and the tank explodes from the combination of heat and pressure. The contents are
+almost instantaneously released and quickly flash boil as they experience a drop in pressure. Much
+of the fuel, both liquid droplets and gas, is thrown into the air and ignites. The bulk of the burning
+mass is too rich to burn, but the fire burns at the surface where sufficient air can mix with the fuel.
+The resulting fireball burns for tens of seconds and often lifts into the air.
+66 Thermal Radiation and Flammable Area Models
+For a BLEVE scenario ALOHA assumes a near-instantaneous rupture and defaults to an assumption
+that the entire contents of a tank contribute to the fireball. However, in cases where the initial tank
+pressure is relatively low the user has an option of specifying the fraction of the contents that
+become part of the fireball. Based on the mass of fireball, the maximum diameter of the fireball is
+computed, approximating the fireball as a spherical object with its surface just touching the ground.
+(The fireball’s diameter is a function of time; the maximum diameter is used in ALOHA to insure
+that hazard zones are not underestimated.) The flux of thermal radiation emitted from the burning
+surface is computed, and the radiation impinging upon a distant target is found. When the user
+specifies that less than 100% of the contents of the tank are in the fireball ALOHA assumes the
+remaining fuel forms a pool fire, and the pool fire model is used to find an alternate threat zone for
+thermal radiation. A limit of 5000 metric tons is employed as the maximum amount of chemical
+that can be modeled. This limit is of the order of the largest historical single BLEVE incident.
+Though the probability of explosive rupture and fireball production is much lower for nonpressurized tanks, ALOHA extends the BLEVE-Fireball model to gases liquefied by refrigeration and
+volatile liquids with flash points below 300°F. Explosions of tanks containing pressurized gases can
+also generate fireballs of comparable size and duration (Zalosh and Weyandt 2005). However,
+ALOHA does not allow users to model the thermal radiation from fireballs associated with
+pressurized gases.
+6.3.1 EMISSIVITY
+AIChE states that 350 kW/m2 is a reasonable emissive energy flux for large fireballs involving
+hydrocarbon fuels (American Institute of Chemical Engineers 1994). ALOHA applies this to a
+broader range of chemicals and sizes, but adjusts this value by multiplying by the ratio of the heat
+of combustion of the chemical divided by the heat of combustion of propane, and described as
+,
+350,000 c
+c propane
+h E
+h
+  ∆ =   ∆ 
+,
+where
+∆hc is the heat of combustion of the chemical (J kg-1), and
+propanec h∆ , is the heat of combustion of propane (J kg-1).
+Thermal Radiation and Flammable Area Models 67
+6.3.2 VIEW FACTOR
+The geometric view factor is a function of the size of the fireball and distance between a receptor
+and the fireball. The size depends upon the amount of the fuel contributing to the fireball. The user
+may choose to let ALOHA use the entire contents of the tank as the mass of the fireball, or have
+ALOHA calculate the fraction of the tank contents that contribute to the fireball based on the
+pressure or temperature of the tank at the time of rupture. If tank pressure is specified, the
+temperature at the time of rupture, T , is found using the Clausius-Clayperon equation, based on
+the assumption that two phases are present at equilibrium in the vessel, and described as
+1
+0
+1 ln c
+B V
+R P T
+T HP
+−
+        = −             ∆    
+,
+where
+TB is the normal boiling point,
+Rc is the gas constant (8.3144 J K-1 mole-1),
+∆HV is the heat of vaporization (J mole-1),
+0 P standard pressure (101,000 Pa), and
+P is the rupture pressure.
+From the temperature, the fraction of liquid that flashes upon rupture is calculated. For an
+isenthalpic process the fraction that flashes is given by
+p b ( )
+v
+CTT
+f H
+− = ∆ ,
+where
+T is the chemical temperature at tank failure (K),
+Tb is the ambient boiling point (K),
+Cp is the specific heat capacity at constant pressure (J mole-1 K-1), and
+∆Hv is the heat of vaporization (J/mole).
+This somewhat overestimates the fraction that flashes in an adiabatic (isentropic) process, but
+provides a reasonable approximation.
+An empirical correlation indicates that mass of chemical participating in the fireball is about three
+times the mass of fuel that flash boils upon rupture, limited to the total mass of the contents of the
+tank (Hasegawa and Sato 1977).
+ALOHA adopted the recommendation of Roberts for computing the diameter of a fireball (Roberts
+1982):
+( ) ( ) 1/3
+max D meters mass kg = 5.8 .
+68 Thermal Radiation and Flammable Area Models
+The geometric view factor for a vertical surface, F , was given by AIChE (American Institute of
+Chemical Engineers 1994) as
+2
+max
+max 3/2 2
+2 max
+2
+2
+2
+D
+x
+D F for x
+D
+x
+        = >           +      
+,
+where x is the distance between a receptor and a point at ground level directly below the center of
+the fireball.
+6.3.3 TRANSMISSIVITY
+The transmissivity of the atmosphere to thermal radiation, τ , depends upon the distance between
+the emitting and receiving surfaces, x . It is sensitive to fog, rain, smoke, carbon dioxide, and water
+vapor in the atmosphere. ALOHA only accounts for water vapor. By neglecting the other factors,
+ALOHA overestimates the transmitted radiation in cases where the other attenuating phenomena
+occur. Transmissivity of the atmosphere to thermal radiation, τ , is well studied. ALOHA uses the
+formula reported by Cook et al. (Cook, Bahrami, and Whitehouse 1990),
+10 1.389 0.135log ( ) P xw τ = − .
+ALOHA uses the formula reported by Thibodeaux for the partial pressure of water in the
+atmosphere (Thibodeaux 1979),
+5431.3 99.89 exp 21.66 100
+H
+w
+a
+R P
+T
+  =   −
+ 
+,
+where
+Ta is the ambient air temperature and
+RH is the relative humidity.
+6.3.4 DURATION
+The duration of the fire, burn t , is not used in the computation of the hazard zone, but is displayed.
+ALOHA uses the formula recommended by the Dutch Committee for Prevention of Disasters (Duiser
+1992), which was based upon averages obtained from reported literature values,
+0.26 (sec) 0.852 ( ) burn t = mass kg .
+Thermal Radiation and Flammable Area Models 69
+6.4 JET FIRES
+The jet fire analysis in ALOHA is designed to address the thermal radiation hazards associated with
+gases and aerosols released from pressurized tanks and pipes which ignite before the vapors
+disperse downwind. Jet fires differ from flash fires in that they completely burn immediately upon
+release at the surface of a fuel-rich core. Jet fires differ from fireballs in that jet fires are associated
+with sustained releases, while fireballs are associated with an explosive tank rupture due to
+overpressurization.
+The Jet Fire model in ALOHA can be applied to an upward vertical jet release: a pipe oriented
+vertically or a hole at the top of a tank. The method in ALOHA is based on an empirical solid flame
+model developed by Shell Research (Chamberlain 1987). Fuel released from the pipe or tank
+expands, mixes with air, and burns on its surface emitting intense thermal radiation that
+propagates outward. The thermal energy incident upon a distant target is a product of the
+emissivity of the flame surface, the geometric view factor, and the transmissivity of the atmosphere
+to thermal radiation.
+70 Thermal Radiation and Flammable Area Models
+Figure 3. Source release for jet fire flowchart.
+Thermal Radiation and Flammable Area Models 71
+6.4.1 EMISSIVITY
+From Cook et al (Cook, Bahrami, and Whitehouse 1990), the emissive power of the flame, E, is
+calculated as
+rad c f Qh E
+A
+∆ = ,
+where
+Q is the mass discharge rate (kg s-1),
+∆hc is the heat of combustion (J kg-1), and
+A is the surface area of the flame (m2).
+From Chamberlain (Chamberlain 1987), the fraction of heat radiated from the flame surface is
+0.21 exp( 0.00323 ) 0.11 rad MW j fC u = −+ .
+Where CMW is a correction factor introduced by Cook et al (Cook, Bahrami, and Whitehouse 1990)
+equal to unity if the molecular weight is less than 21 g mole-1, the square root of the molecular
+weight divided by 21 if the molecular weight is between 21 g mole-1 and 60 g mole-1, and equal to
+1.69 if the molecular weight is greater than 60 g mole-1.
+The gas velocity in the expanding jet is
+g cj
+j j
+gk
+R T
+u M
+W
+γ =
+and
+( ) 2
+2
+2 1
+s
+j
+g j
+T T
+γ M = + − ,
+where Ts is temperature inside vessel or at exit of pipe.
+For unchoked flow, the Mach number of the expanded jet, M j , is calculated by
+( )
+1
+1 2
+2 2 1 2( 1) 1
+( 1)
+g
+j
+g
+F
+M γ
+γ
+ 
+  +− − = −
+ 
+and
+5
+2 3.6233 10 s
+o g gk
+Q T F
+d Wγ
+− = ⋅ ,
+72 Thermal Radiation and Flammable Area Models
+where
+o d is the diameter of the orifice,
+Q is the mass release rate,
+g γ is the ratio of specific heats,
+Wgk is the molecular weight (kg mole-1), and
+Rc is the gas constant (8.3144 J K-1 mole-1).
+6.4.2 VIEW FACTOR
+The flame surface is approximated as a frustum of a cone tilted by the wind.
+The effective source diameter is the throat diameter of an imagined nozzle from which air at normal
+ambient density issues at the gas mass flow rate and exit velocity. The effective source diameter for
+a gas is
+j
+s o
+air
+D d ρ
+ρ = ,
+where
+o d is the diameter of the exit orifice, and
+j ρ is the density of the gas.
+For choked flow the Mach number is
+( )
+( )
+( )
+1
+1 2
+1
+g
+g c
+g
+o
+j
+g
+P
+P
+M
+γ
+γ
+γ
+γ
+−
+ 
++ −     = + ,
+where
+Po is atmospheric pressure,
+Pc is static pressure at the exit orifice, and
+2 3.6713 c
+c
+o g gk
+Q T P
+d Wγ = ,
+2
+1
+s
+c
+g
+T T
+γ = +
+where Ts is the temperature inside the vessel or at the exit of the pipe.
+Thermal Radiation and Flammable Area Models 73
+The jet expands to atmospheric pressure at a plane downstream of the exit hole with the plane
+acting as a virtual source of diameter, d j . Then,
+j
+s j
+air
+D d ρ
+ρ = and
+4 4 5 3.6233 10 c j j
+j
+j j o j g gk j g gk
+Q Q R T Q T
+d
+πρ π γ u PM W M Wγ
+− = = = ⋅ ,
+where j u is the velocity of the gas in the expanded jet.
+These formulas were modified slightly for the pipeline jet fire and two-phase release scenarios.
+ALOHA assumes that the gas expands adiabatically in the last 200 pipe diameters in the pipeline
+release. It exits at atmospheric pressure and therefore the effective source diameter, Ds for the
+choked option reduces to that for the unchocked option given earlier. For two-phase release,
+ALOHA uses a modification of the formula in Cook et al. (Cook, Bahrami, and Whitehouse 1990),
+1
+4
+2
+j v
+s j
+air
+D d ρ ρ
+ρ
+  =    
+,
+where ρv is the pure vapor density.
+The modification of the Cook formula was necessary to insure that it would reduce to the proper
+algorithm when the two-phase case reduced to the pure gas scenario.
+For a tilted jet, Kalghatgi (Kalghatgi 1983) showed in laboratory experiments that the flame length
+reduces as the jet is tilted into the wind. Chamberlain uses Kalghatgi’s empirical fit equation to
+determine the flame length, LB (Kalghatgi 1983) as
+( ) 3 105.4 1 6.07 10 90 L D Bs j θ − = −⋅ −    .
+The flame length in still air is
+( ) ( ) 3 0.51exp 0.4 0.49 1 6.07 10 90
+B
+Bo
+j
+L L
+v θ − =
+  − + −⋅ −     
+.
+The angle, α, between the orifice axis and the flame depends on the velocity ratio, is
+j
+V R
+u = ,
+where V is the wind speed.
+74 Thermal Radiation and Flammable Area Models
+If R ≤ 0.05, then
+( )( )( ( ))
+( )
+8000 90 1 exp 25.6 Bo j
+Bo
+R L R
+L
+ξ θ
+α
+ξ
++ − −− = ,
+and if R > 0.05, then
+( )( )( ( ))
+( )
+1726 0.026 134 90 1 exp 25.6 Bo j
+Bo
+RL R
+L
+ξ θ
+α
+ξ
+  − + − −−   = and
+( )
+1
+3
+Bo Bo 2 2
+s j
+g L L
+D u ξ
+  =      
+.
+The flame-lift off, b, is the distance along the axis of the cone, and is calculated as
+0.015 B b L = for aerosols, and sin
+sin B
+K b L α
+α = for gases.
+K has been correlated with experimental data with a best fit of
+20 0.185 0.015 R K e− = + .
+The frustum length is given by the geometrical relationship between RL , LB , α and b, as
+( ) 2 22 sin cos R Lb b L B =+ − α α .
+There appears to be a difference in the formula for the width of the frustum base as it appears in
+Chamberlain’s paper when compared to Lees (Lees 2001) presentation of Chamberlain’s formula.
+Based on sample calculations, we determined to use the Chamberlain’s version (Chamberlain p.
+303) with the width of the frustum base., W1 , as
+( ) ( ( ) )
+1
+2
+1
+1 13.5exp 6 1.5 1 1 exp 70
+15
+CR a
+s s
+j
+WD R D ρ ξ
+ρ
+          = − + −−       −                
+,
+where
+C R = −+ 1000exp 100 0.8 ( )
+Thermal Radiation and Flammable Area Models 75
+and the Richardson number, ξ( ) Ds , based on Ds is
+( )
+1
+3
+s s 2 2
+s j
+g D D
+D u ξ
+ 
+=      
+.
+The Chamberlain formula for the width at frustum tip, W2, is
+W L 2 = −+ − − B (0.18exp 1.5 0.31 1 0.47 exp 25 ( ) R )( ( ) R ).
+The surface area of the flame, A, is calculated as
+( ) ( )
+1
+2 2
+2 2 2 2 1
+1 2 12 42 2 L
+W W A W W WW R π π     − = ++ + +        
+.
+The view factor F is defined by Sparrow and Cess (Sparrow and Cess 1978) as
+2
+cos cos
+j i j
+i jj i
+A dA A
+j
+dA dA
+dF
+A r
+β β
+π − = ∫ ,
+where
+Aj is the area of the radiating surface;
+i dA is the receiving element;
+β i is the angle between the normal to the receiving element and the line between the element and
+the radiating surface;
+β j is the angle between the normal to the radiating surface at a point and the line between that
+point and the receiving element; and
+r is the distance between the point on the radiating surface and the receiving element.
+For a radiating surface of area Ai and a receiving element of area dAj , we can let
+q' = incident radiation intensity per unit area, and
+E'= emissive power per unit area,
+so that
+' ' ' j j
+ii i i
+q EF EAF A
+q E F
+dA dA dA dA
+τ τ
+τ ⋅ ⋅ ⋅ ⋅⋅   = = = =⋅ ⋅ ⋅     .
+Thus, it is actually ∫Aj
+jji
+r
+dA
+2
+coscos
+π
+ββ that we need to calculate.
+76 Thermal Radiation and Flammable Area Models
+We calculate this integral numerically by dividing the flame surface into 1800 "tiles" (40 radial
+divisions x 25 axial divisions of the conical surface, plus 400 tiles for each circular "cap"). The value
+of the integrand is calculated at the center of each tile, and those values are added to produce an
+estimate of the integral. This process is carried out for three orthogonal orientations of the
+receiving surface, producing view factors 1f , 2 f , and 3f . The maximum view factor (over all
+orientations of the receiving surface) is then calculated as
+2
+3
+2
+2
+2
+1 ++= ffff .
+(For a true view factor, the integral omits portions of the radiating surface where β j cos <0. But
+since 1f , 2 f , and 3f are used to calculate the maximum view factor, portions where β j cos <0 are
+not excluded.)
+6.5 POOL FIRES
+There are 3 release scenarios that can be coupled with the Pool Fire model: The user may choose to
+model a pool of constant area that is not associated with a tank release; the Pool Fire model can also
+be coupled with a model that estimates the pool formation dynamics when a tank of chemical is
+leaking; and the Pool Fire model is automatically applied to any fuel that pools during a BLEVE
+scenario. In all cases, the pool is assumed to be circular, uniformly thick, and on a level surface. The
+pool temperature is approximated as a constant and set to either the initial pool temperature or the
+initial tank temperature. A 200-meter diameter limit applies in all cases.
+A solid flame model is used to calculate the thermal radiation from pool fires. The size of the pool
+can be set by the user, or ALOHA will calculate the dynamic area and volume from the release of a
+liquid from a tank. The flames rising from the pool form a tilted cylinder; the surface of the cylinder
+radiates thermal radiation. Burn rate, flame height, angle of tilt, and emission of radiation from the
+surface are based on empirical correlations.
+The thermal energy incident upon distant target is the product of the thermal radiation energy flux
+at the surface of the flame, the geometric view factor, and the transmissivity of the atmosphere to
+thermal radiation.
+6.5.1 EMISSIVITY
+The average emissive power per unit area, E, of the cylinder surface is estimated using the approach
+of Moorhouse and Pritchard (Moorhouse and Pritchard 1982),
+1 4
+rad c f hm E
+h
+d
+∆ =     +  
+ ,
+Thermal Radiation and Flammable Area Models 77
+where
+h is the flame length (m),
+d is the diameter of the pool (m),
+∆hc is the heat of combustion (J kg-1),
+m is the mass burn rate per unit area (kg m-2 s-1), and
+frad is the fraction of energy released as thermal radiation.
+ALOHA approximates the fraction of energy radiated, frad , as a constant 30% as suggested by
+Roberts (Roberts 1982).
+The mass burn rate per unit area, m , is calculated from ratios of the heats of combustion and
+vaporization. Mudan states that the following correlation for the mass burning rate fits a wide
+range of fuels including liquefied gases (Mudan 1984):
+0.001 c
+v
+h
+m
+h
+∆ = ⋅ ∆  .
+ALOHA uses a modified version of this with a correction for temperature, given as
+( ) 0.001 c
+v pb
+h
+m
+h cT T
+∆ = ⋅ ∆+ −  ,
+where
+p c is the specific heat capacity (J kg-1 K-1),
+Tb is the ambient boiling temperature (K),
+∆hv is the heat of vaporization (J kg-1), and
+T is the pool temperature (K).
+6.5.2 VIEW FACTOR
+The flame of the pool fire is assumed to be an optically dense tilted cylinder which intersects a
+plane parallel to the ground in a circle. The flame length, h, is estimated by a modification of the
+Thomas formula for flame length (Thomas 1963). Let u* be a non-dimensional wind velocity
+defined as
+1/3
+* a u u
+gmd
+  ρ = ⋅  ⋅ ⋅    .
+The flame length is given by
+( )
+0.67
+0.21 * 55
+a
+m h d u
+ρ g d
+  −
+=⋅ ⋅  ⋅ ⋅ ⋅  
+ ,
+78 Thermal Radiation and Flammable Area Models
+where
+ρa is the density of ambient air (kg m-3).
+The angle of tilt is based on formulas from the American Gas Association (American Gas Association
+1973), and is given by
+*
+1 *
+*
+0 1,
+1 cos 1.
+if u
+if u
+u
+θ
+θ −
+= ≤
+= >
+The view factor F is defined by Sparrow and Cess (Sparrow and Cess 1978) as
+2
+cos cos
+j i j
+i jj i
+A dA A
+j
+dA dA
+dF
+A r
+β β
+π − = ∫ ,
+where
+Aj is the area of the radiating surface;
+i dA is the receiving element;
+β i is the angle between the normal to the receiving element and the line between the element and
+the radiating surface;
+β j is the angle between the normal to the radiating surface at a point and the line between that
+point and the receiving element; and
+r is the distance between the point on the radiating surface and the receiving element.
+For a radiating surface of area Ai and a receiving element of area dAj , we can let
+q' = incident radiation intensity per unit area, and
+E'= emissive power per unit area,
+so,
+' ' ' j j
+ii i i
+q EF EAF A
+q E F
+dA dA dA dA
+τ τ
+τ ⋅ ⋅ ⋅ ⋅⋅   = = = =⋅ ⋅ ⋅     .
+Thus, it is actually ∫Aj
+jji
+r
+dA
+2
+coscos
+π
+ββ that we need to calculate.
+We calculate this integral numerically by dividing the flame surface into 1000 "tiles" (40 radial
+divisions x 25 axial divisions). The value of the integrand is calculated at the center of each tile5,
+and those values are added to produce an estimate of the integral. This process is carried out for
+5 For tiles at the base of the flame surface, the point used is on the ground, not the tile center. This permits
+greater accuracy when calculating view factors for observers near the surface.
+Thermal Radiation and Flammable Area Models 79
+
+three orthogonal orientations of the receiving surface, producing view factors 1f , 2 f , and 3f . The
+maximum view factor (over all orientations of the receiving surface) is then calculated as
+2
+3
+2
+2
+2
+1 ++= ffff . (For a true view factor, the integral omits portions of the radiating surface
+where β j cos <0. But since 1f , 2 f , and 3f are used to calculate the maximum view factor, portions
+where β j cos <0 are not excluded.)
+6.5.3 POOL DYNAMICS
+The maximum diameter of the pool is used in all the above calculations. In cases where the pool
+size is dynamic because chemical is released during a BLEVE or from a leaking tank, ALOHA uses
+the same tank release and pool growth methods as those used for non-thermal hazards.
+For tank release rates, ALOHA uses Bernoulli’s equation to compute QT(t) (kg s-1), the mass flow of
+liquid from the hole,
+( ) ( ) 2 Qt CA P P T = dis f h a l − ρ ,
+where
+Cdis is the discharge coefficient (0.61),
+Af is the flow area (m2),
+Ph is the pressure of the liquid in the tank at the height of the hole (Pa),
+Pa is the ambient atmospheric pressure (Pa), and
+ρl is the density of the liquid in the tank (kg m-3), which is assumed to be uniform throughout the
+tank.
+ALOHA estimates the flow area, Af (m2), differently depending on whether or not the liquid surface
+intersects the hole. The flow area is
+( ) ( )
+surface above hole,
+/ surface intersects hole,
+h
+f
+hlh
+A
+A t
+A h ζ
+ = 
+
+where
+hl is the height of the liquid above the bottom of the hole (m), and
+h ζ is either the hole height or diameter (m), depending on whether the hole is rectangular or
+circular.
+80 Thermal Radiation and Flammable Area Models
+When the hole is below the liquid surface, ALOHA estimates the pressure at the hole as the sum of
+the pressure within the gas void at the top of the tank and the pressure exerted by the column of
+liquid above the bottom of
+( )
+surface above the hole,
+surface intersects the hole,
+cs l l
+h
+a ll
+e hg
+P t
+p hg
+ρ
+ρ
+ +  = 
+ +
+where cs e , the saturated vapor pressure of the chemical (Pa), is assumed to be the pressure within
+the void space.
+Because ALOHA assumes that the sequence of pressure drop, evaporation of liquid into the void
+space, and temperature change caused by evaporative cooling occurs rapidly during each new time
+step, it computes a new temperature and saturated vapor pressure for the vapor in the void space.
+As the liquid height above the hole bottom decreases, the pressure at the hole decreases until it
+eventually equals atmospheric pressure. According to the physical model represented by ALOHA’s
+algorithms, tank outflow then stops until an air bubble is ingested back into the tank, equalizing
+tank and atmospheric pressure and allowing flow to continue as a series of gushes. To approximate
+the effect of this process mathematically, once ALOHA’s computed pressure at the hole reaches 1.01
+Pa, it is held constant at that value (Belore and Buist 1986).
+If liquid spills into a puddle faster than the puddle burns, the puddle will grow deeper and will
+spread outward under the influence of gravity. The puddle is approximated with uniform depth
+and temperature. ALOHA estimates the change in puddle radius, p r , as
+1 2
+p p
+p l
+dr gm
+dt r πρ = ,
+where mp is the dynamic mass of the puddle, g is the acceleration of gravity, p r is the puddle
+radius, and ρl is the density of the liquid in the puddle. ALOHA uses a constant factor of 2 to
+account for the fact that the inertia of the spreading liquid is only a fraction of the inertia of the
+whole liquid-pool mass moving with the acceleration at its leading edge (Briscoe and Shaw 1980).
+When the puddle depth drops below 0.5 cm, ALOHA stops spreading; the area is held constant until
+the liquid has completely burned away.
+6.6 FLASH FIRES AND FLAMMABLE AREA
+The Flammable Area analysis in ALOHA is designed to address the hazards associated with a fire or
+explosion of a cloud composed of a mixture of flammable chemical vapors and air in proportions
+that will support the propagation of a flame. The flammable area represents the region where an
+ignition source can lead to a flash fire or vapor cloud explosion, and the area where the fire can
+occur. While a vapor cloud explosion can generate a damaging shock waves outside the flammable
+area, the fire hazard associated with a flash fire usually does not.
+Thermal Radiation and Flammable Area Models 81
+Typically with flash fires of premixed clouds, the thermal radiation generated is highly transient.
+ALOHA does not explicitly model the thermal radiation associated with a flash fire, rather uses the
+approach of the US EPA (United States. Environmental Protection Agency. Chemical Emergency
+Preparedness and Prevention Office 1999) and assumes that the threat zone from a flash fire is
+closely related to the lower flammability or explosive limit threat zone (ground level concentration
+contour) for the cloud. Based upon recommendations of the project external review team the
+choice was made to use 60% of the lower flammability limit as the level of concern in defining this
+threat zone. This value reflects the fact that the concentration calculation in ALOHA involves some
+time averaging. Therefore, there is the possibility that a location with an average concentration
+below the LEL may have a fluctuating concentration that sometimes exceeds the LEL.
+Modeling the thermal hazard associated with flash fires employs source strength models and air
+dispersion models that are part of the toxic air plume analysis in ALOHA. Any location where the
+gas concentration exceeds 60% of the LEL at any time following the release is included in the
+hazard zone.
+82 Thermal Radiation and Flammable Area Models
+7 BIBLIOGRAPHY
+American Gas Association. 1973. LNG Information Book. Arlington, VA: National Technical
+Information Service.
+American Institute of Chemical Engineers. DIPPR 801 [Database]. American Institute of Chemical
+Engineers, July 2013. Available from http://www.aiche.org/dippr/.
+American Institute of Chemical Engineers. 1994. Guidelines for evaluating the characteristics of
+vapor cloud explosions, flash fires, and BLEVEs. New York, NY: Center for Chemical Process
+Safety of the American Institute of Chemical Engineers.
+American Institute of Chemical Engineers. Center for Chemical Process Safety. 1989. Workbook of
+test cases for vapor cloud dispersion models. New York, NY: Center for Chemical Process
+Safety of the American Intstitute of Chemical Engineers.
+Baker, W. E. 1983. Explosion hazards and evaluation. Amsterdam; New York: Elsevier Scientific Pub.
+Co.
+Barsan, Michael E., United States. Dept. of Health and Human Services., and National Institute for
+Occupational Safety and Health. 2010. NIOSH pocket guide to chemical hazards, NIOSH
+Publication no. 2010-168c. Atlanta, Ga.: Centers for Disease Control and Prevention.
+Beals, Gordon Alden. 1971. Guide to local diffusion of air pollutants. Scott AFB, Ill.,: Air Weather
+Service (MAC), U.S. Air Force.
+Bell, R.D. 1978. "Isopleth calculations for ruptures in sour gas pipelines." Energy Processing Canada
+no. 71 (4):36-39.
+Belore, R, and I Buist. 1986. A computer model for predicting leak rates of chemicals from damaged
+storage and transportation tanks. edited by Environmental Emergencies Technology
+Division: Environment Canada.
+Blevins, Robert D. 1984. Applied fluid dynamics handbook. New York, N.Y.: Van Nostrand Reinhold
+Co.
+Blewitt, D. N. 1990. Personal Communication with ALOHA Development Team. Seattle.
+Brand, J.C.D., and A. Rutherford. 1952. "The Vapour Pressure of the System Sulphuric Acid -
+Disulphuric Acid." Journal of the Chemical Society no. 10:3916-3922.
+Briggs, G. A. 1991. Personal communication.
+Briggs, Gary A. 1973. Diffusion estimation for small emissions : preliminary draft. Oak Ridge, TN:
+Atmospheric Turbulence and Diffusion Laboratory.
+Brighton, P. W. M. 1985. "Evaporation from a Plane Liquid Surface into a Turbulent BoundaryLayer." Journal of Fluid Mechanics no. 159 (Oct):323-345.
+Brighton, P. W. M. 1990. "Further Verification of a Theory for Mass and Heat-Transfer from
+Evaporating Pools." Journal of Hazardous Materials no. 23 (2):215-234.
+Briscoe, F., and P. Shaw. 1980. "Spread and Evaporation of Liquid." Progress in Energy and
+Combustion Science no. 6 (2):127-140.
+Britter, R. E. 1989. "Atmospheric Dispersion of Dense Gases." Annual Review of Fluid Mechanics no.
+21:317-344.
+Brutsaert, Wilfried. 1982. Evaporation into the atmosphere: theory, history, and applications,
+Environmental fluid mechanics. Dordrecht, Holland; Boston; Hingham, MA: Reidel; Sold and
+distributed in the U.S.A. and Canada by Kluwer Boston.
+Businger, J. A. 1973. Turbulence transfer in the atmospheric surface layer. In Workshop on
+Micrometeorology, edited by D. A. Haugen. Boston: American Meteorological Society.
+Bibliography 83
+Chamberlain, G. A. 1987. "Developments in Design Methods for Predicting Thermal-Radiation from
+Flares." Chemical Engineering Research & Design no. 65 (4):299-309.
+Chemwatch. 2006. 2006]. Available from http://www.chemwatch.net.
+Cochran, William G., and Gertrude Mary Cox. 1957. Experimental designs. 2nd ed, Wiley publications
+in applied statistics). New York: Wiley.
+Colenbrander, G. W. 1980. A Mathematical Model for the Transient Behavior of Dense Vapor Clouds.
+In 3rd International Symposium on Loss Prevention and Safety Promotion in the Process
+Industries. Basel, Switzerland.
+Colenbrander, G. W., and J. S. Puttock. 1983. Dense Gas Dispersion Behavior: Experimental
+Observations and Model Developments. In International Symposium on Loss Prevention and
+Safety Promotion in the Process Industries. Harrogate, England.
+Cook, J., Z. Bahrami, and R. J. Whitehouse. 1990. "A Comprehensive Program for Calculation of
+Flame Radiation-Levels." Journal of Loss Prevention in the Process Industries no. 3 (1):150-
+155.
+Deacon, E.L. 1973. "Geostrophic drag coefficients." Boundary Layer Meteorology no. 5 (4):321-340.
+Dodge, F., E. Bowels, and R. White. 1980. Release rates of hazardous chemicals from damaged cargo
+vessels. Paper read at National Conference on Control of Hazardous Materials Spills.
+Duiser, J.A. 1992. "Chapter 6. Heat Radiation." In Methods for the calculation of physical effects,
+Second edition. Voorburg: Committee for the Prevention of Disasters.
+Eisenberg, N., C.J. Lynch, and R.J. Breeding. 1975. Vulnerability model: a simulation system for
+assessing damage resulting from marine spills. National Technical Information Service.
+Environmental Protection Service. 1984. Sulfuric Acid and Oleum, Environmental and technical
+information for problem spills manuals. Ottawa: Environment Canada EPS.
+Fackrell, J. E., and A. G. Robins. 1982. "Concentration Fluctuations and Fluxes in Plumes from Point
+Sources in a Turbulent Boundary-Layer." Journal of Fluid Mechanics no. 117 (Apr):1-26.
+Fauske, H. K. 1985. "Flashing flow or some practical guidelines for emergency releases."
+Plant/Operations Progress no. 4 (3).
+Fauske, H. K., and M. Epstein. 1987. Source term considerations in connection with chemical
+accidents and vapor cloud modeling. In International Conference on Vapor Cloud Modeling.
+Cambridge.
+Fisher, H. G., H. S. Forrest, S. S. Grossel, and American Institute of Chemical Engineers. The Design
+Institute for Emergency Relief Systems. 1992. Emergency relief system design using DIERS
+technology: The Design Institute for Emergency Relief Systems (DIERS) project manual. New
+York: Wiley Interscience: The Design Institute for Emergency Relief Systems of the
+American Institute of Chemical Engineers.
+Frouin, R., D. W. Lingner, C. Gautier, K. S. Baker, and R. C. Smith. 1989. "A Simple Analytical Formula
+to Compute Clear Sky Total and Photosynthetically Available Solar Irradiance at the Ocean
+Surface." Journal of Geophysical Research-Oceans no. 94 (C7):9731-9742.
+Grimsrud, D., M. Sherman, and R. Sonderegger. 1983. Calculating Infiltration: Implications for a
+Construction Quality Standard. edited by Lawrence Berkeley Laboratory. Berkeley:
+Lawrence Berkeley Laboratory.
+Grolmes, M.A., and H.G. Fisher. 1994. Vapor-Liquid Onset/Disengagement Modeling for Emergency
+Relief Discharge Evaluation. edited by Robert Jones.
+Hanna, Steven R., Gary A. Briggs, Rayford P. Hosker, United States. Dept. of Energy. Office of Energy
+Research., and United States. Dept. of Energy. Office of Health and Environmental Research.
+1982. Handbook on atmospheric diffusion: prepared for the Office of Health and
+Environmental Research, Office of Energy Research, U.S. Department of Energy. [Oak Ridge,
+TN]: Technical Information Center, U.S. Dept. of Energy.
+Hasegawa, K., and K. Sato. 1977. Study on the fireball following steam explosion of n-pentane. Paper
+read at Second International Symposium on Loss Prevention and Safety Promotion in the
+Process Industry, at Heidelburg.
+Havens, J. 1990. NOAA Degadis Evaluation Report.
+Havens, Jerry A., and Thomas O. Spicer. 1985. Development of an Atmospheric Dispersion Model for
+Heavier-Than-Air Gas Mixtures. Volume 1. Ft. Belvoir: Defense Technical Information Center.
+Henry, R. E., and H. K. Fauske. 1971. "2-Phase Critical Flow of One-Component Mixtures in Nozzles,
+Orifices, and Short Tubes." Journal of Heat Transfer no. 93 (2):179-187.
+Huff, J. E. 1985. "Multiphase flashing flow in pressure relief systems." Plant/Operations Progress no.
+4 (3).
+Institution of Chemical Engineers (Great Britain). North Western Branch., European Federation of
+Chemical Engineering. 1982. The assessment of major Hazards. 1st ed, EFCE publication
+series ;. Rugby, Warwickshire; Oxford, England; Elmsford, N.Y.: Institution of Chemical
+Engineers.
+Kalghatgi, G. T. 1983. "The Visible Shape and Size of a Turbulent Hydrocarbon Jet Diffusion Flame in
+a Cross-Wind." Combustion and Flame no. 52 (1):91-106.
+Karlins, WIlliam. 1994. Personal Communication with Robert Jones.
+Kawamura, Peter, D. MacKay, Canada. Environmental Emergencies Technology Division., Canada.
+Environmental Protection Service., Canada. Environment Canada., and Canada. Technology
+Development and Technical Services Branch. 1985. The evaporation of volatile liquids.
+Ottawa: Environmental Emergencies Technology Division, Technical Services Branch,
+Environmental Protection Service, Environment Canada.
+Kirk, Raymond E., Donald F. Othmer, David Eckroth, and Martin Grayson. 1978. Encyclopedia of
+chemical technology. 3rd ed. 31 vols. New York: Wiley.
+Kirk, Raymond E., Donald F. Othmer, Jacqueline I. Kroschwitz, and Mary Howe-Grant. 1991.
+Encyclopedia of chemical technology. 4th ed. New York: Wiley.
+Lees, Frank P. 2001. Loss prevention in the process industries: hazard identification, assessment, and
+control. 2nd ed. 3 vols. Boston: Butterworth-Heinemann.
+Leung, J. C. 1994. Personal Communication with Robert Jones.
+Lide, David R. 1993. CRC handbook of chemistry and physics. 74th ed. 1 vols. Boca Raton ; London:
+CRC Press.
+Moorhouse, J., and M. Pritchard. 1982. "Thermal radiation hazards from large pool fires and
+fireballs." In Industrial Chemical Engineering Symposium Series.
+Mudan, K. S. 1984. "Thermal-Radiation Hazards from Hydrocarbon Pool Fires." Progress in Energy
+and Combustion Science no. 10 (1):59-80.
+National Fire Protection Association. 1995. SFPE handbook of fire protection engineering. 2nd ed.
+Quincy, Mass.: National Fire Protection Association.
+Palazzi, E., M. Defaveri, G. Fumarola, and G. Ferraiolo. 1982. "Diffusion from a Steady Source of Short
+Duration." Atmospheric Environment no. 16 (12):2785-2790.
+Pasquill, F. 1961. "The Estimation of the Dispersion of Windborne Material." Meteorology Magazine
+no. 90:33 - 49.
+Perry, Robert H., Don W. Green, and James O. Maloney. 1984. Perry's Chemical engineers' handbook.
+6th ed, McGraw-Hill chemical engineering series. New York: McGraw-Hill.
+Pierorazio, A. J., J. K. Thomas, Q. A. Baker, and D. E. Ketchum. 2005. "An update to the BakerStrehlow-Tang vapor cloud explosion prediction methodology flame speed table." Process
+Safety Progress no. 24 (1):59-65.
+Raphael, J. M. 1962. "Prediction of temperature in rivers and reservoirs." Journal of the Power
+Division, Proceedings of the American Society of Civil Engineers.
+Roberts, A. F. 1982. "Thermal-Radiation Hazards from Releases of LPG from Pressurized Storage."
+Fire Safety Journal no. 4 (3):197-212.
+Bibliography 85
+Schrage, J. 1991. "Vapor-Liquid-Equilibrium of the System H2So4-So3 .1. Vapor-Pressure
+Measurements with a New Static Vapor-Pressure Apparatus." Fluid Phase Equilibria no.
+68:229-245.
+Shapiro, Ascher H. 1953. The dynamics and thermodynamics of compressible fluid flow. Volume I.
+New York: Wiley.
+Sherman, M. 1980. Air Infiltration in Buildings, University of California, Berkeley.
+Sherman, M., D. Wilson, and D. Keil. 1984. Variability in Residential Air Leakage. edited by Lawrence
+Berkeley Laboratory. Berkeley: Lawrence Berkeley Laboratory.
+Sparrow, E. M., and R. D. Cess. 1978. Radiation heat transfer. Augmented ed, Series in thermal and
+fluids engineering. Washington: Hemisphere Pub. Corp.
+Spicer, T., and J. Havens. 1989. User's Guide for the Degadis 2.1 Dense Gas Dispersion Model.
+Cincinnati: United States Environmental Protection Agency.
+Thibodeaux, Louis J. 1979. Chemodynamics, environmental movement of chemicals in air, water, and
+soil. New York: Wiley.
+Thomas, P.H. 1963. The size of flames from natural fires. Paper read at 9th International
+Combustion Symposium, at Pittsburgh.
+Turner, D. Bruce. 1994. Workbook of atmospheric dispersion estimates: an introduction to dispersion
+modeling. 2nd ed. Boca Raton: Lewis Publishers.
+Ullmann, Fritz. 2000. Ullmann's encyclopedia of industrial chemistry. 6th ed. New York: Wiley.
+United States Office of the Federal Register. Code of federal regulations. Washington: Office of the
+Federal Register National Archives and Records Service General Services Administration.
+United States. Environmental Protection Agency. 1987. On-site meteorological program guidance for
+regulatory modeling applications. Research Triangle Park, N.C.: U.S. Environmental
+Protection Agency Office of Air and Radiation Office of Air Quality Planning and Standards.
+United States. Environmental Protection Agency. Chemical Emergency Preparedness and
+Prevention Office. 1999. Risk Management Program Guidance for Offsite Consequence
+Analysis. United States Environmental Protection Agency.
+van Ulden, A. P. 1974. On the Spreading of Heavy Gas Released Near the Ground. In First
+International Loss Prevention Symposium. Delft, The Netherlands: Elsevier Scientific
+Publication.
+van Ulden, A. P. 1983. A New Bulk for Dense Gas Dispersion: Two-Dimensional Spread in Still Air. In
+I.U.T.A.M. Symposium on Atmospheric Dispersion of Heavy Gases and Small Particles. Delft,
+The Netherlands.
+Wagman, Donald D., and Frederick D. Rossini. 1965. Selected values of chemical thermodynamic
+properties. Washington: U.S. National Bureau of Standards.
+Webber, D. M. 1991. "Source Terms." Journal of Loss Prevention in the Process Industries no. 4 (1):5-
+15.
+Wiekema, B. J. 1984. "Vapor Cloud Explosions - an Analysis Based on Accidents .1." Journal of
+Hazardous Materials no. 8 (4):295-311.
+Wilson, D. J. 1987. "Stay Indoors or evacuate to avoid exposure to toxic gas?" Emergency
+Preparedness Digest no. 14 (1):6.
+Wilson, D. J. 1989. Personal Communication with William Lehr, 1989.
+Wilson, D. J., Alberta. Pollution Control Division., and University of Alberta. Dept. of Mechanical
+Engineering. 1981. Expansion and plume rise of gas jets from high pressure pipeline ruptures.
+Edmonton: Pollution Control Division Alberta Environment.
+Wilson, D. J., R. P. Angle, Alberta. Pollution Control Division., Alberta. Alberta Environment., and
+Alberta. Air Quality Control Branch. 1979. The release and dispersion of gas from pipeline
+ruptures. Edmonton: Air Quality Control Branch Pollution Control Division Environmental
+Protection Services.
+Woodward, John Lowell. 1998. "Estimating the flammable mass of a vapor cloud." In. New York:
+Center for Chemical Process Safety of the American Institute of Chemical Engineers.
+Zalosh, Robert, and Nathan Weyandt. 2005. "Hydrogen Fuel Tank Fire Exposure Burst Test." S.A.E.
+Transactions no. 114 (6):6.
+Zeeuwen, J., and B. J. Wiekema. 1978. The measurement of relative reactivities of combustible gases.
+In Conference on the Mechanisms of Explosions in Dispersed Energetic Materials.
+Bibliography 87
+U.S. DEPARTMENT OF COMMERCE
+Penny Pritzker,
+Secretary
+National Oceanic and Atmospheric Administration
+Kathryn D. Sullivan, Ph.D.
+Acting Under Secretary of Commerce for Oceans and Atmosphere, and Acting
+Administrator
+National Ocean Service
+Holly A. Bamford, Ph.D.
+Assistant Administrator for Ocean Services and Coastal Zone Management

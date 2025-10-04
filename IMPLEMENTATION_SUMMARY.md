@@ -33,9 +33,9 @@
 - **Interactive controls** for event management
 
 ### **Phase 5: Weather API Integration** ✅ COMPLETE
-- **OpenWeatherMap Service**: Current conditions and forecasts
-- **National Weather Service**: Government weather data for US locations
-- **Error handling** with automatic fallbacks
+- **National Weather Service (weather.gov)**: Official US government weather data - PRIMARY SOURCE
+- **No third-party dependencies**: Uses free, reliable api.weather.gov exclusively
+- **Error handling** with automatic retries and graceful degradation
 - **Real-time weather updates** every 30 seconds
 - **Atmospheric stability calculations** for dispersion modeling
 
