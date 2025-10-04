@@ -1,5 +1,7 @@
 class Location < ApplicationRecord
   has_many :dispersion_events, dependent: :destroy
+  has_many :weather_data, ->(location) { where(latitude: location.latitude, longitude: location.longitude) }, 
+           class_name: 'WeatherDatum'
   
   validates :name, presence: true
   validates :latitude, presence: true, numericality: { in: -90..90 }

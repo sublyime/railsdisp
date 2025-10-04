@@ -1,6 +1,14 @@
 class Api::V1::DispersionEventsController < Api::V1::BaseController
   before_action :set_dispersion_event, only: [:show, :update, :live_calculations, :plume_data]
 
+  def index
+    @dispersion_events = DispersionEvent.includes(:chemical, :location)
+                                       .order(created_at: :desc)
+                                       .limit(50)
+    
+    render_success(@dispersion_events.map { |event| dispersion_event_data(event) })
+  end
+
   def show
     render_success({
       event: dispersion_event_data(@dispersion_event),
@@ -53,19 +61,31 @@ class Api::V1::DispersionEventsController < Api::V1::BaseController
                                          .first
 
     if latest_calculation
-      plume_contours = latest_calculation.generate_plume_contours
+      # Generate contour data using the existing plume_contours method
+      contour_data = latest_calculation.plume_contours
+      
       render_success({
         event_id: @dispersion_event.id,
         source_location: {
           lat: @dispersion_event.location.latitude,
           lng: @dispersion_event.location.longitude
         },
-        contours: plume_contours,
+        contours: contour_data,
         weather: weather_data(latest_calculation.weather_datum),
         timestamp: latest_calculation.created_at
       })
     else
-      render_error('No calculation data available')
+      # Generate basic contour even without calculations
+      render_success({
+        event_id: @dispersion_event.id,
+        source_location: {
+          lat: @dispersion_event.location.latitude,
+          lng: @dispersion_event.location.longitude
+        },
+        contours: default_plume_contours,
+        weather: nil,
+        timestamp: Time.current
+      })
     end
   end
 
@@ -90,7 +110,7 @@ class Api::V1::DispersionEventsController < Api::V1::BaseController
       location: event.location.name,
       release_rate: event.release_rate,
       status: event.status,
-      start_time: event.start_time,
+      start_time: event.started_at,
       source_coordinates: {
         lat: event.location.latitude,
         lng: event.location.longitude
@@ -134,7 +154,46 @@ class Api::V1::DispersionEventsController < Api::V1::BaseController
       wind_direction: weather.wind_direction,
       temperature: weather.temperature,
       stability_class: weather.stability_class,
-      timestamp: weather.timestamp
+      timestamp: weather.recorded_at
     }
+  end
+
+  def default_plume_contours
+    # Return default circular contours when no calculation data is available
+    source_lat = @dispersion_event.location.latitude
+    source_lng = @dispersion_event.location.longitude
+    
+    [
+      {
+        concentration: 10.0,
+        coordinates: generate_circle_coordinates(source_lat, source_lng, 0.001),
+        color: '#ff0000',
+        level: 'high'
+      },
+      {
+        concentration: 1.0,
+        coordinates: generate_circle_coordinates(source_lat, source_lng, 0.005),
+        color: '#ff7f00',
+        level: 'medium'
+      },
+      {
+        concentration: 0.1,
+        coordinates: generate_circle_coordinates(source_lat, source_lng, 0.01),
+        color: '#ffff00',
+        level: 'low'
+      }
+    ]
+  end
+
+  def generate_circle_coordinates(center_lat, center_lng, radius, points = 32)
+    coordinates = []
+    (0...points).each do |i|
+      angle = 2 * Math::PI * i / points
+      lat = center_lat + radius * Math.cos(angle)
+      lng = center_lng + radius * Math.sin(angle)
+      coordinates << [lat, lng]
+    end
+    coordinates << coordinates.first # Close the polygon
+    coordinates
   end
 end

@@ -41,6 +41,18 @@ class DispersionCalculationJob < ApplicationJob
         stability_class: @weather_datum.stability_class
       }
     })
+
+    # Also broadcast to general dispersion events channel
+    ActionCable.server.broadcast("dispersion_events", {
+      type: 'calculation_complete',
+      event_id: @dispersion_event.id,
+      calculation: {
+        id: calculation.id,
+        concentration: concentration,
+        receptor_id: @receptor.id,
+        timestamp: Time.current.iso8601
+      }
+    })
     
     Rails.logger.info "Dispersion calculation completed for receptor #{@receptor.name}: #{concentration} mg/m³"
     

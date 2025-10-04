@@ -1,2 +1,394 @@
-<h1>Home#dashboard</h1>
-<p>Find me in app/views/home/dashboard.html.erb</p>
+<% content_for :title, "Real-time Dispersion Monitoring Dashboard" %>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar with Controls -->
+    <div class="col-lg-3 col-md-4 bg-light p-3">
+      <h4><i class="fas fa-tachometer-alt"></i> Control Panel</h4>
+      
+      <!-- Active Events -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-exclamation-triangle text-warning"></i> Active Events</h6>
+        </div>
+        <div class="card-body">
+          <% if @active_events.any? %>
+            <% @active_events.each do |event| %>
+              <div class="alert alert-warning alert-sm mb-2" role="alert">
+                <strong><%= event.chemical.name %></strong><br>
+                <small><%= event.location.name %></small><br>
+                <small class="text-muted">
+                  Started: <%= time_ago_in_words(event.started_at) %> ago
+                </small>
+                <div class="mt-2">
+                  <%= link_to "Monitor", dispersion_event_path(event), class: "btn btn-sm btn-primary" %>
+                  <button class="btn btn-sm btn-outline-danger" onclick="stopMonitoring(<%= event.id %>)">
+                    Stop
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="text-muted">No active events</p>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-chart-bar"></i> Statistics</h6>
+        </div>
+        <div class="card-body">
+          <div class="row text-center">
+            <div class="col-6">
+              <h5 class="text-primary"><%= @stats[:total_events] %></h5>
+              <small>Total Events</small>
+            </div>
+            <div class="col-6">
+              <h5 class="text-warning"><%= @stats[:active_events] %></h5>
+              <small>Active</small>
+            </div>
+            <div class="col-6 mt-2">
+              <h5 class="text-info"><%= @stats[:total_receptors] %></h5>
+              <small>Receptors</small>
+            </div>
+            <div class="col-6 mt-2">
+              <h5 class="text-success"><%= @stats[:calculations_today] %></h5>
+              <small>Today's Calcs</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Weather -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-cloud"></i> Current Weather</h6>
+        </div>
+        <div class="card-body">
+          <% if @current_weather %>
+            <p><strong>Wind:</strong> <%= @current_weather.wind_speed %> m/s, <%= @current_weather.wind_direction %>°</p>
+            <p><strong>Temp:</strong> <%= @current_weather.temperature %>°C</p>
+            <p><strong>Humidity:</strong> <%= @current_weather.humidity %>%</p>
+            <small class="text-muted">
+              Updated: <%= time_ago_in_words(@current_weather.recorded_at) %> ago
+            </small>
+          <% else %>
+            <p class="text-muted">No weather data available</p>
+            <%= link_to "Add Weather Data", new_weather_datum_path, class: "btn btn-sm btn-outline-primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Map Controls -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-map"></i> Map Controls</h6>
+        </div>
+        <div class="card-body">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showReceptors" checked>
+            <label class="form-check-label" for="showReceptors">
+              Show Receptors
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showPlumes" checked>
+            <label class="form-check-label" for="showPlumes">
+              Show Plumes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="showBuildings">
+            <label class="form-check-label" for="showBuildings">
+              Show Buildings
+            </label>
+          </div>
+          <hr>
+          <button class="btn btn-primary btn-sm w-100 mb-2" onclick="centerMapOnActiveEvents()">
+            <i class="fas fa-crosshairs"></i> Center on Events
+          </button>
+          <button class="btn btn-outline-secondary btn-sm w-100" onclick="refreshPlumeData()">
+            <i class="fas fa-sync"></i> Refresh Plumes
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-time Controls -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-broadcast-tower"></i> Real-time Updates</h6>
+        </div>
+        <div class="card-body" id="real-time-controls">
+          <div class="text-center mb-2">
+            <span class="badge bg-success" id="connection-status">Connected</span>
+          </div>
+          <!-- Controls will be added by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Weather Panel -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6><i class="fas fa-cloud-sun"></i> Current Weather</h6>
+        </div>
+        <div class="card-body" id="weather-panel">
+          <% if @current_weather %>
+            <div class="text-center mb-3">
+              <h4 class="text-primary"><%= @current_weather.temperature %>°C</h4>
+              <p class="mb-1">
+                <i class="fas fa-wind"></i> <%= @current_weather.wind_speed %> m/s 
+                <small class="text-muted">(<%= wind_direction_text(@current_weather.wind_direction) %>)</small>
+              </p>
+              <p class="mb-1">
+                <i class="fas fa-eye"></i> <%= @current_weather.humidity %>% humidity
+              </p>
+              <span class="badge bg-info"><%= @current_weather.stability_class %></span>
+            </div>
+          <% else %>
+            <p class="text-muted text-center">No current weather data</p>
+            <button class="btn btn-outline-primary btn-sm w-100" onclick="requestWeatherUpdate()">
+              <i class="fas fa-sync"></i> Get Weather
+            </button>
+          <% end %>
+          <!-- Weather controls will be added by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="card-header">
+          <h6><i class="fas fa-plus"></i> Quick Actions</h6>
+        </div>
+        <div class="card-body">
+          <%= link_to "New Event", new_dispersion_event_path, class: "btn btn-success btn-sm w-100 mb-2" %>
+          <%= link_to "Add Chemical", new_chemical_path, class: "btn btn-outline-primary btn-sm w-100 mb-2" %>
+          <%= link_to "Add Location", new_location_path, class: "btn btn-outline-primary btn-sm w-100" %>
+        </div>
+      </div>
+
+      <!-- Real-time Status Panel -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h6><i class="fas fa-wifi"></i> Real-time Status</h6>
+        </div>
+        <div class="card-body">
+          <div class="mb-2">
+            <small class="text-muted">WebSocket:</small>
+            <span id="websocketStatus" class="badge bg-warning">Connecting...</span>
+          </div>
+          <div class="mb-2">
+            <small class="text-muted">Last Update:</small>
+            <span id="lastUpdateTime" class="text-muted">Never</span>
+          </div>
+          <div class="d-grid gap-2">
+            <button onclick="testWeatherBroadcast()" class="btn btn-outline-info btn-sm">
+              <i class="fas fa-cloud"></i> Test Weather
+            </button>
+            <button onclick="testDispersionBroadcast()" class="btn btn-outline-warning btn-sm">
+              <i class="fas fa-wind"></i> Test Plume
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Map Area -->
+    <div class="col-lg-9 col-md-8">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5><i class="fas fa-map-marked-alt"></i> Real-time Dispersion Map</h5>
+          <div>
+            <span class="badge bg-success" id="connectionStatus">Connected</span>
+            <button class="btn btn-sm btn-outline-primary" onclick="toggleFullscreen()">
+              <i class="fas fa-expand"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <!-- Map Container -->
+          <div id="dispersionMap" style="height: 70vh; min-height: 500px;"></div>
+          
+          <!-- Map Legend -->
+          <div id="mapLegend" class="position-absolute bottom-0 start-0 m-3 p-2 bg-white rounded shadow-sm" style="z-index: 1000;">
+            <h6 class="mb-2">Concentration Levels (mg/m³)</h6>
+            <div class="d-flex flex-column">
+              <div><span class="badge" style="background-color: #00ff00;">■</span> 0.1 - Safe</div>
+              <div><span class="badge" style="background-color: #ffff00;">■</span> 1.0 - Caution</div>
+              <div><span class="badge" style="background-color: #ff8800;">■</span> 10.0 - Warning</div>
+              <div><span class="badge" style="background-color: #ff0000;">■</span> 100+ - Danger</div>
+            </div>
+            <small class="text-muted mt-2 d-block">
+              Last Updated: <span id="lastUpdateTime">--:--</span>
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Calculations -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h6><i class="fas fa-calculator"></i> Recent Calculations</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Location</th>
+                  <th>Max Concentration</th>
+                  <th>Wind Conditions</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @recent_calculations.each do |calc| %>
+                  <tr>
+                    <td>
+                      <strong><%= calc.dispersion_event.chemical.name %></strong>
+                    </td>
+                    <td><%= calc.dispersion_event.location.name %></td>
+                    <td>
+                      <span class="badge bg-<%= calc.concentration > 10 ? 'danger' : calc.concentration > 1 ? 'warning' : 'success' %>">
+                        <%= number_with_precision(calc.concentration, precision: 3) %> mg/m³
+                      </span>
+                    </td>
+                    <td>
+                      <%= calc.weather_datum.wind_speed %> m/s, <%= calc.weather_datum.wind_direction %>°
+                    </td>
+                    <td>
+                      <small class="text-muted">
+                        <%= time_ago_in_words(calc.created_at) %> ago
+                      </small>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Initialize Map and Real-time Updates -->
+<script>
+  // Initialize the dispersion map when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Wait for modules to load via importmap
+    setTimeout(function() {
+      if (typeof initializeDispersionMap === 'function') {
+        initializeDispersionMap();
+        startRealTimeUpdates();
+      } else {
+        console.warn('initializeDispersionMap not available yet, retrying...');
+        // Retry after a short delay
+        setTimeout(function() {
+          if (typeof initializeDispersionMap === 'function') {
+            initializeDispersionMap();
+            startRealTimeUpdates();
+          }
+        }, 1000);
+      }
+    }, 500);
+  });
+
+  // Pass server data to JavaScript
+  window.dashboardData = {
+    activeEvents: <%= raw @events_data.to_json %>,
+    currentWeather: <%= raw @current_weather&.to_json || 'null' %>
+  };
+
+  // Global helper functions
+  window.requestWeatherUpdate = function() {
+    if (window.weatherManager) {
+      window.weatherManager.requestWeatherUpdate();
+    } else {
+      fetch('/weather/update_all', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Weather update requested:', data);
+          setTimeout(() => window.location.reload(), 2000);
+        })
+        .catch(error => console.error('Weather update failed:', error));
+    }
+  };
+
+  // Real-time WebSocket test functions
+  window.testWeatherBroadcast = function() {
+    fetch('/test/weather_broadcast')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Weather broadcast test:', data);
+        updateLastUpdateTime();
+        showTestNotification('Weather update broadcast sent!');
+      })
+      .catch(error => {
+        console.error('Weather broadcast test failed:', error);
+      });
+  };
+
+  window.testDispersionBroadcast = function() {
+    fetch('/test/dispersion_broadcast')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Dispersion broadcast test:', data);
+        updateLastUpdateTime();
+        showTestNotification('Dispersion plume update broadcast sent!');
+      })
+      .catch(error => {
+        console.error('Dispersion broadcast test failed:', error);
+      });
+  };
+
+  function updateLastUpdateTime() {
+    const now = new Date().toLocaleTimeString();
+    const timeElement = document.getElementById('lastUpdateTime');
+    if (timeElement) {
+      timeElement.textContent = now;
+    }
+  }
+
+  function showTestNotification(message) {
+    // Create a temporary notification
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-success alert-dismissible fade show position-fixed';
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 3000);
+  }
+
+  // Update WebSocket status indicators
+  function updateWebSocketStatus(status) {
+    const statusElement = document.getElementById('websocketStatus');
+    if (statusElement) {
+      statusElement.className = 'badge bg-' + (status === 'connected' ? 'success' : status === 'connecting' ? 'warning' : 'danger');
+      statusElement.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    }
+  }
+
+  // Monitor ActionCable connection status
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      if (window.ActionCableManager && window.ActionCableManager.isConnected()) {
+        updateWebSocketStatus('connected');
+      } else {
+        updateWebSocketStatus('fallback');
+      }
+    }, 2000);
+  });
+</script>

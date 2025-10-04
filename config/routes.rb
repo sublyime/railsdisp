@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   # RESTful resource routes for chemical dispersion modeling
   resources :chemicals
   resources :locations
-  resources :weather_data
+  resources :weather_data, path: 'weather' do
+    collection do
+      post :update_all
+      post :update_location
+      get 'current/:latitude/:longitude', action: :current, as: :current
+      get 'forecast/:latitude/:longitude', action: :forecast, as: :forecast
+    end
+  end
   resources :dispersion_events do
     # Nested routes for associated resources
     resources :receptors
@@ -20,18 +27,27 @@ Rails.application.routes.draw do
     end
   end
   
-  # API routes for AJAX/WebSocket functionality
+  # API routes for AJAX/WebSocket integration
   namespace :api do
     namespace :v1 do
-      resources :dispersion_events, only: [:show, :create, :update] do
+      resources :dispersion_events, only: [:index, :show, :create, :update] do
         member do
           get :live_calculations
           get :plume_data
         end
       end
-      resources :weather_data, only: [:index, :create, :update]
+      resources :weather, only: [:index, :show] do
+        collection do
+          get :current
+        end
+      end
     end
   end
+
+  # Test routes for WebSocket functionality
+  get 'test', to: 'test#websocket_test'
+  get 'test/weather_broadcast', to: 'test#trigger_weather_broadcast'
+  get 'test/dispersion_broadcast', to: 'test#trigger_dispersion_broadcast'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
