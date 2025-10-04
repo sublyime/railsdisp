@@ -5,7 +5,7 @@ require_relative 'config/environment'
 
 puts "🌤️  Adding sample weather data for testing..."
 
-# Create sample weather data
+# Create sample weather data - All from weather.gov/NWS sources
 sample_data = [
   {
     latitude: 40.7128,
@@ -16,7 +16,7 @@ sample_data = [
     humidity: 65,
     pressure: 1013.25,
     visibility: 10.0,
-    source: 'openweathermap',
+    source: 'weather.gov',
     recorded_at: Time.current
   },
   {

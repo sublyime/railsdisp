@@ -443,69 +443,107 @@ class RealTimeDispersionManager {
   }
 }
 
-// Initialize real-time manager when map is ready
+// Initialize real-time manager when map is ready - Coordinated with MapInitializationController
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('RealTimeDispersionManager: DOM loaded, waiting for map...');
+  console.log('RealTimeDispersionManager: DOM loaded, coordinating with map initialization...');
   
-  // Wait for map to be initialized
-  const checkMapAndStart = () => {
-    console.log('RealTimeDispersionManager: Checking for map...', {
-      dispersionMapExists: !!window.dispersionMap,
-      mapExists: !!window.map,
-      dispersionMapHasAddLayer: !!(window.dispersionMap && typeof window.dispersionMap.addLayer === 'function'),
-      mapHasAddLayer: !!(window.map && typeof window.map.addLayer === 'function')
-    });
+  // Function to start real-time manager
+  window.startRealTimeUpdates = function() {
+    console.log('RealTimeDispersionManager: Starting real-time updates...');
     
+    if (window.realTimeManager) {
+      console.log('RealTimeDispersionManager: Already initialized');
+      return true;
+    }
+    
+    // Check for available map instances
+    let mapInstance = null;
     if (window.dispersionMap && typeof window.dispersionMap.addLayer === 'function') {
-      if (!window.realTimeManager) {
-        window.realTimeManager = new RealTimeDispersionManager(window.dispersionMap);
-        console.log('Real-time dispersion manager initialized successfully');
-      }
-      return true;
+      mapInstance = window.dispersionMap;
+    } else if (window.map && typeof window.map.addLayer === 'function') {
+      mapInstance = window.map;
     }
     
-    // Try alternative map reference
-    if (window.map && typeof window.map.addLayer === 'function') {
-      if (!window.realTimeManager) {
-        window.realTimeManager = new RealTimeDispersionManager(window.map);
-        console.log('Real-time dispersion manager initialized with window.map');
+    if (mapInstance) {
+      try {
+        window.realTimeManager = new RealTimeDispersionManager(mapInstance);
+        console.log('✅ Real-time dispersion manager initialized successfully');
+        return true;
+      } catch (error) {
+        console.error('❌ Error initializing real-time manager:', error);
+        return false;
       }
-      return true;
+    } else {
+      console.log('⚠️ No valid map instance found for real-time manager');
+      return false;
     }
-    
-    return false;
   };
   
-  // Listen for map ready event
+  // Listen for map ready event from our initialization controller
   document.addEventListener('mapReady', function(event) {
     console.log('RealTimeDispersionManager: mapReady event received', event.detail);
-    if (event.detail && event.detail.map) {
-      if (!window.realTimeManager) {
+    if (event.detail && event.detail.map && !window.realTimeManager) {
+      try {
         window.realTimeManager = new RealTimeDispersionManager(event.detail.map);
-        console.log('Real-time dispersion manager initialized via mapReady event');
+        console.log('✅ Real-time dispersion manager initialized via mapReady event');
+      } catch (error) {
+        console.error('❌ Error initializing real-time manager via event:', error);
       }
     }
   });
   
-  // Fallback with polling
-  if (!checkMapAndStart()) {
-    console.log('RealTimeDispersionManager: Map not ready, starting polling...');
-    let attempts = 0;
-    const maxAttempts = 100; // 10 second timeout
-    const interval = setInterval(() => {
-      attempts++;
-      console.log(`RealTimeDispersionManager: Polling attempt ${attempts}/${maxAttempts}`);
+  // Legacy fallback - only if our coordinated system isn't working
+  setTimeout(() => {
+    if (!window.realTimeManager && !window.MapInitializationController) {
+      console.log('RealTimeDispersionManager: Starting legacy fallback initialization...');
       
-      if (checkMapAndStart()) {
-        clearInterval(interval);
-        console.log('RealTimeDispersionManager: Successfully initialized via polling');
-      } else if (attempts >= maxAttempts) {
-        clearInterval(interval);
-        console.error('RealTimeDispersionManager: Map initialization timeout after 10 seconds');
-        console.error('Available window objects:', Object.keys(window).filter(key => key.includes('map') || key.includes('Map')));
+      const checkMapAndStart = () => {
+        console.log('RealTimeDispersionManager: Checking for map...', {
+          dispersionMapExists: !!window.dispersionMap,
+          mapExists: !!window.map,
+          dispersionMapValid: !!(window.dispersionMap && typeof window.dispersionMap.addLayer === 'function'),
+          mapValid: !!(window.map && typeof window.map.addLayer === 'function')
+        });
+        
+        if (window.dispersionMap && typeof window.dispersionMap.addLayer === 'function') {
+          if (!window.realTimeManager) {
+            window.realTimeManager = new RealTimeDispersionManager(window.dispersionMap);
+            console.log('Real-time dispersion manager initialized successfully via fallback');
+          }
+          return true;
+        }
+        
+        if (window.map && typeof window.map.addLayer === 'function') {
+          if (!window.realTimeManager) {
+            window.realTimeManager = new RealTimeDispersionManager(window.map);
+            console.log('Real-time dispersion manager initialized with window.map via fallback');
+          }
+          return true;
+        }
+        
+        return false;
+      };
+      
+      if (!checkMapAndStart()) {
+        console.log('RealTimeDispersionManager: Map not ready, starting polling...');
+        let attempts = 0;
+        const maxAttempts = 50; // Reduced timeout since coordinated system should handle this
+        const interval = setInterval(() => {
+          attempts++;
+          console.log(`RealTimeDispersionManager: Polling attempt ${attempts}/${maxAttempts}`);
+          
+          if (checkMapAndStart()) {
+            clearInterval(interval);
+            console.log('RealTimeDispersionManager: Successfully initialized via polling');
+          } else if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            console.error('RealTimeDispersionManager: Map initialization timeout after 5 seconds');
+            console.error('Available window objects:', Object.keys(window).filter(key => key.includes('map') || key.includes('Map')));
+          }
+        }, 100);
       }
-    }, 100);
-  }
+    }
+  }, 2000); // Give coordinated system time to work first
 });
 
 // Make RealTimeDispersionManager globally available

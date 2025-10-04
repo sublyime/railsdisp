@@ -28,21 +28,28 @@ const CONCENTRATION_COLORS = {
  * Initialize the main dispersion map
  */
 function initializeDispersionMap() {
+  console.log('🗺️ Initializing dispersion map...');
+  
   // Check if map container exists
   const mapContainer = document.getElementById('dispersionMap');
   if (!mapContainer) {
-    console.error('Map container #dispersionMap not found');
+    console.error('❌ Map container #dispersionMap not found');
     return false;
   }
+  
+  console.log('✅ Map container found:', mapContainer);
 
   // Check if map is already initialized
   if (map && map._container) {
-    console.log('Map already initialized');
-    return true;
+    console.log('⚠️ Map already initialized, removing existing instance');
+    map.remove();
+    map = null;
   }
 
-  // Create the map
-  map = L.map('dispersionMap').setView(MAP_CONFIG.center, MAP_CONFIG.zoom);
+  try {
+    // Create the map
+    console.log('Creating Leaflet map...');
+    map = L.map('dispersionMap').setView(MAP_CONFIG.center, MAP_CONFIG.zoom);
 
   // Add base layer - OpenStreetMap
   const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -102,8 +109,13 @@ function initializeDispersionMap() {
     window.weatherManager.initializeWithMap(map);
   }
 
-  console.log('Dispersion map initialized successfully');
+  console.log('✅ Dispersion map initialized successfully');
   return true;
+  
+  } catch (error) {
+    console.error('❌ Error initializing dispersion map:', error);
+    return false;
+  }
 }
 
 /**

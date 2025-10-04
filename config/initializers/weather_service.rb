@@ -5,17 +5,18 @@ Rails.application.configure do
   # Weather service configuration
   config.weather_services = ActiveSupport::OrderedOptions.new
   
-  # OpenWeatherMap configuration
-  config.weather_services.openweathermap = ActiveSupport::OrderedOptions.new
-  config.weather_services.openweathermap.api_key = ENV['OPENWEATHERMAP_API_KEY']
-  config.weather_services.openweathermap.rate_limit = 1000 # calls per day for free tier
-  config.weather_services.openweathermap.timeout = 10.seconds
-  
-  # National Weather Service configuration
+  # National Weather Service configuration (PRIMARY PROVIDER)
+  # Uses api.weather.gov for all weather data - no API key required
   config.weather_services.nws = ActiveSupport::OrderedOptions.new
   config.weather_services.nws.enabled = true
   config.weather_services.nws.timeout = 15.seconds
-  config.weather_services.nws.user_agent = 'ChemicalDispersionApp/1.0 (contact@example.com)'
+  config.weather_services.nws.user_agent = 'ChemicalDispersionApp/1.0 (railsdisp@example.com)'
+  config.weather_services.nws.base_url = 'https://api.weather.gov'
+  
+  # Disable OpenWeatherMap - using only government weather data sources
+  config.weather_services.openweathermap = ActiveSupport::OrderedOptions.new
+  config.weather_services.openweathermap.enabled = false
+  config.weather_services.openweathermap.api_key = nil # Explicitly disable
   
   # Weather update configuration
   config.weather_updates = ActiveSupport::OrderedOptions.new

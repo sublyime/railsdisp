@@ -24,7 +24,7 @@ class Api::V1::WeatherController < Api::V1::BaseController
         }
       end
 
-      render_success("Weather data retrieved successfully", formatted_data)
+      render_success(formatted_data, "Weather data retrieved successfully")
     rescue => e
       render_error("Failed to retrieve weather data: #{e.message}")
     end
@@ -52,7 +52,7 @@ class Api::V1::WeatherController < Api::V1::BaseController
         created_at: weather_data.created_at
       }
 
-      render_success("Weather data retrieved successfully", formatted_data)
+      render_success(formatted_data, "Weather data retrieved successfully")
     rescue ActiveRecord::RecordNotFound
       render_error("Weather data not found", 404)
     rescue => e
@@ -87,7 +87,7 @@ class Api::V1::WeatherController < Api::V1::BaseController
         }
       end
 
-      render_success("Current weather data retrieved successfully", formatted_data)
+      render_success(formatted_data, "Current weather data retrieved successfully")
     rescue => e
       render_error("Failed to retrieve current weather data: #{e.message}")
     end

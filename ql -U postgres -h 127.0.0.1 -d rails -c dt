@@ -1,0 +1,52 @@
+                                                  List of relations
+ Schema |                              Name                              | Type  |  Owner   |          Table          
+--------+----------------------------------------------------------------+-------+----------+-------------------------
+ public | ar_internal_metadata_pkey                                      | index | postgres | ar_internal_metadata
+ public | buildings_pkey                                                 | index | postgres | buildings
+ public | chemical_solutions_pkey                                        | index | postgres | chemical_solutions
+ public | chemicals_pkey                                                 | index | postgres | chemicals
+ public | dispersion_calculations_pkey                                   | index | postgres | dispersion_calculations
+ public | dispersion_events_pkey                                         | index | postgres | dispersion_events
+ public | gis_features_pkey                                              | index | postgres | gis_features
+ public | idx_on_solution_type_min_concentration_max_concentr_b7d73accfd | index | postgres | chemical_solutions
+ public | index_buildings_on_building_type                               | index | postgres | buildings
+ public | index_buildings_on_height                                      | index | postgres | buildings
+ public | index_buildings_on_latitude_and_longitude                      | index | postgres | buildings
+ public | index_buildings_on_map_layer_id                                | index | postgres | buildings
+ public | index_buildings_spatial                                        | index | postgres | buildings
+ public | index_chemical_solutions_on_chemical_id                        | index | postgres | chemical_solutions
+ public | index_chemical_solutions_on_chemical_id_and_solution_type      | index | postgres | chemical_solutions
+ public | index_chemicals_on_name_and_cas_number                         | index | postgres | chemicals
+ public | index_dispersion_calculations_on_dispersion_event_id           | index | postgres | dispersion_calculations
+ public | index_dispersion_calculations_on_weather_datum_id              | index | postgres | dispersion_calculations
+ public | index_dispersion_events_on_chemical_id                         | index | postgres | dispersion_events
+ public | index_dispersion_events_on_location_id                         | index | postgres | dispersion_events
+ public | index_gis_features_on_feature_type                             | index | postgres | gis_features
+ public | index_gis_features_on_latitude_and_longitude                   | index | postgres | gis_features
+ public | index_gis_features_on_map_layer_id                             | index | postgres | gis_features
+ public | index_gis_features_on_name                                     | index | postgres | gis_features
+ public | index_gis_features_spatial                                     | index | postgres | gis_features
+ public | index_map_layers_on_layer_type                                 | index | postgres | map_layers
+ public | index_map_layers_on_name                                       | index | postgres | map_layers
+ public | index_map_layers_on_visible                                    | index | postgres | map_layers
+ public | index_map_layers_on_z_index                                    | index | postgres | map_layers
+ public | index_receptors_on_dispersion_event_id                         | index | postgres | receptors
+ public | index_terrain_points_on_data_source                            | index | postgres | terrain_points
+ public | index_terrain_points_on_elevation                              | index | postgres | terrain_points
+ public | index_terrain_points_on_interpolated                           | index | postgres | terrain_points
+ public | index_terrain_points_on_latitude_and_longitude                 | index | postgres | terrain_points
+ public | index_terrain_points_on_map_layer_id                           | index | postgres | terrain_points
+ public | index_terrain_points_spatial                                   | index | postgres | terrain_points
+ public | index_terrain_points_unique_location                           | index | postgres | terrain_points
+ public | index_toxicological_data_on_chemical_id                        | index | postgres | toxicological_data
+ public | index_toxicological_data_on_chemical_id_and_aegl_3_1hr         | index | postgres | toxicological_data
+ public | index_toxicological_data_on_chemical_id_and_erpg_3             | index | postgres | toxicological_data
+ public | locations_pkey                                                 | index | postgres | locations
+ public | map_layers_pkey                                                | index | postgres | map_layers
+ public | receptors_pkey                                                 | index | postgres | receptors
+ public | schema_migrations_pkey                                         | index | postgres | schema_migrations
+ public | terrain_points_pkey                                            | index | postgres | terrain_points
+ public | toxicological_data_pkey                                        | index | postgres | toxicological_data
+ public | weather_data_pkey                                              | index | postgres | weather_data
+(47 rows)
+
