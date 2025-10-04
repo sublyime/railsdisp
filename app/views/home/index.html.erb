@@ -1,2 +1,272 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% content_for :title, "Chemical Dispersion Modeling System" %>
+
+<div class="hero-section bg-primary text-white py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h1 class="display-4 fw-bold mb-3">
+          <i class="fas fa-atom"></i> Chemical Dispersion Modeling System
+        </h1>
+        <p class="lead mb-4">
+          Real-time atmospheric dispersion modeling for emergency response and risk assessment. 
+          Monitor chemical releases, track plume movement, and assess health impacts with 
+          advanced physics-based calculations.
+        </p>
+        <div class="d-flex gap-3">
+          <%= link_to dashboard_path, class: "btn btn-light btn-lg" do %>
+            <i class="fas fa-tachometer-alt"></i> Open Dashboard
+          <% end %>
+          <%= link_to new_dispersion_event_path, class: "btn btn-outline-light btn-lg" do %>
+            <i class="fas fa-plus"></i> New Event
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div class="bg-white bg-opacity-10 rounded-3 p-4">
+          <i class="fas fa-cloud-upload-alt display-1 mb-3"></i>
+          <h5>Real-time Monitoring</h5>
+          <p class="mb-0">30-second dispersion updates with live weather integration</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <!-- System Status Overview -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <h2 class="text-center mb-4">System Status</h2>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="card h-100 border-primary">
+        <div class="card-body">
+          <i class="fas fa-exclamation-triangle text-warning display-4 mb-3"></i>
+          <h3 class="text-primary"><%= @active_events.count %></h3>
+          <p class="text-muted">Active Events</p>
+          <% if @active_events.any? %>
+            <%= link_to "Monitor Now", dashboard_path, class: "btn btn-warning btn-sm" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="card h-100 border-info">
+        <div class="card-body">
+          <i class="fas fa-flask text-info display-4 mb-3"></i>
+          <h3 class="text-info"><%= @total_chemicals %></h3>
+          <p class="text-muted">Chemicals</p>
+          <%= link_to "Manage", chemicals_path, class: "btn btn-info btn-sm" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="card h-100 border-success">
+        <div class="card-body">
+          <i class="fas fa-map-marker-alt text-success display-4 mb-3"></i>
+          <h3 class="text-success"><%= @total_locations %></h3>
+          <p class="text-muted">Locations</p>
+          <%= link_to "View Map", dashboard_path, class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <div class="card h-100 border-secondary">
+        <div class="card-body">
+          <i class="fas fa-cloud text-secondary display-4 mb-3"></i>
+          <h3 class="text-secondary">
+            <% if @current_weather %>
+              <i class="fas fa-check-circle text-success"></i>
+            <% else %>
+              <i class="fas fa-times-circle text-danger"></i>
+            <% end %>
+          </h3>
+          <p class="text-muted">Weather Data</p>
+          <%= link_to "Configure", weather_data_path, class: "btn btn-secondary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Events -->
+  <div class="row mb-5">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h4><i class="fas fa-history"></i> Recent Events</h4>
+        </div>
+        <div class="card-body">
+          <% if @recent_events.any? %>
+            <div class="list-group list-group-flush">
+              <% @recent_events.each do |event| %>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="mb-1">
+                      <span class="badge bg-<%= event.status == 'active' ? 'danger' : 'secondary' %>">
+                        <%= event.status.upcase %>
+                      </span>
+                      <%= event.chemical.name %>
+                    </h6>
+                    <p class="mb-1 text-muted">
+                      <i class="fas fa-map-marker-alt"></i> <%= event.location.name %>
+                    </p>
+                    <small class="text-muted">
+                      Started: <%= time_ago_in_words(event.started_at) %> ago
+                    </small>
+                  </div>
+                  <div>
+                    <%= link_to "View", dispersion_event_path(event), class: "btn btn-outline-primary btn-sm" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="text-center mt-3">
+              <%= link_to "View All Events", dispersion_events_path, class: "btn btn-primary" %>
+            </div>
+          <% else %>
+            <div class="text-center text-muted py-4">
+              <i class="fas fa-inbox display-4 mb-3"></i>
+              <p>No recent events</p>
+              <%= link_to "Create First Event", new_dispersion_event_path, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4><i class="fas fa-rocket"></i> Quick Actions</h4>
+        </div>
+        <div class="card-body">
+          <div class="d-grid gap-2">
+            <%= link_to new_dispersion_event_path, class: "btn btn-primary btn-lg" do %>
+              <i class="fas fa-plus"></i> New Dispersion Event
+            <% end %>
+            
+            <%= link_to dashboard_path, class: "btn btn-info btn-lg" do %>
+              <i class="fas fa-eye"></i> Monitor Active Events
+            <% end %>
+            
+            <%= link_to new_chemical_path, class: "btn btn-success btn-lg" do %>
+              <i class="fas fa-flask"></i> Add Chemical
+            <% end %>
+            
+            <%= link_to new_location_path, class: "btn btn-warning btn-lg" do %>
+              <i class="fas fa-map-pin"></i> Add Location
+            <% end %>
+            
+            <%= link_to new_weather_datum_path, class: "btn btn-secondary btn-lg" do %>
+              <i class="fas fa-cloud"></i> Update Weather
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Info -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h6><i class="fas fa-info-circle"></i> System Information</h6>
+        </div>
+        <div class="card-body">
+          <small class="text-muted">
+            <p><strong>Physics Model:</strong> Gaussian Plume with Pasquill-Gifford coefficients</p>
+            <p><strong>Update Frequency:</strong> 30 seconds for active events</p>
+            <p><strong>Weather Integration:</strong> Real-time meteorological data</p>
+            <p><strong>Coverage:</strong> Industrial facilities and urban areas</p>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Overview -->
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Key Features</h2>
+    </div>
+    <div class="col-md-4 text-center mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <i class="fas fa-map text-primary display-4 mb-3"></i>
+          <h5>Interactive Mapping</h5>
+          <p class="text-muted">
+            Real-time plume visualization with topographic overlays, 
+            building visualization, and receptor monitoring points.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <i class="fas fa-calculator text-success display-4 mb-3"></i>
+          <h5>Physics-Based Modeling</h5>
+          <p class="text-muted">
+            Advanced Gaussian plume dispersion calculations with 
+            atmospheric stability, terrain effects, and building wake impacts.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <i class="fas fa-heartbeat text-danger display-4 mb-3"></i>
+          <h5>Health Impact Assessment</h5>
+          <p class="text-muted">
+            Automatic evaluation of exposure levels against safety thresholds 
+            with real-time health impact categorization.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="20" fill="url(%23grid)"/></svg>');
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.list-group-item {
+  border-left: none;
+  border-right: none;
+}
+
+.list-group-item:first-child {
+  border-top: none;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+</style>

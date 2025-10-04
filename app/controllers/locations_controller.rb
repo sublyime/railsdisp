@@ -3,6 +3,11 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.all.order(:name)
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @locations }
+    end
   end
 
   def show

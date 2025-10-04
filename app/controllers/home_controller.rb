@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include WeatherHelper
+  
   def index
     # Main landing page
     @recent_events = DispersionEvent.includes(:chemical, :location)
@@ -19,7 +21,7 @@ class HomeController < ApplicationController
                                                .order(created_at: :desc)
                                                .limit(10)
     
-    @current_weather = WeatherDatum.order(timestamp: :desc).first
+    @current_weather = WeatherDatum.order(recorded_at: :desc).first
     
     # Statistics for dashboard widgets
     @stats = {
@@ -38,14 +40,31 @@ class HomeController < ApplicationController
         source_lat: event.location.latitude,
         source_lng: event.location.longitude,
         receptors: event.receptors.map do |receptor|
-          latest_calc = receptor.dispersion_calculations.order(created_at: :desc).first
+          # Get the latest calculation for this event and find concentration at this receptor
+          latest_calc = event.dispersion_calculations.order(created_at: :desc).first
+          
+          if latest_calc
+            # Calculate concentration at this receptor location
+            concentration = latest_calc.concentration_at_point(receptor.latitude, receptor.longitude)
+          else
+            concentration = receptor.concentration || 0
+          end
+          
+          # Determine health impact based on concentration
+          health_impact = case concentration
+          when 0...0.1 then 'safe'
+          when 0.1...1.0 then 'caution'
+          when 1.0...10.0 then 'warning'
+          else 'danger'
+          end
+          
           {
             id: receptor.id,
             name: receptor.name,
             lat: receptor.latitude,
             lng: receptor.longitude,
-            concentration: latest_calc&.concentration || 0,
-            health_impact: receptor.assess_health_impact(latest_calc&.concentration || 0)
+            concentration: concentration,
+            health_impact: health_impact
           }
         end
       }

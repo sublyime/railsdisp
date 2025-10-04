@@ -1,0 +1,283 @@
+/* Chemical Dispersion Map Styling */
+
+/* Map container styling */
+#dispersionMap {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* Custom marker styles */
+.source-marker, .receptor-marker, .location-marker {
+  background: transparent;
+  border: none;
+}
+
+.marker-content {
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease-in-out;
+}
+
+.marker-content:hover {
+  transform: scale(1.1);
+}
+
+/* Wind indicator styling */
+.wind-indicator {
+  min-width: 80px;
+  font-size: 12px;
+}
+
+.wind-arrow {
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Map popup styling */
+.leaflet-popup-content {
+  margin: 8px 12px;
+  font-size: 13px;
+}
+
+.popup-content h6 {
+  margin-bottom: 8px;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.popup-content p {
+  margin-bottom: 4px;
+}
+
+/* Sidebar styling */
+.sidebar-card {
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Alert styling for active events */
+.alert-sm {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Map legend styling */
+#mapLegend {
+  min-width: 200px;
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+#mapLegend h6 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+#mapLegend .badge {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Navigation styling */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+/* Dashboard stats styling */
+.card-body h5 {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.card-body small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table styling for calculations */
+.table-sm th {
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table-sm td {
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* Control panel styling */
+.form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.form-check-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Button styling */
+.btn-sm {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #dispersionMap {
+    height: 50vh !important;
+    min-height: 400px !important;
+  }
+  
+  #mapLegend {
+    position: relative !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .sidebar-card {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Loading animation */
+.loading-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Connection status styling */
+#connectionStatus {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Emergency button styling */
+.alert-control .btn-danger {
+  animation: pulse 2s infinite;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+  }
+}
+
+/* Map controls positioning */
+.leaflet-control-container .leaflet-top.leaflet-right {
+  margin-top: 60px;
+}
+
+.leaflet-control-container .leaflet-top.leaflet-left {
+  margin-top: 10px;
+}
+
+/* Custom Leaflet control styling */
+.leaflet-control {
+  font-family: inherit;
+}
+
+.leaflet-control-layers {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Plume contour styling */
+.leaflet-interactive {
+  cursor: pointer;
+}
+
+.leaflet-interactive:hover {
+  stroke-width: 3;
+  stroke-opacity: 0.9;
+}
+
+/* Tooltip styling */
+.leaflet-tooltip {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+/* Form styling in popups */
+.popup-content .btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+.popup-content .badge {
+  font-size: 0.75rem;
+}
+
+/* Card header styling */
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+}
+
+.card-header i {
+  margin-right: 8px;
+  color: #6c757d;
+}
+
+/* Concentration level indicators */
+.concentration-safe { color: #28a745; }
+.concentration-caution { color: #ffc107; }
+.concentration-warning { color: #fd7e14; }
+.concentration-danger { color: #dc3545; }
+
+/* Sidebar scrolling */
+.col-lg-3.col-md-4 {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Print styles */
+@media print {
+  .navbar, .col-lg-3.col-md-4 {
+    display: none !important;
+  }
+  
+  .col-lg-9.col-md-8 {
+    width: 100% !important;
+  }
+  
+  #dispersionMap {
+    height: 80vh !important;
+  }
+}
