@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Main application routes
   root "home#index"
   get "dashboard", to: "home#dashboard"
+  get "simple_map", to: "home#simple_dashboard"
   
   # Favicon route
   get '/favicon.ico', to: proc { [200, {}, ['']] }
@@ -129,6 +130,12 @@ Rails.application.routes.draw do
         member do
           get :live_calculations
           get :plume_data
+        end
+      end
+      
+      resources :locations, only: [:index, :show] do
+        collection do
+          get :search
         end
       end
       
