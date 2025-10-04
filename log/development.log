@@ -1,3 +1,538 @@
   [1m[35m (103.6ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
   [1m[35m (103.9ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
   [1m[35m (78259.8ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (205.3ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (144263.9ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (13838.3ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (29199.8ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (197.2ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (209.6ms)[0m  [1m[35mCREATE DATABASE "rails" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35m (19.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Railsdisp'*/[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4475467841591330430) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-10-04 00:57:02.328812', '2025-10-04 00:57:02.328816') RETURNING "key" /*application='Railsdisp'*/[0m
+Migrating to CreateChemicals (20251004000912)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "chemicals" ("id" bigserial primary key, "name" character varying, "cas_number" character varying, "molecular_weight" decimal, "vapor_pressure" decimal, "boiling_point" decimal, "melting_point" decimal, "density" decimal, "state" character varying, "hazard_class" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004000912') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+Migrating to CreateWeatherData (20251004000924)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (38.9ms)[0m  [1m[35mCREATE TABLE "weather_data" ("id" bigserial primary key, "temperature" decimal, "humidity" decimal, "pressure" decimal, "wind_speed" decimal, "wind_direction" decimal, "precipitation" decimal, "cloud_cover" decimal, "visibility" decimal, "recorded_at" timestamp(6), "latitude" decimal, "longitude" decimal, "source" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004000924') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+Migrating to CreateLocations (20251004000937)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "locations" ("id" bigserial primary key, "name" character varying, "latitude" decimal, "longitude" decimal, "elevation" decimal, "building_height" decimal, "building_type" character varying, "terrain_type" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004000937') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+Migrating to CreateDispersionEvents (20251004000954)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "dispersion_events" ("id" bigserial primary key, "chemical_id" bigint NOT NULL, "location_id" bigint NOT NULL, "release_rate" decimal, "release_volume" decimal, "release_mass" decimal, "release_duration" decimal, "release_type" character varying, "started_at" timestamp(6), "ended_at" timestamp(6), "status" character varying, "notes" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a5f7c101e7"
+FOREIGN KEY ("chemical_id")
+  REFERENCES "chemicals" ("id")
+, CONSTRAINT "fk_rails_1ac69ca219"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+) /*application='Railsdisp'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_dispersion_events_on_chemical_id" ON "dispersion_events" ("chemical_id") /*application='Railsdisp'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_dispersion_events_on_location_id" ON "dispersion_events" ("location_id") /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004000954') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+Migrating to CreateReceptors (20251004001010)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "receptors" ("id" bigserial primary key, "dispersion_event_id" bigint NOT NULL, "name" character varying, "latitude" decimal, "longitude" decimal, "distance_from_source" decimal, "concentration" decimal, "exposure_time" decimal, "health_impact_level" character varying, "notes" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3278039333"
+FOREIGN KEY ("dispersion_event_id")
+  REFERENCES "dispersion_events" ("id")
+) /*application='Railsdisp'*/[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE INDEX "index_receptors_on_dispersion_event_id" ON "receptors" ("dispersion_event_id") /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004001010') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+Migrating to CreateDispersionCalculations (20251004001023)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "dispersion_calculations" ("id" bigserial primary key, "dispersion_event_id" bigint NOT NULL, "weather_datum_id" bigint NOT NULL, "plume_data" json, "calculation_timestamp" timestamp(6), "model_used" character varying, "stability_class" character varying, "effective_height" decimal, "max_concentration" decimal, "max_distance" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a67e3ca1ff"
+FOREIGN KEY ("dispersion_event_id")
+  REFERENCES "dispersion_events" ("id")
+, CONSTRAINT "fk_rails_51f33a8bc3"
+FOREIGN KEY ("weather_datum_id")
+  REFERENCES "weather_data" ("id")
+) /*application='Railsdisp'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_dispersion_calculations_on_dispersion_event_id" ON "dispersion_calculations" ("dispersion_event_id") /*application='Railsdisp'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_dispersion_calculations_on_weather_datum_id" ON "dispersion_calculations" ("weather_datum_id") /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251004001023') RETURNING "version" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(4475467841591330430) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Railsdisp'*/[0m
+  [1m[35m (184.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "rails_test" /*application='Railsdisp'*/[0m
+  [1m[35m (35.3ms)[0m  [1m[35mCREATE DATABASE "rails_test" ENCODING = 'unicode' /*application='Railsdisp'*/[0m
+  [1m[35mSQL (25.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "chemicals" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "chemicals" ("id" bigserial primary key, "name" character varying, "cas_number" character varying, "molecular_weight" decimal, "vapor_pressure" decimal, "boiling_point" decimal, "melting_point" decimal, "density" decimal, "state" character varying, "hazard_class" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "dispersion_calculations" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "dispersion_calculations" ("id" bigserial primary key, "dispersion_event_id" bigint NOT NULL, "weather_datum_id" bigint NOT NULL, "plume_data" json, "calculation_timestamp" timestamp(6), "model_used" character varying, "stability_class" character varying, "effective_height" decimal, "max_concentration" decimal, "max_distance" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE INDEX "index_dispersion_calculations_on_dispersion_event_id" ON "dispersion_calculations" ("dispersion_event_id") /*application='Railsdisp'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_dispersion_calculations_on_weather_datum_id" ON "dispersion_calculations" ("weather_datum_id") /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "dispersion_events" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCREATE TABLE "dispersion_events" ("id" bigserial primary key, "chemical_id" bigint NOT NULL, "location_id" bigint NOT NULL, "release_rate" decimal, "release_volume" decimal, "release_mass" decimal, "release_duration" decimal, "release_type" character varying, "started_at" timestamp(6), "ended_at" timestamp(6), "status" character varying, "notes" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_dispersion_events_on_chemical_id" ON "dispersion_events" ("chemical_id") /*application='Railsdisp'*/[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE INDEX "index_dispersion_events_on_location_id" ON "dispersion_events" ("location_id") /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "locations" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "locations" ("id" bigserial primary key, "name" character varying, "latitude" decimal, "longitude" decimal, "elevation" decimal, "building_height" decimal, "building_type" character varying, "terrain_type" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "receptors" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "receptors" ("id" bigserial primary key, "dispersion_event_id" bigint NOT NULL, "name" character varying, "latitude" decimal, "longitude" decimal, "distance_from_source" decimal, "concentration" decimal, "exposure_time" decimal, "health_impact_level" character varying, "notes" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_receptors_on_dispersion_event_id" ON "receptors" ("dispersion_event_id") /*application='Railsdisp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "weather_data" CASCADE /*application='Railsdisp'*/[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "weather_data" ("id" bigserial primary key, "temperature" decimal, "humidity" decimal, "pressure" decimal, "wind_speed" decimal, "wind_direction" decimal, "precipitation" decimal, "cloud_cover" decimal, "visibility" decimal, "recorded_at" timestamp(6), "latitude" decimal, "longitude" decimal, "source" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "dispersion_calculations" ADD CONSTRAINT "fk_rails_a67e3ca1ff"
+FOREIGN KEY ("dispersion_event_id")
+  REFERENCES "dispersion_events" ("id")
+ /*application='Railsdisp'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "dispersion_calculations" ADD CONSTRAINT "fk_rails_51f33a8bc3"
+FOREIGN KEY ("weather_datum_id")
+  REFERENCES "weather_data" ("id")
+ /*application='Railsdisp'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "dispersion_events" ADD CONSTRAINT "fk_rails_a5f7c101e7"
+FOREIGN KEY ("chemical_id")
+  REFERENCES "chemicals" ("id")
+ /*application='Railsdisp'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "dispersion_events" ADD CONSTRAINT "fk_rails_1ac69ca219"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+ /*application='Railsdisp'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "receptors" ADD CONSTRAINT "fk_rails_3278039333"
+FOREIGN KEY ("dispersion_event_id")
+  REFERENCES "dispersion_events" ("id")
+ /*application='Railsdisp'*/[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20251004001023) /*application='Railsdisp'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20251004001010),
+(20251004000954),
+(20251004000937),
+(20251004000924),
+(20251004000912); /*application='Railsdisp'*/[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-10-04 00:57:26.164705', '2025-10-04 00:57:26.164708') RETURNING "key" /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-10-04 00:57:26.172738' WHERE "ar_internal_metadata"."key" = 'environment' /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'b51be381b4d1e5bb73dcac3c58a8ccb7c47707fc', '2025-10-04 00:57:26.177138', '2025-10-04 00:57:26.177141') RETURNING "key" /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (1.1ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."name") = LOWER('Chlorine') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."cas_number") = LOWER('7782-50-5') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Create (0.9ms)[0m  [1m[32mINSERT INTO "chemicals" ("name", "cas_number", "molecular_weight", "vapor_pressure", "boiling_point", "melting_point", "density", "state", "hazard_class", "description", "created_at", "updated_at") VALUES ('Chlorine', '7782-50-5', 70.9, 6800.0, -34.0, NULL, 3.21, 'gas', 'toxic_gas', 'Highly toxic gas used in water treatment and chemical processes. Yellow-green gas with pungent odor.', '2025-10-04 01:07:35.747655', '2025-10-04 01:07:35.747655') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."name") = LOWER('Ammonia') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."cas_number") = LOWER('7664-41-7') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Create (0.4ms)[0m  [1m[32mINSERT INTO "chemicals" ("name", "cas_number", "molecular_weight", "vapor_pressure", "boiling_point", "melting_point", "density", "state", "hazard_class", "description", "created_at", "updated_at") VALUES ('Ammonia', '7664-41-7', 17.0, 8600.0, -33.3, NULL, 0.77, 'gas', 'toxic_gas', 'Colorless gas with sharp odor. Used in fertilizers and cleaning products.', '2025-10-04 01:07:35.764109', '2025-10-04 01:07:35.764109') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."name") = LOWER('Sulfur Dioxide') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."cas_number") = LOWER('7446-09-5') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Create (0.4ms)[0m  [1m[32mINSERT INTO "chemicals" ("name", "cas_number", "molecular_weight", "vapor_pressure", "boiling_point", "melting_point", "density", "state", "hazard_class", "description", "created_at", "updated_at") VALUES ('Sulfur Dioxide', '7446-09-5', 64.1, 3300.0, -10.0, NULL, 2.93, 'gas', 'toxic_gas', 'Colorless gas with pungent odor. Used in paper production and as preservative.', '2025-10-04 01:07:35.779870', '2025-10-04 01:07:35.779870') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."name") = LOWER('Benzene') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."cas_number") = LOWER('71-43-2') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Create (0.6ms)[0m  [1m[32mINSERT INTO "chemicals" ("name", "cas_number", "molecular_weight", "vapor_pressure", "boiling_point", "melting_point", "density", "state", "hazard_class", "description", "created_at", "updated_at") VALUES ('Benzene', '71-43-2', 78.1, 100.0, 80.1, NULL, 0.88, 'liquid', 'carcinogen', 'Colorless liquid with sweet odor. Used in plastics and chemical production.', '2025-10-04 01:07:35.797300', '2025-10-04 01:07:35.797300') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.7ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."name") = LOWER('Hydrogen Sulfide') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "chemicals" WHERE LOWER("chemicals"."cas_number") = LOWER('7783-06-4') LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Create (0.4ms)[0m  [1m[32mINSERT INTO "chemicals" ("name", "cas_number", "molecular_weight", "vapor_pressure", "boiling_point", "melting_point", "density", "state", "hazard_class", "description", "created_at", "updated_at") VALUES ('Hydrogen Sulfide', '7783-06-4', 34.1, 20270.0, -60.0, NULL, 1.54, 'gas', 'toxic_gas', 'Colorless gas with rotten egg odor. Highly toxic and flammable.', '2025-10-04 01:07:35.815332', '2025-10-04 01:07:35.815332') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mLocation Create (0.7ms)[0m  [1m[32mINSERT INTO "locations" ("name", "latitude", "longitude", "elevation", "building_height", "building_type", "terrain_type", "description", "created_at", "updated_at") VALUES ('Industrial Complex A', 29.7604, -95.3698, 15.0, 25.0, NULL, 'urban', 'Major petrochemical facility with multiple process units', '2025-10-04 01:07:35.867341', '2025-10-04 01:07:35.867341') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mLocation Create (2.3ms)[0m  [1m[32mINSERT INTO "locations" ("name", "latitude", "longitude", "elevation", "building_height", "building_type", "terrain_type", "description", "created_at", "updated_at") VALUES ('Chemical Plant B', 29.7204, -95.4098, 8.0, 40.0, NULL, 'industrial', 'Large-scale chemical manufacturing plant', '2025-10-04 01:07:35.878264', '2025-10-04 01:07:35.878264') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mLocation Create (2.0ms)[0m  [1m[32mINSERT INTO "locations" ("name", "latitude", "longitude", "elevation", "building_height", "building_type", "terrain_type", "description", "created_at", "updated_at") VALUES ('Research Facility E', 29.7404, -95.2898, 20.0, 10.0, NULL, 'suburban', 'Chemical research and development laboratory', '2025-10-04 01:07:35.897103', '2025-10-04 01:07:35.897103') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (4.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."timestamp" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.7ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 00:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 23:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.8ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 22:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 21:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 20:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 19:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 18:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 17:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 16:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 15:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 14:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 13:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 12:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 11:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 10:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 09:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 08:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 07:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 06:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.7ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 05:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 04:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 03:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 02:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Chlorine' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Ammonia' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Benzene' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.7ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 1 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 23:08:32.357954' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (1.1ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (1, 1, 0.5, 1800.0, 500.0, 3600.0, 'continuous', '2025-10-03 23:08:32.357954', '2025-10-04 00:08:32.357977', 'completed', 'Minor chlorine leak from process line', '2025-10-04 01:08:32.504193', '2025-10-04 01:08:32.504193') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 1 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 00:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 23:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 22:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 21:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 20:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 19:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 18:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 17:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 16:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.8ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 15:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 14:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 13:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 12:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 11:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 10:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 09:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 08:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 07:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 06:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 05:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 04:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 03:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 02:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Chlorine' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Ammonia' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Benzene' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 1 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 23:08:57.800256' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (1.4ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (1, 1, 0.5, 1800.0, 500.0, 3600.0, 'continuous', '2025-10-03 23:08:57.800256', '2025-10-04 00:08:57.800297', 'completed', 'Minor chlorine leak from process line', '2025-10-04 01:08:57.847721', '2025-10-04 01:08:57.847721') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 2 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (4.4ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (2, 'Receptor 1', 29.7667600431189364, -95.3698, 707.2045280663635, NULL, NULL, NULL, 'Monitoring point 708m 0° from source', '2025-10-04 01:08:57.913463', '2025-10-04 01:08:57.913463') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.2ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (2, 'Receptor 2', 29.764383465567086324, -95.3556775220481841, 1433.36193632122, NULL, NULL, NULL, 'Monitoring point 1435m 72° from source', '2025-10-04 01:08:57.923547', '2025-10-04 01:08:57.923547') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.4ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (2, 'Receptor 3', 29.751126682673172541, -95.362038922173964485, 1274.586726597431, NULL, NULL, NULL, 'Monitoring point 1276m 144° from source', '2025-10-04 01:08:57.930962', '2025-10-04 01:08:57.930962') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.5ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (2, 'Receptor 4', 29.752049653911814456, -95.376788619453068028, 1147.725563594745, NULL, NULL, NULL, 'Monitoring point 1149m 216° from source', '2025-10-04 01:08:57.939782', '2025-10-04 01:08:57.939782') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.5ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (2, 'Receptor 5', 29.763453527612400664, -95.38062559285505052, 1098.748953709144, NULL, NULL, NULL, 'Monitoring point 1100m 288° from source', '2025-10-04 01:08:57.952863', '2025-10-04 01:08:57.952863') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 2 AND "dispersion_events"."location_id" = 2 AND "dispersion_events"."started_at" = '2025-10-04 00:38:57.800305' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (2.0ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (2, 2, 2.0, 3600.0, 1200.0, 1800.0, 'continuous', '2025-10-04 00:38:57.800305', NULL, 'active', 'Ongoing ammonia release from storage tank vent', '2025-10-04 01:08:57.962681', '2025-10-04 01:08:57.962681') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 3 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (3, 'Receptor 1', 29.73267093065037729, -95.4098, 1364.46523352917, NULL, NULL, NULL, 'Monitoring point 1366m 0° from source', '2025-10-04 01:08:57.973198', '2025-10-04 01:08:57.973198') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (4.5ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (3, 'Receptor 2', 29.724921996800546078, -95.39377467426267384, 1627.136581984329, NULL, NULL, NULL, 'Monitoring point 1629m 72° from source', '2025-10-04 01:08:57.985559', '2025-10-04 01:08:57.985559') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.6ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (3, 'Receptor 3', 29.70773276481139478, -95.39920269269220818, 1741.079608739956, NULL, NULL, NULL, 'Monitoring point 1743m 144° from source', '2025-10-04 01:08:57.998791', '2025-10-04 01:08:57.998791') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (5.7ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (3, 'Receptor 4', 29.7089827731030988, -95.419351560401916782, 1569.265738610495, NULL, NULL, NULL, 'Monitoring point 1571m 216° from source', '2025-10-04 01:08:58.012925', '2025-10-04 01:08:58.012925') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.1ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (3, 'Receptor 5', 29.725532702323026208, -95.42798958090136039, 1846.879839891284, NULL, NULL, NULL, 'Monitoring point 1849m 288° from source', '2025-10-04 01:08:58.027199', '2025-10-04 01:08:58.027199') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 4 AND "dispersion_events"."location_id" IS NULL AND "dispersion_events"."started_at" = '2025-10-03 19:08:57.800311' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.8ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.8ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 00:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 23:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 22:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 21:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 20:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 19:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 18:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 17:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 16:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 15:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 14:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 13:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 12:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 11:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 10:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 09:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 08:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 07:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 06:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 05:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 04:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 03:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 02:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Chlorine' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Ammonia' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Benzene' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "chemicals" /*application='Railsdisp'*/[0m
+  [1m[36mLocation Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "weather_data" /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "receptors" /*application='Railsdisp'*/[0m
+  [1m[36mDispersionCalculation Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_calculations" /*application='Railsdisp'*/[0m
+  [1m[36mLocation Pluck (0.3ms)[0m  [1m[34mSELECT "locations"."name" FROM "locations" /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "weather_data" /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.7ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.7ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 00:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 23:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 22:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 21:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 20:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 19:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.8ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 18:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 17:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 16:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 15:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 14:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 13:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.2ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 12:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (1.0ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 11:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 10:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 09:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 08:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 07:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 06:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 05:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 04:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 03:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 02:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Chlorine' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Ammonia' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.7ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Benzene' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 1 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 23:10:52.954790' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (9.1ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (1, 1, 0.5, 1800.0, 500.0, 3600.0, 'continuous', '2025-10-03 23:10:52.954790', '2025-10-04 00:10:52.954816', 'completed', 'Minor chlorine leak from process line', '2025-10-04 01:10:53.006796', '2025-10-04 01:10:53.006796') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 4 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.1ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (4, 'Receptor 1', 29.7707395616241466, -95.3698, 1149.706796333875, NULL, NULL, NULL, 'Monitoring point 1151m 0° from source', '2025-10-04 01:10:53.068781', '2025-10-04 01:10:53.068781') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.7ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (4, 'Receptor 2', 29.763961523569736414, -95.35717342215179108, 1281.537886420737, NULL, NULL, NULL, 'Monitoring point 1283m 72° from source', '2025-10-04 01:10:53.077930', '2025-10-04 01:10:53.077930') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (1.9ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (4, 'Receptor 3', 29.74692607341384161, -95.35852332422455342, 1851.959952021428, NULL, NULL, NULL, 'Monitoring point 1854m 144° from source', '2025-10-04 01:10:53.086106', '2025-10-04 01:10:53.086106') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (1.8ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (4, 'Receptor 4', 29.7472531104669037, -95.38080297005274156, 1807.008449311674, NULL, NULL, NULL, 'Monitoring point 1809m 216° from source', '2025-10-04 01:10:53.092585', '2025-10-04 01:10:53.092585') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (4, 'Receptor 5', 29.763750552571061456, -95.38167862779640543, 1205.625644570033, NULL, NULL, NULL, 'Monitoring point 1207m 288° from source', '2025-10-04 01:10:53.104495', '2025-10-04 01:10:53.104495') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 2 AND "dispersion_events"."location_id" = 2 AND "dispersion_events"."started_at" = '2025-10-04 00:40:52.954824' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (2.4ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (2, 2, 2.0, 3600.0, 1200.0, 1800.0, 'continuous', '2025-10-04 00:40:52.954824', NULL, 'active', 'Ongoing ammonia release from storage tank vent', '2025-10-04 01:10:53.114937', '2025-10-04 01:10:53.114937') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 5 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (5, 'Receptor 1', 29.728457851239669421, -95.4098, 895.9921775078078, NULL, NULL, NULL, 'Monitoring point 897m 0° from source', '2025-10-04 01:10:53.125363', '2025-10-04 01:10:53.125363') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.4ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (5, 'Receptor 2', 29.72316760639051224, -95.399991989097535797, 995.8674025672834, NULL, NULL, NULL, 'Monitoring point 997m 72° from source', '2025-10-04 01:10:53.133713', '2025-10-04 01:10:53.133713') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (5, 'Receptor 3', 29.711293834944737612, -95.402181855389177764, 1251.611808560778, NULL, NULL, NULL, 'Monitoring point 1253m 144° from source', '2025-10-04 01:10:53.141080', '2025-10-04 01:10:53.141080') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.4ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (5, 'Receptor 4', 29.713633966746648615, -95.415460409124242217, 929.9648056108269, NULL, NULL, NULL, 'Monitoring point 931m 216° from source', '2025-10-04 01:10:53.148750', '2025-10-04 01:10:53.148750') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (5, 'Receptor 5', 29.722298738988074595, -95.416528866055451872, 683.2256474566509, NULL, NULL, NULL, 'Monitoring point 684m 288° from source', '2025-10-04 01:10:53.156793', '2025-10-04 01:10:53.156793') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.7ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 4 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 19:10:52.954830' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7782-50-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7664-41-7' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7446-09-5' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '71-43-2' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.6ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."cas_number" = '7783-06-4' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Refinery D' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Research Facility E' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 01:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-04 00:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 23:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 22:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 21:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 20:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 19:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 18:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 17:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.6ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 16:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 15:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 14:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 13:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 12:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 11:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 10:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 09:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 08:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 07:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 06:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 05:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.5ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 04:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.4ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 03:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Load (0.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" WHERE "weather_data"."recorded_at" = '2025-10-03 02:00:00' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.5ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Chlorine' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Ammonia' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Load (0.4ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."name" = 'Benzene' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Industrial Complex A' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Chemical Plant B' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."name" = 'Storage Terminal C' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 1 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 23:11:18.437669' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (0.7ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (1, 1, 0.5, 1800.0, 500.0, 3600.0, 'continuous', '2025-10-03 23:11:18.437669', '2025-10-04 00:11:18.437705', 'completed', 'Minor chlorine leak from process line', '2025-10-04 01:11:18.488397', '2025-10-04 01:11:18.488397') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 6 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.3ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (6, 'Receptor 1', 29.77167380524613726, -95.3698, 1253.589947349274, NULL, NULL, NULL, 'Monitoring point 1255m 0° from source', '2025-10-04 01:11:18.557310', '2025-10-04 01:11:18.557310') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.2ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (6, 'Receptor 2', 29.765926884978445207, -95.35020567693235856, 1988.713401734744, NULL, NULL, NULL, 'Monitoring point 1991m 72° from source', '2025-10-04 01:11:18.565851', '2025-10-04 01:11:18.565851') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (1.9ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (6, 'Receptor 3', 29.755727003886246037, -95.365889049340015019, 642.28273254084, NULL, NULL, NULL, 'Monitoring point 643m 144° from source', '2025-10-04 01:11:18.574774', '2025-10-04 01:11:18.574774') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (6, 'Receptor 4', 29.752471168335761158, -95.376435843188248233, 1089.789103709499, NULL, NULL, NULL, 'Monitoring point 1091m 216° from source', '2025-10-04 01:11:18.581908', '2025-10-04 01:11:18.581908') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.3ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (6, 'Receptor 5', 29.761893452595883234, -95.37509469905092471, 537.3919088371279, NULL, NULL, NULL, 'Monitoring point 538m 288° from source', '2025-10-04 01:11:18.594633', '2025-10-04 01:11:18.594633') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.7ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 2 AND "dispersion_events"."location_id" = 2 AND "dispersion_events"."started_at" = '2025-10-04 00:41:18.437731' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Create (2.2ms)[0m  [1m[32mINSERT INTO "dispersion_events" ("chemical_id", "location_id", "release_rate", "release_volume", "release_mass", "release_duration", "release_type", "started_at", "ended_at", "status", "notes", "created_at", "updated_at") VALUES (2, 2, 2.0, 3600.0, 1200.0, 1800.0, 'continuous', '2025-10-04 00:41:18.437731', NULL, 'active', 'Ongoing ammonia release from storage tank vent', '2025-10-04 01:11:18.606018', '2025-10-04 01:11:18.606018') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "receptors" WHERE "receptors"."dispersion_event_id" = 7 LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.7ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (7, 'Receptor 1', 29.72782903341717571, -95.4098, 826.0708258628285, NULL, NULL, NULL, 'Monitoring point 827m 0° from source', '2025-10-04 01:11:18.616722', '2025-10-04 01:11:18.616722') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.1ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (7, 'Receptor 2', 29.722712353182845231, -95.401605342947088584, 832.0554145087439, NULL, NULL, NULL, 'Monitoring point 833m 72° from source', '2025-10-04 01:11:18.625291', '2025-10-04 01:11:18.625291') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.4ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (7, 'Receptor 3', 29.716366543012234138, -95.406425642251391588, 554.3802792787807, NULL, NULL, NULL, 'Monitoring point 555m 144° from source', '2025-10-04 01:11:18.632178', '2025-10-04 01:11:18.632178') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (2.0ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (7, 'Receptor 4', 29.71090865797113114, -95.417740380576004658, 1304.553954813762, NULL, NULL, NULL, 'Monitoring point 1306m 216° from source', '2025-10-04 01:11:18.640891', '2025-10-04 01:11:18.640891') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Create (3.2ms)[0m  [1m[32mINSERT INTO "receptors" ("dispersion_event_id", "name", "latitude", "longitude", "distance_from_source", "concentration", "exposure_time", "health_impact_level", "notes", "created_at", "updated_at") VALUES (7, 'Receptor 5', 29.72489701339280825, -95.42573678802607022, 1618.147059311794, NULL, NULL, NULL, 'Monitoring point 1620m 288° from source', '2025-10-04 01:11:18.647780', '2025-10-04 01:11:18.647780') RETURNING "id" /*application='Railsdisp'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."chemical_id" = 4 AND "dispersion_events"."location_id" = 1 AND "dispersion_events"."started_at" = '2025-10-03 19:11:18.437737' LIMIT 1 /*application='Railsdisp'*/[0m
+  [1m[36mChemical Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "chemicals" /*application='Railsdisp'*/[0m
+  [1m[36mLocation Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp'*/[0m
+  [1m[36mWeatherDatum Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "weather_data" /*application='Railsdisp'*/[0m
+  [1m[36mDispersionEvent Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" /*application='Railsdisp'*/[0m
+  [1m[36mReceptor Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "receptors" /*application='Railsdisp'*/[0m
+  [1m[36mDispersionCalculation Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_calculations" /*application='Railsdisp'*/[0m

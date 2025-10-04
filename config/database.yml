@@ -25,7 +25,7 @@ development:
   database: rails
   username: postgres
   password: ala1nna
-  host: 172.31.64.1
+  host: 127.0.0.1
   port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -54,7 +54,7 @@ test:
   database: rails_test
   username: postgres
   password: ala1nna
-  host: 172.31.64.1
+  host: localhost
   port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,

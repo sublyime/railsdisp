@@ -21,6 +21,18 @@ class DispersionCalculation < ApplicationRecord
   before_save :calculate_dispersion_parameters
   after_create :update_receptor_concentrations
   
+  def calculate_concentrations
+    # Trigger the calculation and update this record
+    calculate_dispersion_parameters
+    save!
+    
+    # Update all associated receptors
+    update_receptor_concentrations
+    
+    # Store the max concentration for this calculation
+    update(concentration: max_concentration)
+  end
+
   def plume_centerline_concentration(distance)
     return 0 if distance <= 0 || !plume_data.present?
     
