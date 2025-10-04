@@ -25163,3 +25163,627 @@ Processing by LocationsController#index as JSON
 Completed 200 OK in 318ms (Views: 2.5ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.1ms)
 
 
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: e3150c8f-e0ce-4363-abc0-ddf05650720b) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Performing WeatherUpdateJob (Job ID: e3150c8f-e0ce-4363-abc0-ddf05650720b) from Async(weather_updates) enqueued at 2025-10-04T18:26:53.470366875Z
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b]   [1m[36mLocation Count (106.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b]   [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [e3150c8f-e0ce-4363-abc0-ddf05650720b] Performed WeatherUpdateJob (Job ID: e3150c8f-e0ce-4363-abc0-ddf05650720b) from Async(weather_updates) in 336.96ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: 0d650c97-7232-45f8-bb7e-4945e52b789d) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Performing WeatherUpdateJob (Job ID: 0d650c97-7232-45f8-bb7e-4945e52b789d) from Async(weather_updates) enqueued at 2025-10-04T18:27:23.909611273Z
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d]   [1m[36mLocation Count (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d]   [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [0d650c97-7232-45f8-bb7e-4945e52b789d] Performed WeatherUpdateJob (Job ID: 0d650c97-7232-45f8-bb7e-4945e52b789d) from Async(weather_updates) in 9.56ms
+Started GET "/api/v1/dispersion_events/2/live_calculations.json" for ::1 at 2025-10-04 13:27:40 -0500
+Started GET "/api/v1/dispersion_events/2/plume_data.json" for ::1 at 2025-10-04 13:27:40 -0500
+Started GET "/api/v1/dispersion_events/4/plume_data.json" for ::1 at 2025-10-04 13:27:40 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (10.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Railsdisp'*/[0m
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"4"}
+  Parameters: {"id"=>"2"}
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mDispersionEvent Load (2.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 2 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (10.7ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 AND (created_at > '2025-10-04 18:26:41.748365') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+  [1m[36mDispersionEvent Load (0.6ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 4 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+Completed 200 OK in 640ms (Views: 0.4ms | ActiveRecord: 24.9ms (2 queries, 0 cached) | GC: 8.9ms)
+
+
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionEvent Load (13.9ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 2 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (1.8ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 4 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  [1m[36mDispersionCalculation Load (3.6ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  [1m[36mLocation Load (2.9ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+  [1m[36mLocation Load (0.6ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 2 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+Completed 200 OK in 699ms (Views: 0.4ms | ActiveRecord: 48.4ms (3 queries, 0 cached) | GC: 9.8ms)
+
+
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+Completed 200 OK in 698ms (Views: 0.4ms | ActiveRecord: 60.4ms (3 queries, 0 cached) | GC: 10.0ms)
+
+
+Started GET "/api/v1/dispersion_events/5/plume_data.json" for ::1 at 2025-10-04 13:27:42 -0500
+Started GET "/api/v1/dispersion_events/5/live_calculations.json" for ::1 at 2025-10-04 13:27:42 -0500
+Started GET "/api/v1/dispersion_events/4/live_calculations.json" for ::1 at 2025-10-04 13:27:42 -0500
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"5"}
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  Parameters: {"id"=>"4"}
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 5 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (1.2ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+Completed 200 OK in 446ms (Views: 0.6ms | ActiveRecord: 2.8ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+  [1m[36mDispersionEvent Load (3.1ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 4 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (2.7ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 4 AND (created_at > '2025-10-04 18:26:42.979199') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+Completed 200 OK in 438ms (Views: 0.2ms | ActiveRecord: 5.8ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+  [1m[36mDispersionEvent Load (1.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 5 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (1.2ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 AND (created_at > '2025-10-04 18:26:43.284959') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+Completed 200 OK in 589ms (Views: 0.2ms | ActiveRecord: 2.6ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:27:43 -0500
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:27:43 -0500
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:27:43 -0500
+Processing by WeatherDataController#update_all as */*
+Processing by WeatherDataController#update_all as */*
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: 730ca0a9-47dc-4a2c-a9bb-231c2e03769c) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 373ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: 0f8959e0-9ad7-4679-adf9-1ec64f66a4f0) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 411ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Processing by WeatherDataController#update_all as */*
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Performing WeatherUpdateJob (Job ID: 730ca0a9-47dc-4a2c-a9bb-231c2e03769c) from Async(weather_updates) enqueued at 2025-10-04T18:27:44.142064032Z
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c]   [1m[36mLocation Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c]   [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:27:45 -0500
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [730ca0a9-47dc-4a2c-a9bb-231c2e03769c] Performed WeatherUpdateJob (Job ID: 730ca0a9-47dc-4a2c-a9bb-231c2e03769c) from Async(weather_updates) in 9.76ms
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Performing WeatherUpdateJob (Job ID: 0f8959e0-9ad7-4679-adf9-1ec64f66a4f0) from Async(weather_updates) enqueued at 2025-10-04T18:27:44.235959475Z
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0]   [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [0f8959e0-9ad7-4679-adf9-1ec64f66a4f0] Performed WeatherUpdateJob (Job ID: 0f8959e0-9ad7-4679-adf9-1ec64f66a4f0) from Async(weather_updates) in 13.16ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: c0ef5454-64d4-4e83-8dd3-8fce83402481) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 439ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.9ms)
+
+
+Processing by WeatherDataController#update_all as */*
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Performing WeatherUpdateJob (Job ID: c0ef5454-64d4-4e83-8dd3-8fce83402481) from Async(weather_updates) enqueued at 2025-10-04T18:27:45.122944515Z
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481]   [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [c0ef5454-64d4-4e83-8dd3-8fce83402481] Performed WeatherUpdateJob (Job ID: c0ef5454-64d4-4e83-8dd3-8fce83402481) from Async(weather_updates) in 12.27ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: a056c183-4a3e-42ba-a17d-bd25a9cfff1b) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 386ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Performing WeatherUpdateJob (Job ID: a056c183-4a3e-42ba-a17d-bd25a9cfff1b) from Async(weather_updates) enqueued at 2025-10-04T18:27:45.757140743Z
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b]   [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [a056c183-4a3e-42ba-a17d-bd25a9cfff1b] Performed WeatherUpdateJob (Job ID: a056c183-4a3e-42ba-a17d-bd25a9cfff1b) from Async(weather_updates) in 7.58ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: c477a231-3f00-44f5-b238-fd89693c06d8) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Performing WeatherUpdateJob (Job ID: c477a231-3f00-44f5-b238-fd89693c06d8) from Async(weather_updates) enqueued at 2025-10-04T18:27:54.363486363Z
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8]   [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [c477a231-3f00-44f5-b238-fd89693c06d8] Performed WeatherUpdateJob (Job ID: c477a231-3f00-44f5-b238-fd89693c06d8) from Async(weather_updates) in 9.09ms
+Started GET "/dashboard" for ::1 at 2025-10-04 13:28:04 -0500
+Processing by HomeController#dashboard as */*
+  [1m[36mWeatherDatum Load (9.3ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" ORDER BY "weather_data"."recorded_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:24:in `dashboard'
+  [1m[36mDispersionEvent Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:28:in `dashboard'
+  [1m[36mDispersionEvent Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" WHERE "dispersion_events"."status" = 'active' /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:29:in `dashboard'
+  [1m[36mReceptor Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "receptors" /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:30:in `dashboard'
+  [1m[36mDispersionCalculation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_calculations" WHERE (created_at >= '2025-10-04') /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:31:in `dashboard'
+  [1m[36mDispersionEvent Load (0.6ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."status" = 'active' /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mChemical Load (1.9ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."id" IN (2, 1) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (2, 1) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mReceptor Load (0.8ms)[0m  [1m[34mSELECT "receptors".* FROM "receptors" WHERE "receptors"."dispersion_event_id" IN (2, 4, 5) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" IN (2, 4, 5) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.2ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering home/dashboard.html.erb within layouts/application
+  [1m[36mDispersionCalculation Load (0.6ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 10 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/views/home/dashboard.html.erb:247
+  Rendered home/dashboard.html.erb within layouts/application (Duration: 10.2ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 134.6ms | GC: 0.6ms)
+Completed 200 OK in 997ms (Views: 157.3ms | ActiveRecord: 30.7ms (56 queries, 43 cached) | GC: 8.5ms)
+
+
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: 1d4b60db-c76f-43d3-9489-ab7868a7ece0) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Performing WeatherUpdateJob (Job ID: 1d4b60db-c76f-43d3-9489-ab7868a7ece0) from Async(weather_updates) enqueued at 2025-10-04T18:28:24.836985654Z
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0]   [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [1d4b60db-c76f-43d3-9489-ab7868a7ece0] Performed WeatherUpdateJob (Job ID: 1d4b60db-c76f-43d3-9489-ab7868a7ece0) from Async(weather_updates) in 7.57ms
+Started GET "/api/v1/dispersion_events/2/plume_data.json" for ::1 at 2025-10-04 13:28:39 -0500
+Started GET "/api/v1/dispersion_events/5/plume_data.json" for ::1 at 2025-10-04 13:28:39 -0500
+Started GET "/api/v1/dispersion_events/4/plume_data.json" for ::1 at 2025-10-04 13:28:39 -0500
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"2"}
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"5"}
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mDispersionEvent Load (0.8ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 2 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  [1m[36mDispersionEvent Load (1.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 5 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mLocation Load (1.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 2 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  [1m[36mDispersionCalculation Load (0.5ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+Completed 200 OK in 459ms (Views: 0.4ms | ActiveRecord: 2.4ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  [1m[36mLocation Load (1.1ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+Completed 200 OK in 425ms (Views: 0.5ms | ActiveRecord: 3.2ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  [1m[36mDispersionEvent Load (0.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 4 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 4 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+Completed 200 OK in 656ms (Views: 0.4ms | ActiveRecord: 1.1ms (3 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/api/v1/dispersion_events/4/live_calculations.json" for ::1 at 2025-10-04 13:28:40 -0500
+Started GET "/api/v1/dispersion_events/2/live_calculations.json" for ::1 at 2025-10-04 13:28:40 -0500
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  Parameters: {"id"=>"4"}
+Started GET "/api/v1/dispersion_events/5/live_calculations.json" for ::1 at 2025-10-04 13:28:41 -0500
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 4 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (0.5ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 4 AND (created_at > '2025-10-04 18:27:41.464658') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+Completed 200 OK in 389ms (Views: 0.2ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 2 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+Processing by Api::V1::DispersionEventsController#live_calculations as JSON
+  [1m[36mDispersionCalculation Load (3.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 AND (created_at > '2025-10-04 18:27:41.529945') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  Parameters: {"id"=>"5"}
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+Completed 200 OK in 382ms (Views: 0.2ms | ActiveRecord: 3.5ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:28:41 -0500
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 5 LIMIT 1 /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:28:42 -0500
+  [1m[36mDispersionCalculation Load (1.7ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 AND (created_at > '2025-10-04 18:27:42.034818') ORDER BY "dispersion_calculations"."created_at" DESC /*action='live_calculations',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:51:in `map'
+Completed 200 OK in 505ms (Views: 0.2ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.3ms)
+
+
+Processing by WeatherDataController#update_all as */*
+Processing by WeatherDataController#update_all as */*
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:28:42 -0500
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: b5de7eb8-6e91-4291-968a-063d30811878) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 346ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: a4759485-69e7-487d-bf82-8be5894ea58a) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 371ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Processing by WeatherDataController#update_all as */*
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Performing WeatherUpdateJob (Job ID: b5de7eb8-6e91-4291-968a-063d30811878) from Async(weather_updates) enqueued at 2025-10-04T18:28:42.859911053Z
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878]   [1m[36mLocation Load (1.9ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [b5de7eb8-6e91-4291-968a-063d30811878] Performed WeatherUpdateJob (Job ID: b5de7eb8-6e91-4291-968a-063d30811878) from Async(weather_updates) in 15.01ms
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Performing WeatherUpdateJob (Job ID: a4759485-69e7-487d-bf82-8be5894ea58a) from Async(weather_updates) enqueued at 2025-10-04T18:28:42.933355099Z
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a]   [1m[36mLocation Load (1.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [a4759485-69e7-487d-bf82-8be5894ea58a] Performed WeatherUpdateJob (Job ID: a4759485-69e7-487d-bf82-8be5894ea58a) from Async(weather_updates) in 12.51ms
+Started POST "/weather/update_all" for ::1 at 2025-10-04 13:28:43 -0500
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: ab81b573-2f05-4d91-a76d-2d68cdc4dbf7) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 437ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.5ms)
+
+
+Processing by WeatherDataController#update_all as */*
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Performing WeatherUpdateJob (Job ID: ab81b573-2f05-4d91-a76d-2d68cdc4dbf7) from Async(weather_updates) enqueued at 2025-10-04T18:28:43.666335523Z
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7]   [1m[36mLocation Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7]   [1m[36mLocation Load (1.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [ab81b573-2f05-4d91-a76d-2d68cdc4dbf7] Performed WeatherUpdateJob (Job ID: ab81b573-2f05-4d91-a76d-2d68cdc4dbf7) from Async(weather_updates) in 12.46ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: ae99a70c-4940-410b-92da-9d0462b4c161) to Async(weather_updates)
+[ActiveJob] ↳ app/controllers/weather_data_controller.rb:46:in `update_all'
+Completed 200 OK in 386ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Performing WeatherUpdateJob (Job ID: ae99a70c-4940-410b-92da-9d0462b4c161) from Async(weather_updates) enqueued at 2025-10-04T18:28:44.112959422Z
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161]   [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [ae99a70c-4940-410b-92da-9d0462b4c161] Performed WeatherUpdateJob (Job ID: ae99a70c-4940-410b-92da-9d0462b4c161) from Async(weather_updates) in 7.32ms
+Started GET "/dashboard" for ::1 at 2025-10-04 13:28:47 -0500
+Processing by HomeController#dashboard as HTML
+  [1m[36mWeatherDatum Load (1.0ms)[0m  [1m[34mSELECT "weather_data".* FROM "weather_data" ORDER BY "weather_data"."recorded_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:24:in `dashboard'
+  [1m[36mDispersionEvent Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:28:in `dashboard'
+  [1m[36mDispersionEvent Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_events" WHERE "dispersion_events"."status" = 'active' /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:29:in `dashboard'
+  [1m[36mReceptor Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "receptors" /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:30:in `dashboard'
+  [1m[36mDispersionCalculation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "dispersion_calculations" WHERE (created_at >= '2025-10-04') /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:31:in `dashboard'
+  [1m[36mDispersionEvent Load (0.3ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."status" = 'active' /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mChemical Load (0.7ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."id" IN (2, 1) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (2, 1) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mReceptor Load (0.6ms)[0m  [1m[34mSELECT "receptors".* FROM "receptors" WHERE "receptors"."dispersion_event_id" IN (2, 4, 5) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" IN (2, 4, 5) /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:35:in `map'
+  [1m[36mDispersionCalculation Load (0.4ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 2 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mDispersionCalculation Load (0.5ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  [1m[36mCACHE DispersionCalculation Load (0.0ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1[0m
+  ↳ app/controllers/home_controller.rb:44:in `block (2 levels) in dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering home/dashboard.html.erb within layouts/application
+  [1m[36mDispersionCalculation Load (0.5ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 10 /*action='dashboard',application='Railsdisp',controller='home'*/[0m
+  ↳ app/views/home/dashboard.html.erb:247
+  Rendered home/dashboard.html.erb within layouts/application (Duration: 5.3ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 53.3ms | GC: 1.2ms)
+Completed 200 OK in 508ms (Views: 53.5ms | ActiveRecord: 7.1ms (56 queries, 43 cached) | GC: 4.6ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-10-04 13:28:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/api/v1/dispersion_events.json" for ::1 at 2025-10-04 13:28:52 -0500
+Processing by Api::V1::DispersionEventsController#index as JSON
+  [1m[36mDispersionEvent Load (0.4ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" ORDER BY "dispersion_events"."created_at" DESC LIMIT 50 /*action='index',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:9:in `map'
+  [1m[36mChemical Load (0.3ms)[0m  [1m[34mSELECT "chemicals".* FROM "chemicals" WHERE "chemicals"."id" IN (1, 4, 2) /*action='index',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:9:in `map'
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" IN (1, 2) /*action='index',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:9:in `map'
+Completed 200 OK in 390ms (Views: 0.2ms | ActiveRecord: 1.0ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/v1/dispersion_events/5/plume_data.json" for ::1 at 2025-10-04 13:28:53 -0500
+Processing by Api::V1::DispersionEventsController#plume_data as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mDispersionEvent Load (0.5ms)[0m  [1m[34mSELECT "dispersion_events".* FROM "dispersion_events" WHERE "dispersion_events"."id" = 5 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:95:in `set_dispersion_event'
+  [1m[36mDispersionCalculation Load (0.3ms)[0m  [1m[34mSELECT "dispersion_calculations".* FROM "dispersion_calculations" WHERE "dispersion_calculations"."dispersion_event_id" = 5 ORDER BY "dispersion_calculations"."created_at" DESC LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:61:in `plume_data'
+  [1m[36mLocation Load (0.4ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1 /*action='plume_data',application='Railsdisp',controller='dispersion_events'*/[0m
+  ↳ app/controllers/api/v1/dispersion_events_controller.rb:82:in `plume_data'
+Completed 200 OK in 284ms (Views: 0.4ms | ActiveRecord: 1.1ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: a07b340c-3ff8-412a-9a52-f1cea485c063) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Performing WeatherUpdateJob (Job ID: a07b340c-3ff8-412a-9a52-f1cea485c063) from Async(weather_updates) enqueued at 2025-10-04T18:28:55.352729330Z
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063]   [1m[36mLocation Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063]   [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [a07b340c-3ff8-412a-9a52-f1cea485c063] Performed WeatherUpdateJob (Job ID: a07b340c-3ff8-412a-9a52-f1cea485c063) from Async(weather_updates) in 9.23ms
+[ActiveJob] Enqueued WeatherUpdateJob (Job ID: 4a1fad86-008f-466e-83f1-02248b1d7387) to Async(weather_updates)
+[ActiveJob] ↳ config/initializers/weather_service.rb:39:in `block (3 levels) in <main>'
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Performing WeatherUpdateJob (Job ID: 4a1fad86-008f-466e-83f1-02248b1d7387) from Async(weather_updates) enqueued at 2025-10-04T18:29:25.853361747Z
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Starting weather update for all locations
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387]   [1m[36mLocation Count (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "locations" /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387]   ↳ app/jobs/weather_update_job.rb:46:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387]   [1m[36mLocation Load (1.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1000 /*application='Railsdisp',job='WeatherUpdateJob'*/[0m
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387]   ↳ app/jobs/weather_update_job.rb:50:in `update_all_locations_weather'
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Failed to update weather for Industrial Complex A: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Failed to update weather for Chemical Plant B: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Failed to update weather for Research Facility E: uninitialized constant WeatherService::Faraday
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Weather update completed: 0 successful, 3 failed out of 3 locations
+[ActiveJob] [WeatherUpdateJob] [4a1fad86-008f-466e-83f1-02248b1d7387] Performed WeatherUpdateJob (Job ID: 4a1fad86-008f-466e-83f1-02248b1d7387) from Async(weather_updates) in 25.58ms
